@@ -35,16 +35,30 @@ Copilot isn't just a chat interface—it's integrated throughout Microsoft 365:
 ## Opening Copilot in M365 Apps
 
 ### Universal Shortcut
-- **Windows:** Alt + I
-- **Mac:** Option + I
+**Windows:** Alt + I
+**Mac:** Option + I
+This opens the Copilot panel in Word, Excel, and PowerPoint.
 
-This opens the Copilot sidebar in Word, Excel, and PowerPoint.
-
-### Alternative Access
-- Look for the **Copilot icon** in the ribbon/toolbar
-- Click to open the Copilot pane
+> **If the shortcut does not work:**
+> - Look for the purple **Copilot icon** in the Home tab of the ribbon
+> - In Excel, also check the **Review** tab for Copilot
+> - Shortcut availability depends on your Microsoft 365 version and admin settings
 
 ---
+
+> **Before these exercises:**
+> - Ensure your files are saved and not in "Protected View"
+> - Files with sensitivity labels "Highly Confidential - Encrypted" may block Copilot access
+> - If Copilot appears greyed out or unavailable, check with your IT team
+> - If Alt+I does not work in any app, use the Copilot button in the ribbon Home tab instead
+
+> ---
+> **Enterprise Data Guidance**
+> Before uploading files or sharing data with Copilot:
+> - Copilot operates within your Microsoft 365 tenant — data is not shared externally
+> - Files labeled "Highly Confidential — Encrypted" may be blocked by Copilot due to sensitivity policies
+> - Do not share client names, deal values, or engagement codes in Copilot prompts
+> ---
 
 ## Copilot in Word
 
@@ -71,7 +85,7 @@ Word Copilot helps you **create and refine documents**.
 4. Type this prompt:
 
 ```
-Create a one-page project brief for TaskFlow's new onboarding wizard.
+Create a one-page project brief for AKX's new onboarding wizard.
 
 Include:
 - Executive Summary (2-3 sentences)
@@ -115,6 +129,8 @@ Excel Copilot helps you **analyze data and create insights**.
 
 1. Open Microsoft Excel
 2. Create a new spreadsheet with this data:
+
+> *Note: The data below is illustrative for this exercise. When applying these techniques to your own work, use your actual product metrics.*
 
 | Month | Signups | Activated | Activation Rate |
 |-------|---------|-----------|-----------------|
@@ -170,10 +186,10 @@ PowerPoint Copilot helps you **create and enhance presentations**.
 4. Type:
 
 ```
-Create a 6-slide presentation about TaskFlow's new onboarding wizard:
+Create a 6-slide presentation about AKX's new onboarding wizard:
 
 Slide 1: Title slide
-Slide 2: The Problem (current activation rate is 35%)
+Slide 2: The Problem (current WAU is 43%, target is 60%)
 Slide 3: Our Solution (new onboarding wizard features)
 Slide 4: Expected Impact (metrics improvement)
 Slide 5: Timeline and Milestones
@@ -331,29 +347,16 @@ You now know:
 
 ---
 
-## Congratulations! Level 1 Complete!
+## Great Work on Module 1.7!
 
-You've finished the Foundation level! You now can:
+You now know how to use Copilot across Word, Excel, and PowerPoint.
 
-- ✅ Access Copilot (browser, shortcuts, apps)
-- ✅ Process meeting notes and synthesize research
-- ✅ Transform content for different audiences
-- ✅ Use Researcher and Analyst agents
-- ✅ Get multiple perspectives with persona prompts
-- ✅ Build persistent context with Memory
-- ✅ Use Copilot across all M365 apps
+Three more modules remain in Level 1:
+- 1.8: Teams Integration
+- 1.9: Outlook Integration
+- 1.10: SharePoint & Collaboration
 
----
-
-## Next Steps
-
-Continue to **Level 2: Advanced PM Workflows**
-
-- **Module 2.1:** Writing PRDs with Copilot
-- **Module 2.2:** Analyzing Product Data
-- **Module 2.3:** Product Strategy
-
-Level 2 takes you from basics to advanced PM work!
+**Continue to Module 1.8: Copilot in Microsoft Teams →**
 
 ---
 

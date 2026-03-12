@@ -123,6 +123,12 @@ Were there any action items assigned to the product team?
 
 ### Exercise 2: Catch Up on a Missed Meeting
 
+> **Before this exercise:**
+> - Find a meeting where **transcription was enabled** (you'll see a transcript icon in the meeting recap)
+> - If no such meeting exists yet, use the Exercise 1 meeting summary instead
+>
+> *Note: Copilot can only summarize meetings that were transcribed. Enable transcription by default on your Teams meetings for future use.*
+
 **Do this now:**
 
 1. Find a meeting you were invited to but didn't attend
@@ -136,6 +142,8 @@ I couldn't attend this meeting. Please summarize:
 3. Are there any action items for me?
 4. What do I need to prepare for next time?
 ```
+
+> *Copilot transcribes spoken words. If a presenter shares their screen and points to items without describing them verbally, those details won't appear in summaries.*
 
 ---
 
@@ -198,6 +206,13 @@ Are there any questions that were asked but not answered?
 ---
 
 ## Section 3: Channel Workflows
+
+> **Enterprise Note:** Copilot in Teams **channels** may be restricted by your tenant configuration, even if Copilot is available in personal chats.
+>
+> **If Copilot is not visible in a channel:**
+> - Check that Copilot is enabled for that specific channel (requires channel owner or admin action)
+> - As an alternative, use **Copilot Chat** (copilot.microsoft.com) to query channel content
+> - Contact your IT helpdesk to request Copilot be enabled for your team's channels
 
 Copilot helps you stay on top of Teams channels without reading every message.
 

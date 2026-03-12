@@ -10,7 +10,7 @@
 By the end of this module, you will:
 1. Understand what Microsoft Copilot is and how it helps PMs
 2. Know how to access Copilot (browser, Windows app, M365 apps)
-3. Meet Accenture's Internal Digital Products team - your role throughout this course
+3. Step into your simulated role: Senior Product Owner at Accenture's Internal Digital Products team
 4. Understand how this course is structured
 5. Feel confident that you can use Copilot without technical skills
 
@@ -20,7 +20,7 @@ By the end of this module, you will:
 
 Welcome to the Microsoft Copilot PM Course!
 
-You're about to learn how to use Microsoft Copilot - an AI assistant that can save you **10-20 hours per week** as a Product Manager. Unlike traditional tools, Copilot integrates directly into the Microsoft 365 apps you already use: Word, Excel, PowerPoint, Outlook, and Teams.
+You're about to learn how to use Microsoft Copilot - an AI assistant that can save you **5-8 hours per week** on core PM tasks — and up to 10+ hours per week once you master all the tools in this course. Unlike traditional tools, Copilot integrates directly into the Microsoft 365 apps you already use: Word, Excel, PowerPoint, Outlook, and Teams.
 
 Throughout this course, you'll work as a **Senior Product Owner** at **Accenture** - one of the world's largest consulting firms with 700,000+ employees globally. You'll own two internal products: **AKX** (Accenture Knowledge Exchange) and **ADH** (Accenture Delivery Hub).
 
@@ -30,7 +30,7 @@ Throughout this course, you'll work as a **Senior Product Owner** at **Accenture
 
 ## What is Microsoft Copilot?
 
-Microsoft Copilot is an AI assistant powered by GPT-5 that's built into Microsoft 365. Here's what makes it special for PMs:
+Microsoft Copilot is an AI assistant powered by advanced large language models and built into Microsoft 365. Microsoft periodically updates the underlying models to deliver the latest capabilities. Here's what makes it special for PMs:
 
 | Capability | What It Means for PMs |
 |------------|----------------------|
@@ -57,7 +57,6 @@ Go to: **copilot.microsoft.com**
 ### 2. Windows Keyboard Shortcut
 Press: **Alt + Spacebar**
 - Opens Copilot anywhere on Windows
-- Hold for 2 seconds for voice input
 
 ### 3. Mac Keyboard Shortcut
 Press: **Option + Spacebar**
@@ -67,6 +66,8 @@ Press: **Option + Spacebar**
 Press: **Alt + I** (in Word, Excel, PowerPoint)
 - Opens Copilot panel within the document
 - Context-aware: understands the file you have open
+
+> **Note on keyboard shortcuts:** Keyboard shortcuts vary by Microsoft 365 version, Windows build, and enterprise configuration. If `Alt + I` does not open Copilot in a specific app, click the **Copilot icon** in the app ribbon (Home tab or right side of toolbar). Shortcut availability may also depend on your organization's license tier.
 
 ### 5. Microsoft Teams
 Click the Copilot icon in Teams
@@ -89,13 +90,19 @@ Let's make sure you can access Copilot.
 - A left panel showing recent chats and agents
 - Suggested prompts in the center
 
+> If you're unsure you're in the right place: look for a text input bar at the bottom of the page and a paper clip icon to its left. That's the file upload button.
+
 If you see this, you're ready to continue!
+
+> **Response times:** Copilot responses typically take 5-20 seconds depending on task complexity. Agents (Researcher, Analyst) may take 2-10 minutes. This is normal — do not refresh the page while waiting.
 
 ---
 
 ## Your Role: Senior Product Owner at Accenture
 
 Throughout this course, you'll work as a **Senior Product Owner** in Accenture's Internal Digital Products team.
+
+> *Throughout this course, we use "PM" (Product Manager) as a shorthand that includes Product Owners (POs), Business Analysts (BAs), and anyone in a product leadership role. When you see "PM" in prompts or exercises, adapt it to your actual title — the skills apply equally.*
 
 ### Company Overview
 
@@ -137,6 +144,8 @@ You'll make product decisions for these internal stakeholders throughout the cou
 - Needs: Real-time project health, resource visibility, automated reporting
 - Pain point: "I spend 4 hours a week on status reports that should be automated"
 
+> These three personas appear throughout the course. For their full background, motivations, and pain points, see the **Resources** section → Company Context → Personas.
+
 ---
 
 ## Exercise 2: Ask Copilot About Your Role
@@ -175,6 +184,8 @@ What are 3 key questions I should be asking about AKX adoption?
 ## How This Course Works
 
 ### Course Structure
+
+Total estimated time: ~6 hours (15–35 minutes per module)
 
 The course has **3 levels** with multiple modules each:
 
@@ -260,6 +271,14 @@ You now know:
 - ✅ How this course is structured
 - ✅ That you just talk to Copilot in plain English
 
+**Quick Self-Check**
+Before moving on, can you:
+- [ ] Open copilot.microsoft.com and see the chat interface with file upload
+- [ ] Name the three Accenture personas in this course and their main pain points
+- [ ] Identify which level and module covers PRD writing
+
+*If you're unsure about any of these, re-read that section before continuing.*
+
 ---
 
 ## Next Steps
@@ -276,11 +295,10 @@ In Module 1.2, you'll learn:
 
 ## Quick Reference: Keyboard Shortcuts
 
-| Action | Windows | Mac |
-|--------|---------|-----|
-| Open Copilot | Alt + Spacebar | Option + Spacebar |
-| Voice input | Hold Alt + Spacebar (2 sec) | Hold Option + Spacebar (2 sec) |
-| Copilot in apps | Alt + I | Option + I |
+| Action | Windows | Mac | If Shortcut Fails |
+|--------|---------|-----|-------------------|
+| Open Copilot | Alt + Spacebar | Option + Spacebar | Go to copilot.microsoft.com |
+| Copilot in apps | Alt + I | Option + I | Click Copilot icon in the ribbon Home tab |
 
 ---
 

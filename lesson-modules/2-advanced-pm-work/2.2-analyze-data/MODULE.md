@@ -16,7 +16,11 @@ By the end of this module, you will:
 
 ---
 
+> **Environment note:** Keyboard shortcuts may vary. If Alt+I does not work, use the Copilot icon in the Excel ribbon (Home tab). See Module 1.7 for full shortcut troubleshooting.
+
 ## Why Enterprise PMs Need Data Analysis
+
+> **Enterprise data guidance:** The financial figures, metrics, and business data used throughout this module are realistic examples for learning purposes. In real use, replace with your organization's actual data. Always verify calculations independently before presenting to stakeholders.
 
 Enterprise internal product decisions require strong data support:
 
@@ -61,8 +65,14 @@ Unlike external products focused on revenue and growth, enterprise internal tool
 | Method | Best For | How |
 |--------|----------|-----|
 | **Copilot Chat** | Quick analysis, summaries | Upload file to chat |
-| **Excel Copilot** | Spreadsheet work, formulas | Alt+I in Excel |
+| **Excel Copilot** | Spreadsheet work, formulas | Alt+I in Excel (or Copilot button in Home tab) |
 | **Analyst Agent** | Complex reasoning, ROI | Left panel → Analyst |
+
+> **Which method should I use?**
+> - Have a spreadsheet open and want in-context analysis → **Excel Copilot**
+> - Need to upload a file and get a quick summary → **Copilot Chat**
+> - Need statistical validation, ROI calculations, or complex multi-step reasoning → **Analyst Agent**
+> - Unsure? Start with **Copilot Chat** — if the question requires deeper analysis, switch to **Analyst Agent**
 
 ---
 
@@ -182,8 +192,7 @@ Please provide:
 ### How to Access
 
 1. Open your data file in Excel
-2. Press **Alt+I** to open Copilot panel
-3. Or click the Copilot icon in the ribbon
+2. Press **Alt+I** to open Copilot, or click the **Copilot button** in the Home tab of the Excel ribbon
 
 ### Enterprise-Specific Excel Tasks
 
@@ -201,7 +210,7 @@ Please provide:
 **Do this now:**
 
 1. Open utilization data in Excel
-2. Press Alt+I to open Copilot
+2. Press Alt+I to open Copilot, or click the **Copilot button** in the Home tab of the Excel ribbon
 3. Try these prompts:
 
 ```
@@ -458,6 +467,8 @@ Based on this data:
 - ❌ Assume correlation means causation
 - ❌ Hide limitations or data gaps
 
+> *For your organization's guidance on AI usage and data handling, refer to your Responsible AI policy (search "Responsible AI guidelines" on your internal intranet).*
+
 ---
 
 ## Module Complete!
@@ -468,6 +479,14 @@ You now know:
 - ✅ How to interpret pilot test results with statistical rigor
 - ✅ How to calculate ROI for steering committee presentations
 - ✅ The enterprise data analysis workflow
+
+**Quick Self-Check**
+Before moving on, can you:
+- [ ] Choose the right analysis method (Chat vs. Excel Copilot vs. Analyst) for a given scenario
+- [ ] Open Copilot in Excel using either the keyboard shortcut or the ribbon icon
+- [ ] Explain how to validate Copilot's statistical claims before presenting to stakeholders
+
+*If you're unsure about any of these, re-read that section before continuing.*
 
 ---
 

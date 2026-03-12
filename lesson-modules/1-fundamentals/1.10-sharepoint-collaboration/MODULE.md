@@ -5,6 +5,8 @@
 
 ---
 
+SharePoint is where your organization's institutional knowledge lives — PRDs, meeting notes, research, project files. This module teaches you to use Copilot as a universal search layer across all of it, letting you find and query documents in seconds using plain English instead of folder browsing.
+
 ## What You'll Learn
 
 By the end of this module, you will:
@@ -13,6 +15,16 @@ By the end of this module, you will:
 3. Ask questions about documents without opening them
 4. Get updates on recent changes across sites
 5. Integrate SharePoint content into your PM workflows
+
+### Technical Prerequisites for this Module
+
+Before starting Module 1.10, confirm:
+
+1. **SharePoint access** — You have access to at least one SharePoint site (check via sharepoint.com)
+2. **Copilot for SharePoint** — Copilot's ability to search SharePoint content is part of M365 Copilot Enterprise; confirm it's enabled by trying: go to copilot.microsoft.com and type "Find a recent document" — if Copilot returns results from your SharePoint, you're ready
+3. **Content to search** — You'll need some existing SharePoint content. If you're in a new environment with no content, the exercises will use generic prompts you can observe rather than execute
+
+> *If SharePoint Copilot integration is not enabled in your tenant, contact your IT helpdesk or use the alternative prompts provided in each exercise.*
 
 ---
 
@@ -372,7 +384,7 @@ Congratulations! You've completed all 10 modules of Level 1: Foundation.
 | 1.8 | Teams | 2.5 hrs/week |
 | 1.9 | Outlook | 1.5 hrs/week |
 | 1.10 | SharePoint | 2 hrs/week |
-| **Total** | | **11+ hrs/week** |
+| **Total** | | **11+ hrs/week** *(full Level 1 cumulative across all modules)* |
 
 ---
 

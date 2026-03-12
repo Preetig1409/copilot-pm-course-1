@@ -14,6 +14,8 @@ By the end of this module, you will:
 4. Navigate steering committee strategy discussions
 5. Communicate strategy to diverse enterprise stakeholders
 
+> *Quick navigation: Strategic Frameworks | Portfolio Strategy | Governance | Competitive Strategy | Communication | Exercise*
+
 ---
 
 ## Enterprise Strategy is Different
@@ -35,9 +37,15 @@ Your job isn't to find product-market fit - it's to align with organizational pr
 
 ## Strategic Frameworks for Enterprise
 
+> **Enterprise data guidance:** The financial figures, metrics, and business data used throughout this module are realistic examples for learning purposes. In real use, replace with your organization's actual data. Always verify calculations independently before presenting to stakeholders.
+
+> *~5 min per framework section*
+
 ### Framework 1: Strategic Alignment Analysis
 
 Before any initiative, ensure alignment with corporate priorities.
+
+> *(Note: The priorities and metrics below are illustrative for this exercise. In real use, replace with your organization's actual current strategic priorities.)*
 
 ```
 Analyze strategic alignment for AKX AI-Powered Search.
@@ -77,6 +85,8 @@ Format for a steering committee strategy discussion.
 
 ### Framework 2: Enterprise SWOT Analysis
 
+> *A SWOT analysis is a 2×2 grid: Strengths and Weaknesses are internal; Opportunities and Threats are external.*
+
 ```
 Create a SWOT analysis for AKX's position as Accenture's
 knowledge management platform.
@@ -101,6 +111,8 @@ Then provide:
 
 ### Framework 3: Internal Tool Value Chain
 
+> *The AKX value chain flows: Content Creation → Curation → Search → Expert Connection → Knowledge Application.*
+
 ```
 Apply value chain analysis to AKX.
 
@@ -120,6 +132,8 @@ Identify:
 - Where should we invest next?
 - What's the strategic narrative for steering committee?
 ```
+
+> *Once you've worked through this module, use the prompts in Module 3.2 to create visual versions of these frameworks for your steering committee presentations.*
 
 ---
 

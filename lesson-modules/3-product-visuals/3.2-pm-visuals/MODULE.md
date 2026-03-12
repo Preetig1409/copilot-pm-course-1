@@ -14,6 +14,8 @@ By the end of this module, you will:
 4. Create internal launch and change management assets
 5. Develop a consistent visual library for enterprise presentations
 
+> **Suggested Pacing:** This module has 5 sections. You don't need to complete all of them in one session — each section is self-contained. Work through Sections 1 and 2 first, then return for others as your work requires.
+
 ---
 
 ## Enterprise PM Visual Types
@@ -33,7 +35,7 @@ Let's create each type!
 
 ---
 
-## 1. Enterprise Stakeholder Persona Illustrations
+## 1. Enterprise Stakeholder Persona Illustrations — **Try this now**
 
 ### Basic Persona Image
 
@@ -89,9 +91,13 @@ Create a professional illustration of Elena Rodriguez:
 - Expression: organized, attentive
 ```
 
+> *Copilot will produce a working draft — not a final deliverable. Plan to refine in Microsoft Designer or your presentation software.*
+
+> *Generated persona illustrations work well for: internal presentations, team alignment workshops, change management materials. They are not production-ready brand assets — for those, involve your communications team.*
+
 ---
 
-## 2. Adoption Journeys and Flow Diagrams
+## 2. Adoption Journeys and Flow Diagrams — **Try this now**
 
 ### Adoption Journey Visual (for Change Management)
 
@@ -148,9 +154,18 @@ Include percentage labels on each stage
 Professional enough for steering committee metrics review
 ```
 
+> *Copilot will produce a working draft — not a final deliverable. Plan to refine in Microsoft Designer or your presentation software.*
+
 ---
 
-## 3. Enterprise Roadmap Visuals
+## 3. Enterprise Roadmap Visuals — **Reference for later**
+
+> **Before creating data-driven visuals, prepare your data:**
+> - Roadmaps: List your initiatives with quarter, team/track, and status (committed vs. planned)
+> - Adoption funnels: Have your actual stage percentages ready (provisioned → active → WAU)
+> - Priority matrices: Score each initiative on both axes before prompting
+>
+> *Copilot can generate accurate visuals when given clean, structured input. Vague inputs produce generic visuals.*
 
 ### Portfolio Roadmap
 
@@ -195,9 +210,11 @@ Colors: Green (top-left), Yellow (top-right),
 Professional for steering committee prioritization discussion
 ```
 
+> *Copilot will produce a working draft — not a final deliverable. Plan to refine in Microsoft Designer or your presentation software.*
+
 ---
 
-## 4. Internal Launch and Change Management Assets
+## 4. Internal Launch and Change Management Assets — **Reference for later**
 
 ### Internal Announcement Graphic
 
@@ -250,9 +267,11 @@ Mood: Encouraging adoption, not hard-sell
 Would be displayed on internal channels/screens
 ```
 
+> *Copilot will produce a working draft — not a final deliverable. Plan to refine in Microsoft Designer or your presentation software.*
+
 ---
 
-## 5. Enterprise Presentation Graphics
+## 5. Enterprise Presentation Graphics — **Reference for later**
 
 ### Steering Committee Title Slide Background
 

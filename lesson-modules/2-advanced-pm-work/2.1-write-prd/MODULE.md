@@ -8,11 +8,13 @@
 ## What You'll Learn
 
 By the end of this module, you will:
-1. Use Copilot as a thinking partner (not ghostwriter) for enterprise PRDs
-2. Include business cases with ROI calculations
-3. Add governance sections (steering committee, stakeholders, RACI)
-4. Create change management considerations
-5. Get multi-perspective feedback from enterprise stakeholders
+1. Draft a business case section of an enterprise PRD including ROI calculations using Copilot prompts
+2. Create a RACI matrix for a major internal product initiative
+3. Build a stakeholder engagement plan that maps decision-makers to their concerns
+4. Assess your own PRD draft for steering committee readiness using the quality checklist
+5. Get multi-perspective feedback from MD, CKO, and Consultant personas on a PRD section
+
+> *Quick navigation: Phase 1 Business Context | Phase 2 Solution & Impact | Phase 3 Document & Governance | Phase 4 Review & Alignment | Quality Checklist*
 
 ---
 
@@ -29,13 +31,7 @@ Internal enterprise PRDs require elements that external product PRDs don't:
 | Risks | Governance & change management |
 | Launch plan | Change management & communications |
 
-### Key Additions for Enterprise PRDs
-
-1. **Business Case with ROI** - Justify the investment
-2. **Stakeholder Analysis** - Who needs to approve, champion, or be informed
-3. **Governance** - Decision rights, steering committee alignment
-4. **Change Management** - How will 700,000 users adopt this?
-5. **RACI Matrix** - Clear accountability
+> *Each of these enterprise additions is covered in the exercises below. Business Case → Phase 1, Stakeholder Analysis → Phase 1, Governance → Phase 3, Change Management → Phase 2, RACI → Phase 3.*
 
 ---
 
@@ -103,6 +99,8 @@ Ask me clarifying questions if needed.
 ```
 
 ### Step 2: Build the Business Case
+
+> **Enterprise data guidance:** The financial figures, metrics, and business data used throughout this module are realistic examples for learning purposes. In real use, replace with your organization's actual data. Always verify calculations independently before presenting to stakeholders.
 
 This is critical for enterprise PRDs - you need to justify the investment.
 
@@ -319,6 +317,11 @@ For each section, tell me what makes it "enterprise-grade" vs. a startup PRD.
 
 ### Creating the RACI Matrix
 
+> *New to enterprise governance? Quick definitions:*
+> - **RACI**: Responsible (does the work), Accountable (owns the outcome), Consulted (provides input), Informed (needs to know)
+> - **Steering Committee**: Senior stakeholder group with budget authority and strategic oversight
+> - **Governance**: The process by which decisions are made, approved, and tracked in an organization
+
 ```
 Create a RACI matrix for the AI Search initiative.
 
@@ -475,6 +478,14 @@ You now know:
 - ✅ How to create stakeholder analysis and RACI
 - ✅ How to plan change management in PRDs
 - ✅ How to prepare for steering committee review
+
+**Quick Self-Check**
+Before moving on, can you:
+- [ ] Draft a business case section with ROI calculations using Copilot
+- [ ] Create a RACI matrix for a product initiative and explain each role
+- [ ] Describe 3 ways enterprise PRDs differ from standard startup PRDs
+
+*If you're unsure about any of these, re-read that section before continuing.*
 
 ---
 
