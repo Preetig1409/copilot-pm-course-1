@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alpha Testing Feedback Tracker &mdash; Implementation Status</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --text-light: #F8F7F6;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --sand: #CB9F69;
+  --max-w: 920px;
+  --header-h: 55px;
+  --critical: #DC2626;
+  --critical-bg: #FEF2F2;
+  --major: #EA580C;
+  --major-bg: #FFF7ED;
+  --moderate: #CA8A04;
+  --moderate-bg: #FEFCE8;
+  --minor: #6B7280;
+  --minor-bg: #F9FAFB;
+  --fixed: #16A34A;
+  --fixed-bg: #F0FDF4;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1 { font-family: 'Playfair Display', serif; font-size: 2.4rem; font-weight: 500; letter-spacing: -0.05em; line-height: 1.15; }
+h2 { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 14px; }
+h3 { font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 500; letter-spacing: -0.02em; margin-bottom: 8px; }
+
+a { color: var(--teal-dark); }
+
+header.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: var(--max-w); padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand { font-family: 'Playfair Display', serif; font-size: 1.1rem; font-weight: 600; color: var(--text-primary); }
+.header-meta { font-size: 0.8rem; color: var(--text-muted); }
+
+main { max-width: var(--max-w); margin: 0 auto; padding: calc(var(--header-h) + 40px) 24px 80px; }
+
+.hero { margin-bottom: 48px; padding-bottom: 32px; border-bottom: 1px solid var(--border); }
+.hero p { margin-top: 12px; color: var(--text-secondary); font-size: 1.05rem; max-width: 640px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px; padding: 16px 18px; text-align: center;
+}
+.stat-card .value { font-size: 2rem; font-weight: 700; color: var(--teal-dark); line-height: 1.2; }
+.stat-card .label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px; }
+
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+.filter-btn {
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  background: var(--white); cursor: pointer; font-size: 0.8rem; font-family: 'Inter', sans-serif;
+  color: var(--text-secondary); transition: all 0.15s;
+}
+.filter-btn:hover { border-color: var(--teal); color: var(--teal-dark); }
+.filter-btn.active { background: var(--teal); color: var(--white); border-color: var(--teal); }
+
+.module-section { margin-bottom: 36px; }
+.module-header {
+  display: flex; align-items: center; gap: 10px; margin-bottom: 12px;
+  padding-bottom: 8px; border-bottom: 1px solid var(--cream-darker);
+}
+.module-header h2 { margin-bottom: 0; }
+.module-badge {
+  font-size: 0.7rem; padding: 2px 8px; border-radius: 10px;
+  background: var(--cream-dark); color: var(--text-muted);
+}
+
+.item-card {
+  border: 1px solid var(--border); border-radius: 8px; margin-bottom: 10px;
+  overflow: hidden; transition: box-shadow 0.15s;
+}
+.item-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.item-header {
+  display: flex; align-items: center; gap: 10px; padding: 12px 16px;
+  cursor: pointer; user-select: none;
+}
+.item-header:hover { background: var(--cream); }
+.item-id { font-weight: 700; font-size: 0.8rem; color: var(--teal-dark); min-width: 64px; }
+.severity-badge {
+  font-size: 0.65rem; font-weight: 600; padding: 2px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.severity-critical { background: var(--critical-bg); color: var(--critical); }
+.severity-major { background: var(--major-bg); color: var(--major); }
+.severity-moderate { background: var(--moderate-bg); color: var(--moderate); }
+.severity-minor { background: var(--minor-bg); color: var(--minor); }
+.item-title { flex: 1; font-size: 0.9rem; }
+.status-badge {
+  font-size: 0.65rem; font-weight: 600; padding: 2px 8px; border-radius: 4px;
+  background: var(--fixed-bg); color: var(--fixed); text-transform: uppercase;
+}
+.expand-icon { color: var(--text-muted); font-size: 0.8rem; transition: transform 0.2s; }
+.item-card.open .expand-icon { transform: rotate(90deg); }
+
+.item-detail {
+  display: none; padding: 0 16px 14px; font-size: 0.85rem; color: var(--text-secondary);
+  border-top: 1px solid var(--cream-darker);
+}
+.item-card.open .item-detail { display: block; padding-top: 14px; }
+.detail-row { margin-bottom: 8px; }
+.detail-label { font-weight: 600; color: var(--text-primary); font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; }
+
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin-bottom: 32px; padding: 14px 18px; background: var(--cream); border-radius: 8px; font-size: 0.8rem; }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+
+.search-box {
+  width: 100%; padding: 10px 16px; border: 1px solid var(--border); border-radius: 8px;
+  font-size: 0.9rem; font-family: 'Inter', sans-serif; margin-bottom: 16px;
+  outline: none; transition: border-color 0.15s;
+}
+.search-box:focus { border-color: var(--teal); }
+
+footer { text-align: center; padding: 32px 24px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 48px; }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <span class="header-brand">Copilot PM Course &mdash; Feedback Tracker</span>
+    <span class="header-meta">Generated 12 March 2026</span>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <h1>Alpha Testing<br>Feedback Tracker</h1>
+    <p>Complete implementation status for all 57 feedback items from the 4-team alpha testing exercise. Each item links the original finding to what was changed and where.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="value">131</div><div class="label">Findings Processed</div></div>
+    <div class="stat-card"><div class="value">57</div><div class="label">Impl. Items</div></div>
+    <div class="stat-card"><div class="value">57</div><div class="label">Completed</div></div>
+    <div class="stat-card"><div class="value">4</div><div class="label">Critical</div></div>
+    <div class="stat-card"><div class="value">10</div><div class="label">Major</div></div>
+    <div class="stat-card"><div class="value">30</div><div class="label">Moderate</div></div>
+    <div class="stat-card"><div class="value">13</div><div class="label">Minor</div></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="severity-badge severity-critical">Critical</span> Factual errors / broken exercises</div>
+    <div class="legend-item"><span class="severity-badge severity-major">Major</span> Misleading content / missing prerequisites</div>
+    <div class="legend-item"><span class="severity-badge severity-moderate">Moderate</span> Clarity / enterprise notes</div>
+    <div class="legend-item"><span class="severity-badge severity-minor">Minor</span> Polish / enhancements</div>
+  </div>
+
+  <input type="text" class="search-box" placeholder="Search by ID, module, title, or keyword..." id="searchBox">
+
+  <div class="filters">
+    <button class="filter-btn active" data-filter="all">All (57)</button>
+    <button class="filter-btn" data-filter="critical">Critical (4)</button>
+    <button class="filter-btn" data-filter="major">Major (10)</button>
+    <button class="filter-btn" data-filter="moderate">Moderate (30)</button>
+    <button class="filter-btn" data-filter="minor">Minor (13)</button>
+  </div>
+
+  <div id="tracker"></div>
+</main>
+
+<footer>
+  Alpha Testing Feedback Tracker &middot; Microsoft Copilot for Product Managers Course &middot; March 2026
+</footer>
+
+<script>
+const items = [
+  // Module 1.1
+  { id: "IMP-001", module: "1.1", title: "GPT-5 and o3 model references replaced with version-agnostic language", severity: "critical", findings: "T2-06, T2-17", found: "Module 1.1 line 33 said 'powered by GPT-5'; Module 1.4 table said 'Uses reasoning models (o3)' — too specific, will become stale.", fixed: "Replaced with 'advanced large language models' (1.1) and 'Latest Microsoft language model' / 'Advanced reasoning model' (1.4 table)." },
+  { id: "IMP-002", module: "1.1", title: "Time savings numbers made internally consistent", severity: "critical", findings: "T2-01, T2-11", found: "Introduction claimed '10-20 hours/week' but the per-task table totals to '5-8 hours'. Three different figures across modules.", fixed: "Introduction now says '5-8 hours/week on core PM tasks — and up to 10+ hours once you master all tools'. Module 1.10 cumulative total annotated." },
+  { id: "IMP-003", module: "1.1", title: "Keyboard shortcut unreliability warnings added", severity: "major", findings: "T1-02, T1-03, T2-04, T2-05, T3-05, T3-07, T3-08", found: "Alt+Spacebar opens Window management menu; Alt+I inconsistent across M365 versions. Multiple teams confirmed failures.", fixed: "Added callout box with ribbon icon fallback. Removed 'Hold 2 sec for voice input'. Quick Reference table now has 'If Shortcut Fails' column." },
+  { id: "IMP-004", module: "1.1", title: "Learning objective #3 reworded for clarity", severity: "major", findings: "T2-08", found: "'Meet Accenture's Internal Digital Products team - your role throughout this course' — ambiguous phrasing.", fixed: "Now reads: 'Step into your simulated role: Senior Product Owner at Accenture's Internal Digital Products team'." },
+  { id: "IMP-005", module: "1.1", title: "Personas section now links to full persona resources", severity: "major", findings: "T2-10", found: "Brief persona descriptions with no link to full persona documents in Resources.", fixed: "Added cross-reference: 'For full background, see Resources → Company Context → Personas.'" },
+  { id: "IMP-006", module: "1.1", title: "Course duration explained in Course Structure section", severity: "moderate", findings: "T2-07", found: "'6 hours' appeared on index page without context.", fixed: "Added 'Total estimated time: ~6 hours (15-35 minutes per module)' to Course Structure section." },
+  { id: "IMP-007", module: "1.1", title: "Navigation sidebar titles aligned with MODULE.md headings", severity: "moderate", findings: "T3-02", found: "courseStructure.ts titles didn't match MODULE.md H1 headings for modules 1.4 and 1.5.", fixed: "Fixed titles in courseStructure.ts: 'Using Researcher & Analyst Agents' and 'Persona Prompting for Different Perspectives'." },
+  { id: "IMP-008", module: "1.1", title: "Visual cue added for Copilot interface identification", severity: "minor", findings: "T1-01, T4-02", found: "'Full chat interface with file upload' — no visual anchor for first-time users.", fixed: "Added descriptive callout: 'look for a text input bar and paper clip icon'." },
+
+  // Module 1.2
+  { id: "IMP-009", module: "1.2", title: "File upload limit corrected from 5 to 5-10", severity: "major", findings: "T2-14, T4-05", found: "Stated 'up to 5 files at once' but testers uploaded more. Limit has changed.", fixed: "Now says 'multiple files (typically 5-10 depending on file size and license)'. Same fix in Module 1.3." },
+  { id: "IMP-010", module: "1.2", title: "ContextIQ enterprise restriction note added", severity: "moderate", findings: "T3-12", found: "'/' ContextIQ menu doesn't appear in some enterprise tenants.", fixed: "Added Enterprise Note with fallback: attachment icon, inline paste, IT administrator check." },
+  { id: "IMP-011", module: "1.2", title: "Enterprise Data Guidance callout added", severity: "moderate", findings: "T4-04", found: "No guidance on data sensitivity when uploading files to Copilot.", fixed: "Added Enterprise Data Guidance block covering tenant scope, sensitivity labels, and responsible AI." },
+  { id: "IMP-012", module: "1.2", title: "Drag and Drop method expanded to 4 steps", severity: "minor", findings: "T2-13", found: "Method 2 had only 3 steps, missing confirmation/progress indicator.", fixed: "Expanded to 4 steps with drop zone highlight and attachment confirmation." },
+
+  // Module 1.3
+  { id: "IMP-013", module: "1.3", title: "Batch 2 interview prompt made explicit", severity: "moderate", findings: "T1-04, T2-16", found: "'Analyze these using the same format' — vague, no prompt provided.", fixed: "Added specific prompt block for Batch 2 with clear instructions." },
+  { id: "IMP-014", module: "1.3", title: "Text-description mockup path made primary", severity: "minor", findings: "T4-06", found: "Task 4 assumed learners have a mockup image file; no sample provided.", fixed: "Added note making text description equally viable for learning purposes." },
+  { id: "IMP-015", module: "1.3", title: "Priority refinement follow-up step added", severity: "minor", findings: "T3-13", found: "Copilot's auto-generated priorities didn't match expected PM judgment.", fixed: "Added 'Refine' follow-up prompt and note about reviewing AI-generated priorities." },
+
+  // Module 1.4
+  { id: "IMP-016", module: "1.4", title: "Workflow Agent marked as tenant-dependent", severity: "moderate", findings: "T3-17, T4-08", found: "Workflows Agent not visible in Accenture tenant. May appear as 'Workflow Frontier'.", fixed: "Added availability note, environment guidance, and marked exercise as optional." },
+  { id: "IMP-017", module: "1.4", title: "Combined agent workflow (Research → Analysis) added", severity: "moderate", findings: "T2-17, March 10 #4", found: "No guidance on using Researcher and Analyst sequentially.", fixed: "Added 'Combined Agent Workflow' subsection with 2-step pattern." },
+  { id: "IMP-018", module: "1.4", title: "Analyst exercise framed as illustrative", severity: "minor", findings: "T3-19", found: "Adoption Cohort Analysis felt like an assessment, not a learning exercise.", fixed: "Added framing note: 'Numbers are illustrative — practice the prompt structure.'" },
+
+  // Module 1.5
+  { id: "IMP-019", module: "1.5", title: "PO and BA persona prompts added", severity: "moderate", findings: "T1-12, T4-09, T4-10, T4-12, T3-23, T3-24", found: "Personas were all senior/consulting roles. No PO, BA, or Scrum Master perspectives.", fixed: "Added Team-Level Product Owner and Business Analyst persona prompts with examples." },
+  { id: "IMP-020", module: "1.5", title: "Industry adaptation guidance added", severity: "minor", findings: "T3-23, T3-24", found: "Personas only framed for consulting; no guidance for Finance, Pharma, Manufacturing.", fixed: "Added note on adapting personas for industry-specific contexts." },
+  { id: "IMP-021", module: "1.5", title: "Feature proposal term clarified", severity: "minor", findings: "T1-12", found: "Exercise 1 references 'feature proposal' — not defined in prior modules.", fixed: "Added clarification that no prior work is needed; use the prompt's built-in feature." },
+
+  // Module 1.6
+  { id: "IMP-022", module: "1.6", title: "Memory settings navigation updated for current UI", severity: "major", findings: "T1-05, T2-19, T4-13", found: "Steps said 'profile icon (top right)' — 3 teams independently confirmed this is wrong.", fixed: "Updated to cover both top-right and bottom-left positions with fallback note." },
+  { id: "IMP-023", module: "1.6", title: "Context aligned from TaskFlow to AKX/ADH", severity: "minor", findings: "T2-21", found: "Exercise used 'TaskFlow' (generic SaaS) instead of the Accenture/AKX context.", fixed: "All TaskFlow references replaced with Accenture/AKX context and metrics." },
+  { id: "IMP-024", module: "1.6", title: "Sensitive data warning added to Memory section", severity: "minor", findings: "T4-16", found: "No guidance on what not to store in Copilot memory.", fixed: "Added 'What Not to Store' callout: client names, PII, confidential figures." },
+
+  // Module 1.7
+  { id: "IMP-025", module: "1.7", title: "Alt+I shortcut fallback and prerequisites added", severity: "critical", findings: "T1-15, T1-16, T1-17, T2-20, T3-32, T4-17, T4-18, T4-19, T4-20", found: "Alt+I fails across multiple apps and teams. Exercises break without fallback.", fixed: "Rewrote Universal Shortcut section with ribbon fallback. Added prerequisites callout for Protected View and sensitivity labels." },
+  { id: "IMP-026", module: "1.7", title: "Premature 'Level 1 Complete!' removed", severity: "major", findings: "T2-22", found: "Module 1.7 celebrated Level 1 completion — 3 modules still remain.", fixed: "Replaced with 'Great Work on Module 1.7!' pointing to remaining modules." },
+  { id: "IMP-027", module: "1.7", title: "Excel exercise data marked as illustrative", severity: "moderate", findings: "T2-21", found: "55% activation rate conflicted with Module 1.6's 50% figure.", fixed: "Added note that data is illustrative. Enterprise Data Guidance callout added." },
+
+  // Module 1.8
+  { id: "IMP-028", module: "1.8", title: "Transcript prerequisite added for meeting exercise", severity: "moderate", findings: "T2-23, T3-34", found: "Exercise assumes transcription was enabled — no prerequisite stated.", fixed: "Added prerequisite callout and verbal-only limitation note." },
+  { id: "IMP-029", module: "1.8", title: "Teams channel Copilot restriction documented", severity: "moderate", findings: "T4-21, T4-22", found: "Copilot not visible in Teams channels due to tenant policy.", fixed: "Added Enterprise Note with workarounds for channel-level restrictions." },
+
+  // Module 1.9
+  { id: "IMP-030", module: "1.9", title: "Premature 'Level 1 Complete!' removed", severity: "major", findings: "T2-24", found: "Module 1.9 celebrated Level 1 completion — Module 1.10 still remains.", fixed: "Replaced with 'Great Work on Module 1.9!' pointing to Module 1.10." },
+  { id: "IMP-031", module: "1.9", title: "'Make it a poem' Copilot option explained", severity: "moderate", findings: "T1-10", found: "Playful Copilot suggestions (poem, funny) jarring in enterprise context.", fixed: "Added note: 'These are standard options — simply ignore and use professional adjustments.'" },
+  { id: "IMP-032", module: "1.9", title: "Outlook Copilot icon locations documented", severity: "moderate", findings: "T3-38", found: "No visual guide for where Copilot appears in Outlook.", fixed: "Added 'Where to find Copilot in Outlook' callout with 3 locations." },
+  { id: "IMP-033", module: "1.9", title: "Long thread and paragraph count handling tips added", severity: "minor", findings: "T4-23, T4-24", found: "Long email chains produce incomplete results; paragraph counts ignored.", fixed: "Added tips for processing sections and correcting paragraph count." },
+
+  // Module 1.10
+  { id: "IMP-034", module: "1.10", title: "SharePoint technical prerequisites section added", severity: "moderate", findings: "T1-06, T4-28, March 10 #3", found: "Module jumps into prompts without SharePoint setup/enablement prereqs.", fixed: "Added 3-point prerequisites section with verification steps and fallback." },
+  { id: "IMP-035", module: "1.10", title: "Module introduction paragraph added", severity: "moderate", findings: "T4-26", found: "No introductory paragraph explaining the value proposition.", fixed: "Added intro explaining SharePoint as institutional knowledge layer." },
+  { id: "IMP-036", module: "1.10", title: "Role terminology note (covered by IMP-054)", severity: "minor", findings: "T4-25", found: "PM terminology used instead of PO/BA.", fixed: "Addressed by cross-module IMP-054 terminology clarification in Module 1.1." },
+
+  // Module 2.1
+  { id: "IMP-037", module: "2.1", title: "Learning objectives rewritten as measurable outcomes", severity: "moderate", findings: "T2-26", found: "Objectives were directional phrases, not measurable.", fixed: "Replaced with 5 specific, verifiable outcomes (draft, create, build, assess, get feedback)." },
+  { id: "IMP-038", module: "2.1", title: "Redundant 'Key Additions' section merged with comparison table", severity: "moderate", findings: "T2-27", found: "Two sections covered the same enterprise PRD additions.", fixed: "Merged into single table with cross-references to module phases." },
+  { id: "IMP-039", module: "2.1", title: "Navigation aids and visual structure improved", severity: "moderate", findings: "T2-28, T2-29, T4-31", found: "Dense wall of text with no visual breaks or navigation.", fixed: "Added quick navigation note and horizontal rules between major sections." },
+  { id: "IMP-040", module: "2.1", title: "Enterprise governance glossary added", severity: "minor", findings: "T4-30", found: "RACI, steering committee, governance used without definitions.", fixed: "Added quick definitions for all three terms." },
+
+  // Module 2.2
+  { id: "IMP-041", module: "2.2", title: "Excel Copilot ribbon icon fallback added", severity: "critical", findings: "T1-13, T3-49, T4-33", found: "Alt+I doesn't work in Excel. Exercise fails without fallback.", fixed: "Added ribbon icon fallback to all Alt+I references. Environment note at module top." },
+  { id: "IMP-042", module: "2.2", title: "Method selection decision guide added", severity: "moderate", findings: "T4-34", found: "Three analysis methods presented without guidance on when to use each.", fixed: "Added 'Which method should I use?' decision aid after the table." },
+  { id: "IMP-043", module: "2.2", title: "Responsible AI policy reference added", severity: "minor", findings: "T3-52", found: "No link to organizational AI usage policy.", fixed: "Added reference to RAI guidelines in Best Practices section." },
+
+  // Module 2.3
+  { id: "IMP-044", module: "2.3", title: "Corporate priorities flagged as illustrative", severity: "moderate", findings: "T4-36", found: "GenAI Leadership, attrition targets presented as real Accenture facts.", fixed: "Added disclaimer: 'priorities and metrics below are illustrative for this exercise.'" },
+  { id: "IMP-045", module: "2.3", title: "Navigation aids and time estimates added", severity: "moderate", findings: "T4-37, T4-38", found: "603-line module with no navigation or pacing guidance.", fixed: "Added quick navigation anchors and ~5 min time estimates per section." },
+  { id: "IMP-046", module: "2.3", title: "Visual framework descriptions and Module 3.2 cross-reference added", severity: "moderate", findings: "T4-39", found: "Strategic frameworks presented as text only — no visual aids.", fixed: "Added SWOT grid description, value chain flow, and cross-reference to Module 3.2." },
+
+  // Module 3.1
+  { id: "IMP-047", module: "3.1", title: "Microsoft Designer access prerequisite added", severity: "moderate", findings: "T2-30, T4-41, T4-44", found: "Designer assumed available but may require separate license.", fixed: "Added Designer Access check with Copilot Chat fallback for image generation." },
+  { id: "IMP-048", module: "3.1", title: "Image credit limits fully documented", severity: "moderate", findings: "T2-38, T3-60, T3-61, T3-62, T3-64", found: "Credits run out mid-exercise with no warning or fallback.", fixed: "Expanded credit table, added conservation tips, 'what if credits run out' fallback." },
+  { id: "IMP-049", module: "3.1", title: "Prerequisites, SSMD framework, and forward navigation improved", severity: "moderate", findings: "T2-31, T2-32, T2-33, T2-34, T2-35", found: "Five instructional design gaps: prerequisites, navigation, framework naming, forward momentum, quality examples.", fixed: "Updated prerequisites, added SSMD note, replaced backward-looking summary with forward-looking transition." },
+  { id: "IMP-050", module: "3.1", title: "Responsible image generation guidance added", severity: "minor", findings: "T4-43", found: "No warning about generating realistic-looking people.", fixed: "Added responsible generation note: use illustration styles, avoid real likenesses." },
+
+  // Module 3.2
+  { id: "IMP-051", module: "3.2", title: "Output calibration notes added to all visual types", severity: "moderate", findings: "T2-36, T3-65, T3-66", found: "No indication of what good output looks like or that results are drafts.", fixed: "Added 'working draft, not final deliverable' note after each visual type section." },
+  { id: "IMP-052", module: "3.2", title: "Data preparation guidance added before roadmap visuals", severity: "moderate", findings: "T3-67, T3-68", found: "Roadmap prompt assumes clean data input but gives no preparation guidance.", fixed: "Added data preparation checklist for roadmaps, funnels, and priority matrices." },
+  { id: "IMP-053", module: "3.2", title: "Pacing guidance and section labels added", severity: "moderate", findings: "T2-37", found: "5 visual types and 15+ prompts in 25 min with no breaks.", fixed: "Added suggested pacing note. Sections 1-2 labeled 'Try this now', 3-5 'Reference for later'." },
+
+  // Cross-Module
+  { id: "IMP-054", module: "Cross", title: "PM/PO/BA role terminology clarified across course", severity: "major", findings: "T3-01, T3-09, T4-09, T4-12, T4-25, T4-26", found: "Course called learner 'PM', 'PO', 'Senior Product Owner' inconsistently.", fixed: "Added terminology note in Module 1.1: 'PM is shorthand for PO, BA, and all product roles.'" },
+  { id: "IMP-055", module: "Cross", title: "Self-assessment checklists added to key modules", severity: "major", findings: "T2-25, T2-35, T2-36", found: "No self-assessment or success criteria anywhere in the course.", fixed: "Added 3-question Quick Self-Check to modules 1.1, 1.3, 1.4, 2.1, 2.2, 3.1." },
+  { id: "IMP-056", module: "Cross", title: "Enterprise Data Guidance callout added to data-handling modules", severity: "major", findings: "T3-32, T3-52, T3-56, T4-04, T4-16", found: "No data sensitivity guidance in any module handling file uploads or enterprise data.", fixed: "Added reusable Enterprise Data Guidance block to modules 1.2, 1.7, 2.1, 2.2, 2.3." },
+  { id: "IMP-057", module: "Cross", title: "System response time expectations set", severity: "moderate", findings: "March 10 feedback", found: "No mention of 5-20 second response times or 2-10 min agent times.", fixed: "Added response time notes to modules 1.1 (chat) and 1.4 (agents)." },
+];
+
+// Group by module
+const modules = {};
+items.forEach(item => {
+  const key = item.module;
+  if (!modules[key]) modules[key] = [];
+  modules[key].push(item);
+});
+
+const moduleNames = {
+  "1.1": "Welcome to Microsoft Copilot",
+  "1.2": "Setting Up Your Workspace",
+  "1.3": "Your First PM Tasks",
+  "1.4": "Researcher & Analyst Agents",
+  "1.5": "Persona Prompting",
+  "1.6": "Building Context with Memory",
+  "1.7": "Copilot Across M365 Apps",
+  "1.8": "Teams Integration",
+  "1.9": "Outlook Integration",
+  "1.10": "SharePoint & Collaboration",
+  "2.1": "Writing PRDs",
+  "2.2": "Analyzing Product Data",
+  "2.3": "Product Strategy",
+  "3.1": "Image Generation Basics",
+  "3.2": "PM Visuals",
+  "Cross": "Cross-Module"
+};
+
+function renderTracker(filter, search) {
+  const container = document.getElementById('tracker');
+  container.innerHTML = '';
+
+  const order = ["1.1","1.2","1.3","1.4","1.5","1.6","1.7","1.8","1.9","1.10","2.1","2.2","2.3","3.1","3.2","Cross"];
+
+  order.forEach(mod => {
+    if (!modules[mod]) return;
+    let modItems = modules[mod];
+    if (filter !== 'all') modItems = modItems.filter(i => i.severity === filter);
+    if (search) {
+      const s = search.toLowerCase();
+      modItems = modItems.filter(i =>
+        i.id.toLowerCase().includes(s) ||
+        i.title.toLowerCase().includes(s) ||
+        i.found.toLowerCase().includes(s) ||
+        i.fixed.toLowerCase().includes(s) ||
+        i.findings.toLowerCase().includes(s) ||
+        i.module.toLowerCase().includes(s)
+      );
+    }
+    if (modItems.length === 0) return;
+
+    const section = document.createElement('div');
+    section.className = 'module-section';
+    section.innerHTML = `
+      <div class="module-header">
+        <h2>Module ${mod === 'Cross' ? '' : mod + ': '}${moduleNames[mod]}</h2>
+        <span class="module-badge">${modItems.length} item${modItems.length > 1 ? 's' : ''}</span>
+      </div>
+    `;
+
+    modItems.forEach(item => {
+      const card = document.createElement('div');
+      card.className = 'item-card';
+      card.setAttribute('data-severity', item.severity);
+      card.innerHTML = `
+        <div class="item-header" onclick="this.parentElement.classList.toggle('open')">
+          <span class="item-id">${item.id}</span>
+          <span class="severity-badge severity-${item.severity}">${item.severity}</span>
+          <span class="item-title">${item.title}</span>
+          <span class="status-badge">Fixed</span>
+          <span class="expand-icon">&#9654;</span>
+        </div>
+        <div class="item-detail">
+          <div class="detail-row"><span class="detail-label">Source Findings:</span> ${item.findings}</div>
+          <div class="detail-row"><span class="detail-label">What Was Found:</span> ${item.found}</div>
+          <div class="detail-row"><span class="detail-label">What Was Fixed:</span> ${item.fixed}</div>
+        </div>
+      `;
+      section.appendChild(card);
+    });
+
+    container.appendChild(section);
+  });
+}
+
+// Filter buttons
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    renderTracker(btn.dataset.filter, document.getElementById('searchBox').value);
+  });
+});
+
+// Search
+document.getElementById('searchBox').addEventListener('input', (e) => {
+  const activeFilter = document.querySelector('.filter-btn.active').dataset.filter;
+  renderTracker(activeFilter, e.target.value);
+});
+
+// Initial render
+renderTracker('all', '');
+</script>
+</body>
+</html>
