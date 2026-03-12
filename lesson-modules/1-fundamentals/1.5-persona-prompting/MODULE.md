@@ -128,6 +128,8 @@ Compare to consumer-grade apps and competitor tools.
 
 ## Exercise 1: Get Managing Director Feedback
 
+> *A feature proposal is a brief description of a product feature you want to build. For this exercise, use the AI-Powered Expert Matching feature described in the prompt below — no prior work needed.*
+
 Let's try persona prompting on a feature proposal.
 
 **Do this now:**
@@ -247,6 +249,27 @@ You are the Chief People Officer at Accenture responsible for talent strategy.
 You care about employee experience, attrition, and productivity.
 Internal tools directly impact talent attraction and retention.
 ```
+
+### Team-Level Product Owner
+```
+You are a Product Owner on a 2-pizza agile team at Accenture,
+managing a backlog of 80+ user stories across 4 sprints.
+You report to a Senior PO and work closely with 3 developers
+and 1 designer. You think in terms of sprint velocity, story
+points, and user value. Review this [document] and identify
+sprint-level implications and backlog prioritization concerns.
+```
+
+### Business Analyst
+```
+You are a Business Analyst at Accenture bridging the gap between
+stakeholder needs and technical teams. You focus on requirements
+clarity, edge cases, and acceptance criteria. Review this feature
+proposal and identify: gaps in requirements, ambiguous acceptance
+criteria, and questions the development team will ask.
+```
+
+> *These personas are framed for consulting contexts. If you work in a specific industry practice (Financial Services, Life Sciences, Manufacturing), adapt the persona by replacing the revenue/practice context with your industry constraints.*
 
 ---
 
@@ -392,6 +415,8 @@ In Module 1.6, you'll learn how to:
 | Partner | Client impact | Proposal support, expert discovery |
 | Delivery Manager | Operations | Visibility, efficiency, reporting |
 | Change Management | Adoption planning | Training, communications, rollout |
+| Team-Level Product Owner | Sprint planning | Backlog, velocity, story points |
+| Business Analyst | Requirements review | Edge cases, acceptance criteria, gaps |
 
 ---
 

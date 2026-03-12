@@ -54,9 +54,10 @@ Copilot handles files differently than local tools. Here's what you need to know
 4. Copilot can now analyze it
 
 **Method 2: Drag and Drop**
-1. Drag a file from your desktop
-2. Drop it into the Copilot chat window
-3. Copilot processes the file
+1. Drag a file from your desktop or File Explorer
+2. Drop it into the Copilot chat input area (you'll see a highlight indicating the drop zone)
+3. The file uploads and appears as an attachment above the chat input
+4. Type your prompt and press Enter — Copilot will analyze the attached file
 
 **Method 3: OneDrive Reference**
 1. Files in OneDrive can be referenced via ContextIQ
@@ -78,7 +79,9 @@ Copilot handles files differently than local tools. Here's what you need to know
 
 - **Size:** Up to 512 MB per file (Enterprise)
 - **Pages:** Up to 300 pages for document analysis
-- **Multi-file:** Can analyze up to 5 files at once
+- **Multi-file:** Can analyze multiple files at once (typically 5–10 depending on file size and your license)
+
+> *Note: Microsoft updates file limits periodically. If you're unsure of your current limit, test by uploading additional files and observing whether Copilot accepts them.*
 
 ---
 
@@ -126,6 +129,11 @@ ContextIQ is a powerful feature that lets you add context from your work environ
 
 3. Select what you want to add
 4. It becomes part of your prompt context
+
+> **Enterprise Note:** The `/` ContextIQ menu may be restricted in some enterprise tenants or may require specific Copilot license tiers. If the menu does not appear:
+> - Use the 📎 attachment icon to upload files directly
+> - In the chat, paste a document summary inline as context
+> - Check with your IT administrator whether ContextIQ is enabled for your account
 
 ### Example: Reference Multiple Sources
 
@@ -184,6 +192,15 @@ OneDrive/
 ```
 
 **Action:** Create this folder structure in your OneDrive and upload the course sample files.
+
+> ---
+> **Enterprise Data Guidance**
+> Before uploading files or sharing data with Copilot:
+> - Copilot operates within your Microsoft 365 tenant — data is not shared externally
+> - Files labeled "Highly Confidential — Encrypted" may be blocked by Copilot due to sensitivity policies
+> - Do not share client names, deal values, or engagement codes in Copilot prompts
+> - For your organization's Responsible AI policy, consult your internal guidelines
+> ---
 
 ---
 

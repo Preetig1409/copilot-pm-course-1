@@ -28,13 +28,13 @@ Agents are **specialized AI assistants** built into Microsoft 365 Copilot. They'
 | Single-turn tasks | Extended workflows |
 | Immediate responses | Takes 5-10 minutes |
 | General purpose | Specialized tasks |
-| Uses GPT-5 | Uses reasoning models (o3) |
+| Latest Microsoft language model | Advanced reasoning model |
 
 ### Available Agents in M365 Copilot
 
 1. **Researcher** - Deep research across web and work data
 2. **Analyst** - Complex data analysis and reasoning
-3. **Workflows** - Automation across M365 apps
+3. **Workflows** - Automation across M365 apps (availability varies by tenant)
 
 **Note:** You get 25 combined Researcher + Analyst queries per month with M365 Copilot license.
 
@@ -104,6 +104,8 @@ competitive intelligence report I can share with our steering committee.
 
 ---
 
+> **Response times:** Agent responses take longer than regular chat. Researcher typically takes 5-10 minutes, Analyst 2-5 minutes. This is expected — do not refresh the page while waiting.
+
 ## Exercise 1: Use Researcher
 
 Let's try a research task relevant to your Accenture PM role.
@@ -163,6 +165,8 @@ Analyst is your **AI data scientist**. It uses reasoning models to solve complex
 | ROI calculations for business cases | Data cleaning |
 
 ### Analyst Example: Adoption Cohort Analysis
+
+> *This is a realistic enterprise PM scenario. The numbers are illustrative — your actual data will vary. The goal is to practice the prompt structure, not to memorize these specific figures.*
 
 **Prompt:**
 
@@ -276,6 +280,10 @@ Create a workflow that:
 
 Workflows builds this automation without you needing to use Power Automate directly.
 
+> **Environment note:** The Workflows agent may appear as "Workflow Frontier" in some enterprise environments. The concepts and prompt patterns apply to both. If neither is available in your environment, skip this exercise.
+
+*(Optional — complete if Workflows/Workflow Frontier is available in your environment)*
+
 ---
 
 ## When to Use Each Tool
@@ -296,6 +304,18 @@ Is it a quick question?
             │   Examples: Reminders, status updates, recurring tasks
             └── NO → Use regular Copilot Chat
 ```
+
+### Combined Agent Workflow: Research + Analysis
+
+For complex enterprise analysis tasks, use both agents in sequence:
+
+**Step 1 — Researcher:** Use for data gathering and source retrieval
+> *"Research best practices for enterprise knowledge management adoption..."*
+
+**Step 2 — Analyst:** Pass Researcher output into Analyst for synthesis
+> *"Based on the research above, analyze which strategies apply to our context and calculate the ROI impact..."*
+
+This sequencing produces richer, more analytically sound outputs than either agent alone.
 
 ### Quick Reference for Enterprise PMs
 
@@ -338,6 +358,14 @@ You now know:
 - ✅ How to use Analyst for adoption analysis and ROI calculations
 - ✅ When to use each tool (chat vs agents)
 - ✅ How Workflows automates enterprise PM tasks
+
+**Quick Self-Check**
+Before moving on, can you:
+- [ ] Explain when to use Researcher vs. Analyst vs. regular Copilot Chat
+- [ ] Write a Researcher prompt that specifies scope, sources, and output format
+- [ ] Describe the combined Research → Analysis workflow for complex enterprise tasks
+
+*If you're unsure about any of these, re-read that section before continuing.*
 
 ---
 

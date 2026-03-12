@@ -46,7 +46,7 @@ When you share information with Copilot, it may choose to remember key facts.
 
 1. Share preferences: "I prefer bullet points over paragraphs"
 2. Describe your role: "I'm a PM focused on activation"
-3. Mention recurring projects: "I work on TaskFlow onboarding"
+3. Mention recurring projects: "I work on AKX adoption and onboarding"
 4. Express working style: "I like data-driven decisions"
 
 ### What You'll See
@@ -57,7 +57,7 @@ When Copilot remembers something, you may see a subtle "Memory updated" notifica
 
 ## Exercise 1: Teach Copilot About You
 
-Let's intentionally teach Copilot about your role at TaskFlow.
+Let's intentionally teach Copilot about your role at Accenture.
 
 **Do this now:**
 
@@ -67,9 +67,10 @@ In Copilot Chat, enter this prompt:
 I'd like to share some context about my work so you can help me better:
 
 **My Role:**
-- I'm a Senior Product Manager at TaskFlow
-- TaskFlow is a project management SaaS (like Asana meets Jira)
-- My focus area is Activation & Onboarding
+- I'm a Senior Product Owner at Accenture
+- I lead two internal tools: AKX (Accenture Knowledge Exchange) and ADH (Accenture Delivery Hub)
+- AKX is at 43% weekly active users (WAU), with a target of 60%
+- ADH is a newer delivery management platform in early adoption
 - I report to the VP of Product
 
 **My Users:**
@@ -98,12 +99,13 @@ use this information to make your responses more relevant to my work.
 
 You can see and manage what Copilot remembers.
 
-### To View Memory:
-
+**To view and manage your Memory settings:**
 1. Go to **copilot.microsoft.com**
-2. Click your **profile icon** (top right)
-3. Select **"Settings"** or **"Manage memory"**
-4. Review stored memories
+2. Look for your profile icon — it may appear in the **top right** or **bottom left** depending on your interface version
+3. Click it and look for **Settings**, **Memory**, or **Manage memory**
+4. If you don't see "Memory" in settings, it may not yet be enabled for your account
+
+> *Note: The Copilot interface is updated frequently. If these steps have changed, look for a settings gear icon or contact your IT helpdesk.*
 
 ### To Delete Memories:
 
@@ -132,14 +134,14 @@ You upload this at the start of a session to give Copilot full context.
 ### Example Context Document
 
 ```markdown
-# TaskFlow Onboarding Project Context
+# AKX Product Context
 
 ## Project Overview
-Improving the first-run experience for new TaskFlow users.
-Goal: Increase activation rate from 35% to 50%.
+Improving adoption and engagement for AKX (Accenture Knowledge Exchange).
+Goal: Increase weekly active users (WAU) from 43% to 60%.
 
 ## My Role
-Senior PM for Activation & Onboarding
+Senior Product Owner at Accenture, leading AKX and ADH
 
 ## Key Stakeholders
 - VP Product (Sarah) - Executive sponsor
@@ -152,17 +154,18 @@ Senior PM for Activation & Onboarding
 3. Alex Thompson - Team Lead (visibility-focused)
 
 ## Current Metrics
-- Signup to first task: 35% (target: 50%)
+- Weekly Active Users (WAU): 43% (target: 60%)
 - Time to first value: 15 min (target: 5 min)
 - 7-day retention: 20% (target: 35%)
 
 ## Key Terms
-- "Activation" = User completes their first task
+- "WAU" = Weekly Active Users
 - "TTV" = Time to Value
-- "FTUE" = First Time User Experience
+- "AKX" = Accenture Knowledge Exchange
+- "ADH" = Accenture Delivery Hub
 
 ## Current Sprint Focus
-Building the new onboarding wizard with guided tooltips
+Improving the AKX onboarding experience with guided tooltips
 ```
 
 ---
@@ -172,7 +175,7 @@ Building the new onboarding wizard with guided tooltips
 **Do this now:**
 
 1. Open Microsoft Word
-2. Create a new document called "TaskFlow-Context.docx"
+2. Create a new document called "AKX-Context.docx"
 3. Paste the context template above (or create your own)
 4. Save to OneDrive
 5. In Copilot Chat, upload the document
@@ -180,12 +183,12 @@ Building the new onboarding wizard with guided tooltips
 
 ```
 Based on the context document I just uploaded, suggest 3 experiments
-we could run to improve our activation rate from 35% to 50%.
+we could run to improve AKX weekly active users from 43% to 60%.
 ```
 
 **What to notice:**
 - Copilot uses the specific context you provided
-- Suggestions are tailored to TaskFlow
+- Suggestions are tailored to AKX
 - Metrics and personas are referenced
 
 ---
@@ -226,6 +229,14 @@ Be aware of these limitations:
 - Use context documents for important project details
 - Verify Memory hasn't "forgotten" key facts
 - Maintain your own documentation as source of truth
+
+> **What Not to Store in Memory:**
+> - Client names or confidential project codes
+> - Personal data about colleagues or stakeholders
+> - Proprietary financial figures (specific deal values, budgets)
+> - Anything marked Confidential or Highly Confidential per your organization's data policy
+>
+> Memory is appropriate for: your role, your preferences, working style, and general product context.
 
 ---
 
@@ -278,7 +289,7 @@ In Module 1.7, you'll learn how to:
 
 | What You Want | Example Prompt |
 |---------------|----------------|
-| Teach about your role | "I'm a PM focused on onboarding at TaskFlow..." |
+| Teach about your role | "I'm a Product Owner focused on AKX adoption at Accenture..." |
 | Set preferences | "I prefer concise responses with bullet points..." |
 | Update context | "Update: My focus has shifted to the Reports feature..." |
 | Check understanding | "What do you remember about my role and projects?" |

@@ -88,6 +88,15 @@ Format as clean markdown suitable for a steering committee update.
    - You verify owners and deadlines
    - Copy to your status deck or SharePoint
 
+> *After reviewing Copilot's initial output, verify the priorities reflect your actual context. Try a follow-up prompt:*
+>
+> ```
+> The priorities look reasonable. However, please reprioritize [specific item]
+> as Critical because [your reason]. Update the action item list.
+> ```
+>
+> *Note: Copilot assigns priorities based on language in the source text. Always review AI-generated priorities against your own judgment of urgency.*
+
 ### Try It Now!
 
 Use this sample steering committee notes content if you don't have the file:
@@ -126,7 +135,7 @@ You need to find patterns across roles and prioritize insights by business impac
 
 ### Step-by-Step
 
-**Important:** Copilot can analyze up to 5 files at once. For 8 files, do this:
+**Important:** Copilot can analyze multiple files at once (typically 5–10 depending on file size and your license). For 8 files, we recommend batching:
 
 1. **Batch 1: Upload first 5 interviews**
    - Upload files together
@@ -151,8 +160,16 @@ For each finding, note:
 Group findings by persona type: Partners, Consultants, Delivery Managers, Others
 ```
 
-2. **Batch 2: Upload remaining 3 interviews**
-   - Ask Copilot to analyze these using the same format
+2. **Batch 2: Upload remaining interviews**
+
+   Upload the remaining interview files, then use this prompt:
+
+```
+Analyze these additional stakeholder interviews from Accenture.
+Use the same format as your previous analysis: identify pain points
+by role, feature requests, competitive comparisons, adoption barriers,
+and quick wins. Include quotes and note business impact.
+```
 
 3. **Combine findings**
    - Ask Copilot to merge the two analyses:
@@ -255,6 +272,8 @@ For recurring communication needs, we've included templates in the `communicatio
 Design sent you a mockup for the new AI search interface in AKX. You need to provide structured PM feedback covering usability, alignment with personas, and enterprise considerations.
 
 ### Step-by-Step
+
+> If you have access to a design mockup file, upload it here. If not, use the text description below — Copilot can analyze described mockups just as effectively for learning purposes.
 
 1. **Upload the design image**
    - Drag & drop the mockup image
@@ -432,6 +451,14 @@ You now know how to:
 - ✅ Transform content for different enterprise audiences
 - ✅ Analyze design mockups with enterprise PM perspective
 - ✅ Perform competitive research on consulting firms
+
+**Quick Self-Check**
+Before moving on, can you:
+- [ ] Upload a document to Copilot and get a structured summary with action items
+- [ ] Rewrite Copilot output for a different audience (e.g., executive vs. team lead)
+- [ ] Describe the difference between Batch 1 and Batch 2 interview analysis approaches
+
+*If you're unsure about any of these, re-read that section before continuing.*
 
 ---
 

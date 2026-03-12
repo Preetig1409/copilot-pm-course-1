@@ -28,7 +28,7 @@ export const courseStructure: CourseStructure = {
           objectives: [
             "Understand what Microsoft Copilot is",
             "Access Copilot via browser and shortcuts",
-            "Meet TaskFlow (fictional company)"
+            "Meet Accenture Internal Digital Products (company context)"
           ]
         },
         {
@@ -55,7 +55,7 @@ export const courseStructure: CourseStructure = {
         },
         {
           id: "1.4",
-          title: "Researcher & Analyst Agents",
+          title: "Using Researcher & Analyst Agents",
           duration: "25 min",
           path: "lesson-modules/1-fundamentals/1.4-researcher-analyst-agents/MODULE.md",
           objectives: [
@@ -66,7 +66,7 @@ export const courseStructure: CourseStructure = {
         },
         {
           id: "1.5",
-          title: "Persona Prompting",
+          title: "Persona Prompting for Different Perspectives",
           duration: "20 min",
           path: "lesson-modules/1-fundamentals/1.5-persona-prompting/MODULE.md",
           objectives: [
@@ -211,7 +211,7 @@ export const resourceStructure: ResourceSection[] = [
     categories: [
       {
         id: "taskflow",
-        title: "TaskFlow",
+        title: "Accenture",
         files: [
           { id: "company", title: "Company Overview", path: "company-context/COMPANY.md" },
           { id: "personas", title: "User Personas", path: "company-context/PERSONAS.md" },

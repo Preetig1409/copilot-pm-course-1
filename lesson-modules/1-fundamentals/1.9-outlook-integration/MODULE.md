@@ -45,6 +45,11 @@ Copilot helps you draft emails faster and with the right tone.
 2. Click Reply
 3. Click Copilot icon → "Draft with Copilot"
 
+> **Where to find Copilot in Outlook:**
+> - **New email:** Copilot icon appears in the message toolbar (typically a purple sparkle icon)
+> - **Replying:** After clicking Reply, look for Copilot icon in the compose window toolbar
+> - **Reading pane:** Copilot icon may appear at the top of the email or in the toolbar
+
 ### Drafting a New Email
 
 **Basic prompt:**
@@ -117,6 +122,10 @@ Add a bullet list of the action items
 Add a clear call-to-action at the end
 ```
 
+> *If Copilot generates more paragraphs than requested, follow up with: "Shorten this to exactly 3 paragraphs — combine the middle sections."*
+
+> *You may see playful options like "Make it a poem" or "Make it funnier" in the Copilot suggestions panel. These are standard Copilot options available to all users — simply ignore them and use the tone/length adjustments that fit your enterprise communication needs.*
+
 ---
 
 ## Exercise 2: Tone Adjustment
@@ -175,6 +184,8 @@ What did Sarah say about the timeline?
 What action items are mentioned in this thread?
 Who is responsible for each?
 ```
+
+> *Copilot may not capture every action item in very long threads (100+ messages). For complete accuracy, ask Copilot to process sections: "Summarize only the last 10 messages first."*
 
 ---
 
@@ -373,32 +384,14 @@ You now know:
 
 ---
 
-## Level 1 Complete! 🎉
+## Great Work on Module 1.9!
 
-Congratulations! You've completed all of Level 1: Foundation.
+You now know how to use Copilot in Outlook for email drafting, thread summarization, and action item extraction.
 
-**You've mastered:**
-- Copilot basics and workspace setup
-- Core PM tasks (meetings, research, communications)
-- Researcher & Analyst agents
-- Persona prompting
-- Memory and context
-- M365 app navigation
-- Teams integration
-- Outlook integration
+**One module remaining in Level 1:**
+Module 1.10: SharePoint & Collaboration
 
-**Time Savings from Level 1: 10+ hours/week**
-
----
-
-## Next Steps
-
-Continue to **Level 2: Advanced PM Workflows**
-
-In Level 2, you'll tackle:
-- Module 2.1: Writing PRDs with Copilot
-- Module 2.2: Analyzing Product Data
-- Module 2.3: Product Strategy
+**Continue to Module 1.10 →**
 
 ---
 
@@ -411,7 +404,3 @@ In Level 2, you'll tackle:
 | Summarize thread | Copilot icon on email → "Summarize" |
 | Adjust tone | "Make this more formal/casual" |
 | Meeting prep | Calendar event → Copilot |
-
----
-
-**Great work on Level 1! Ready for Level 2!**

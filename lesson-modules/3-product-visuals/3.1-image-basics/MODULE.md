@@ -1,7 +1,7 @@
 # Module 3.1: Image Generation Basics with Copilot
 
 **Duration:** 20 minutes
-**Prerequisites:** Levels 1-2 completed
+**Prerequisites:** *This module builds on Module 1.2 (file uploads) and Module 2.3 (strategic visuals). No image experience needed.*
 
 ---
 
@@ -31,13 +31,17 @@ Microsoft Copilot uses **DALL-E 3** and **Microsoft Designer** for image creatio
 
 ### Image Credits
 
-| License | Monthly Credits |
-|---------|-----------------|
-| Free Copilot | 15 credits |
-| Copilot Pro | 100 credits |
-| M365 Copilot | 60+ credits |
+| License | Monthly Credits | Notes |
+|---------|-----------------|-------|
+| Free Copilot | 15 credits | Refreshes monthly |
+| Copilot Pro | 100 credits | Refreshes monthly |
+| M365 Copilot | 60+ credits | Verify current limit — Microsoft updates this |
 
-Each image generation uses 1 credit. Credits refresh monthly.
+**Important:** If you hit your limit, you'll see a message like *"Image generation is temporarily unavailable."* Credits refresh at the start of each calendar month.
+
+**To conserve credits:** Write detailed prompts (to avoid regenerating), use variations sparingly, and batch similar image requests together.
+
+> **What if my credits run out?** Describe your intended image in text and proceed with the rest of the module conceptually. The prompt-writing skill is the primary learning objective, not the image output itself.
 
 ---
 
@@ -56,6 +60,8 @@ Create an image of a modern project management dashboard
 that is clean and minimal, professional, showing tasks 
 organized in columns with a blue and white color scheme
 ```
+
+> *This exercise uses 1 image credit. You have 60+ credits per month — enough for this entire course if used strategically.*
 
 ### Exercise 1: Generate Your First Image
 
@@ -106,6 +112,8 @@ modern and professional, with a clean office background.
 | **Isometric** | 3D-like from an angle | Diagrams, infographics |
 | **Illustration** | Hand-drawn style | Personas, stories |
 | **Corporate** | Professional, stock-like | Presentations |
+
+*These style options map to the SSMD framework's "Style" component.*
 
 ---
 
@@ -162,6 +170,13 @@ one with an orange color scheme
 ```
 
 ---
+
+> **Microsoft Designer Access**
+> Designer (designer.microsoft.com) is included with Microsoft 365 Business Standard, Business Premium, and M365 Copilot licenses. To check if you have access:
+> 1. Go to designer.microsoft.com and sign in with your M365 account
+> 2. If you see a "Get access" page, Designer is not included in your current license
+>
+> **If Designer is not available:** Use Copilot Chat for image generation (DALL-E 3 is available in the main Copilot interface without Designer). You can add text and polish images using PowerPoint's built-in design tools as an alternative.
 
 ## Microsoft Designer Integration
 
@@ -224,6 +239,11 @@ For more editing control, use Microsoft Designer.
 ❌ "Make it look nice"
 ```
 
+> **Responsible Image Generation:**
+> - Use illustration styles (flat design, corporate illustration) rather than photorealistic for personas — this avoids creating images that look like real people
+> - Do not generate images of real, identifiable people by name
+> - For internal enterprise use, illustration styles are generally more appropriate than photorealistic portraits
+
 ### Include Context
 
 ```
@@ -272,12 +292,15 @@ For more editing control, use Microsoft Designer.
 
 ## Module Complete!
 
-You now know:
-- ✅ How Copilot generates images with DALL-E 3
-- ✅ The SSMD framework for effective prompts
-- ✅ How to iterate and refine images
-- ✅ When to use Designer for more control
-- ✅ Credit limits and best practices
+You can now generate and iterate on images. In Module 3.2, you'll apply these skills to create specific enterprise PM visual types: persona illustrations, roadmaps, and governance diagrams.
+
+**Quick Self-Check**
+Before moving on, can you:
+- [ ] Write a detailed image prompt using Subject, Style, Mood, and Details (SSMD)
+- [ ] Explain what to do if you run out of image credits mid-exercise
+- [ ] Describe why illustration styles are preferred over photorealistic for persona images
+
+*If you're unsure about any of these, re-read that section before continuing.*
 
 ---
 

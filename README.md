@@ -1,10 +1,12 @@
 # Microsoft Copilot for Product Managers
 
-A comprehensive course teaching Product Managers how to leverage Microsoft Copilot for everyday PM work.
+A comprehensive, 6-hour self-paced course teaching Product Managers how to leverage Microsoft 365 Copilot for everyday PM work.
+
+> **[Live Website](https://sanjaygupta-professional.github.io/copilot-pm-course/)** | **[Getting Started Guide](GETTING-STARTED.md)** | **[GitHub Repo](https://github.com/sanjaygupta-professional/copilot-pm-course)**
 
 ## Course Overview
 
-This course teaches you to use Microsoft Copilot (M365) to save 7+ hours per week on common PM tasks including:
+This course teaches you to use Microsoft Copilot (M365) to save 14+ hours per week on common PM tasks including:
 
 - Meeting notes processing
 - User research synthesis
@@ -27,7 +29,7 @@ This course teaches you to use Microsoft Copilot (M365) to save 7+ hours per wee
 
 | Module | Duration | What You'll Learn |
 |--------|----------|-------------------|
-| 1.1 Welcome | 15 min | Introduction to Copilot, meet TaskFlow |
+| 1.1 Welcome | 15 min | Introduction to Copilot, meet Accenture Internal Digital Products |
 | 1.2 Workspace Setup | 15 min | File handling, OneDrive, ContextIQ |
 | 1.3 First Tasks | 30 min | Meeting notes, research, communications |
 | 1.4 Agents | 25 min | Researcher & Analyst agents |
@@ -55,6 +57,16 @@ This course teaches you to use Microsoft Copilot (M365) to save 7+ hours per wee
 
 ## Quick Start
 
+### Option A: Use the Website (Recommended)
+
+1. Open the **[course website](https://sanjaygupta-professional.github.io/copilot-pm-course/)**
+2. Start with **Module 1.1** from the sidebar
+3. Follow the step-by-step instructions and complete exercises as you go
+
+See the **[Getting Started Guide](GETTING-STARTED.md)** for detailed onboarding instructions.
+
+### Option B: Browse the Repo
+
 1. Open `lesson-modules/1-fundamentals/1.1-welcome/MODULE.md`
 2. Follow the instructions in each module
 3. Complete exercises as you go
@@ -63,17 +75,21 @@ This course teaches you to use Microsoft Copilot (M365) to save 7+ hours per wee
 ## Folder Structure
 
 ```
-copilot-course-for-pms/
+copilot-pm-course/
 ├── lesson-modules/
-│   ├── 1-fundamentals/      # Level 1: Foundation
-│   ├── 2-advanced-pm-work/  # Level 2: Advanced
-│   └── 3-product-visuals/   # Level 3: Visuals
-├── company-context/         # TaskFlow company files
+│   ├── 1-fundamentals/        # Level 1: Foundation (10 modules)
+│   ├── 2-advanced-pm-work/    # Level 2: Advanced (3 modules)
+│   └── 3-product-visuals/     # Level 3: Visuals (2 modules)
+├── company-context/           # Accenture company context files
 ├── prompt-library/
-│   ├── personas/            # Engineer, Executive, Researcher
-│   └── templates/           # Reusable prompt templates
-├── sample-files/            # Exercise files
-└── README.md               # This file
+│   ├── personas/              # Engineer, Executive, Researcher, Managing Director
+│   └── templates/             # Reusable prompt templates
+├── sample-files/              # Exercise files (meeting notes, interviews, CSVs)
+├── viewer/                    # React companion website (auto-deployed)
+├── .github/                   # GitHub Actions deployment workflow
+├── notebooklm-upload/         # Flattened files for NotebookLM upload
+├── GETTING-STARTED.md         # Learner onboarding guide
+└── README.md                  # This file
 ```
 
 ## Key Keyboard Shortcuts
@@ -84,14 +100,14 @@ copilot-course-for-pms/
 | Voice input | Hold Alt + Spacebar | Hold Option + Spacebar |
 | Copilot in apps | Alt + I | Option + I |
 
-## Fictional Company: TaskFlow
+## Company Context: Accenture Internal Digital Products
 
-Throughout this course, you work as a **Senior PM at TaskFlow** - a project management SaaS company (think Asana meets Jira for remote teams).
+Throughout this course, you work as a **Senior Product Owner** on Accenture's **Internal Digital Products** team — part of Corporate IT, building tools for 700,000+ employees.
 
-- **Stage:** Series B, $2.5M ARR
-- **Users:** 10,000 active
-- **Your focus:** Activation & Onboarding
-- **Goal:** Improve activation from 35% to 45%
+- **Company:** Accenture (NYSE: ACN), 700,000+ employees globally
+- **Your team:** Internal Digital Products (25 people)
+- **Your products:** AKX (knowledge exchange) and ADH (digital hub)
+- **Your focus:** Improving adoption and user experience of internal tools
 
 ## Time Savings Summary
 
@@ -121,4 +137,4 @@ This course is for internal training purposes.
 
 ---
 
-**Ready to start? Open Module 1.1!**
+**Ready to start?** Open the **[course website](https://sanjaygupta-professional.github.io/copilot-pm-course/)** or read the **[Getting Started Guide](GETTING-STARTED.md)**!
