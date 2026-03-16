@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.10: Copilot in SharePoint &amp; Collaboration - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 1: Foundation &rsaquo; Module 1.10
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">20 min</span>
+        <span class="meta-tag level">Level 1: Foundation</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 1.10: Copilot in SharePoint &amp; Collaboration</h1>
+<p><strong>Duration:</strong> 20 minutes
+<strong>Prerequisites:</strong> Modules 1.1-1.9 completed, SharePoint with Copilot enabled</p>
+<hr>
+<p>SharePoint is where your organization&#39;s institutional knowledge lives — PRDs, meeting notes, research, project files. This module teaches you to use Copilot as a universal search layer across all of it, letting you find and query documents in seconds using plain English instead of folder browsing.</p>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Find documents across SharePoint using natural language</li>
+<li>Summarize SharePoint sites and document libraries</li>
+<li>Ask questions about documents without opening them</li>
+<li>Get updates on recent changes across sites</li>
+<li>Integrate SharePoint content into your PM workflows</li>
+</ol>
+<h3>Technical Prerequisites for this Module</h3>
+<p>Before starting Module 1.10, confirm:</p>
+<ol>
+<li><strong>SharePoint access</strong> — You have access to at least one SharePoint site (check via sharepoint.com)</li>
+<li><strong>Copilot for SharePoint</strong> — Copilot&#39;s ability to search SharePoint content is part of M365 Copilot Enterprise; confirm it&#39;s enabled by trying: go to copilot.microsoft.com and type &quot;Find a recent document&quot; — if Copilot returns results from your SharePoint, you&#39;re ready</li>
+<li><strong>Content to search</strong> — You&#39;ll need some existing SharePoint content. If you&#39;re in a new environment with no content, the exercises will use generic prompts you can observe rather than execute</li>
+</ol>
+<blockquote>
+<p><em>If SharePoint Copilot integration is not enabled in your tenant, contact your IT helpdesk or use the alternative prompts provided in each exercise.</em></p>
+</blockquote>
+<hr>
+<h2>Why SharePoint + Copilot Matters for PMs</h2>
+<p>PMs often need to find information scattered across the organization:</p>
+<table>
+<thead>
+<tr>
+<th>Challenge</th>
+<th>Without Copilot</th>
+<th>With Copilot</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Finding a past PRD</td>
+<td>Browse folders, search keywords</td>
+<td>&quot;Find the Q3 mobile app PRD&quot;</td>
+</tr>
+<tr>
+<td>Understanding a new team&#39;s work</td>
+<td>Read through site, open docs</td>
+<td>&quot;Summarize what this team does&quot;</td>
+</tr>
+<tr>
+<td>Checking document updates</td>
+<td>Open each file, check history</td>
+<td>&quot;What changed this week?&quot;</td>
+</tr>
+<tr>
+<td>Cross-referencing content</td>
+<td>Multiple tabs, manual reading</td>
+<td>&quot;Compare these two documents&quot;</td>
+</tr>
+</tbody></table>
+<p><strong>Time savings: ~2 hours/week</strong> on document discovery and information gathering.</p>
+<hr>
+<h2>Section 1: Document Discovery</h2>
+<p>Copilot helps you find documents using natural language instead of keyword searches.</p>
+<h3>Accessing Copilot for SharePoint</h3>
+<ol>
+<li>Go to <strong>Microsoft 365 Copilot Chat</strong> (copilot.microsoft.com)</li>
+<li>Or use <strong>Copilot in M365 apps</strong> with SharePoint context</li>
+<li>Your work content (including SharePoint) is searchable</li>
+</ol>
+<h3>Finding Documents</h3>
+<p><strong>Basic document search:</strong></p>
+<pre><code>Find the product roadmap document from Q4 2025
+</code></pre>
+<p><strong>More specific:</strong></p>
+<pre><code>Find PRDs related to the onboarding project in the Product team&#39;s SharePoint
+</code></pre>
+<p><strong>By author or date:</strong></p>
+<pre><code>Find documents that Sarah created about user research in the last month
+</code></pre>
+<p><strong>By content:</strong></p>
+<pre><code>Find documents that mention &quot;activation rate&quot; or &quot;onboarding funnel&quot;
+</code></pre>
+<hr>
+<h2>Exercise 1: Find a Document</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open Copilot Chat (copilot.microsoft.com)</li>
+<li>Try finding a document you know exists:</li>
+</ol>
+<pre><code>Find the most recent product roadmap document in our SharePoint
+</code></pre>
+<pre><code>Find documents about [your current project] created in the last 3 months
+</code></pre>
+<pre><code>Find the competitive analysis document for [competitor name]
+</code></pre>
+<p><strong>What to notice:</strong></p>
+<ul>
+<li>Copilot searches across SharePoint sites you have access to</li>
+<li>Results include file names and locations</li>
+<li>You can ask follow-up questions about what it finds</li>
+</ul>
+<hr>
+<h2>Asking About Documents Without Opening Them</h2>
+<p>One of the most powerful features: get answers from documents without reading them.</p>
+<h3>Prompts for Document Questions</h3>
+<p><strong>Summarize a document:</strong></p>
+<pre><code>Summarize the key points from the Q4 product roadmap document
+</code></pre>
+<p><strong>Ask specific questions:</strong></p>
+<pre><code>What does the mobile app PRD say about the target launch date?
+</code></pre>
+<p><strong>Extract information:</strong></p>
+<pre><code>What are the success metrics defined in the activation project brief?
+</code></pre>
+<p><strong>Compare documents:</strong></p>
+<pre><code>What are the differences between the Q3 and Q4 roadmap documents?
+</code></pre>
+<hr>
+<h2>Exercise 2: Ask About a Document</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Think of a document you need information from</li>
+<li>Ask Copilot without opening it:</li>
+</ol>
+<pre><code>What are the main goals outlined in [document name]?
+</code></pre>
+<pre><code>Summarize the decisions made in [meeting notes document]
+</code></pre>
+<pre><code>What action items are listed in [project document]?
+</code></pre>
+<hr>
+<h2>Section 2: Site &amp; Library Intelligence</h2>
+<p>Copilot can summarize entire SharePoint sites and document libraries.</p>
+<h3>Summarizing a SharePoint Site</h3>
+<p><strong>Understand a new team&#39;s site:</strong></p>
+<pre><code>Summarize what the Engineering team&#39;s SharePoint site contains
+</code></pre>
+<p><strong>Find what&#39;s relevant:</strong></p>
+<pre><code>What content on the Product team site is relevant to onboarding?
+</code></pre>
+<p><strong>Identify key resources:</strong></p>
+<pre><code>What are the most important documents in the Design team&#39;s site?
+</code></pre>
+<h3>Document Library Intelligence</h3>
+<p><strong>Understand a library:</strong></p>
+<pre><code>What types of documents are in the PRD library?
+</code></pre>
+<p><strong>Find recent content:</strong></p>
+<pre><code>What documents were added to the Product team site this week?
+</code></pre>
+<p><strong>Identify patterns:</strong></p>
+<pre><code>What topics are most covered in the Research folder?
+</code></pre>
+<hr>
+<h2>Exercise 3: Explore a SharePoint Site</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Choose a SharePoint site you have access to</li>
+<li>Ask Copilot:</li>
+</ol>
+<pre><code>Summarize what the [Team Name] SharePoint site is for and 
+what key documents it contains
+</code></pre>
+<pre><code>What are the most recently updated documents on [site name]?
+</code></pre>
+<pre><code>What content on [site name] would be useful for a PM working 
+on activation and onboarding?
+</code></pre>
+<hr>
+<h2>Section 3: Collaborative Workflows</h2>
+<p>Integrate SharePoint content into your daily PM workflows.</p>
+<h3>Combining SharePoint with Other Sources</h3>
+<p><strong>Research across sources:</strong></p>
+<pre><code>Based on the PRD in SharePoint and recent emails about the project,
+summarize the current status of the mobile app initiative
+</code></pre>
+<p><strong>Prepare for meetings:</strong></p>
+<pre><code>Find all documents related to tomorrow&#39;s roadmap review meeting
+and summarize the key discussion points
+</code></pre>
+<p><strong>Create new content from existing:</strong></p>
+<pre><code>Based on the user research documents in SharePoint, 
+draft a summary of the top 3 user pain points
+</code></pre>
+<h3>Recent Updates and Changes</h3>
+<p><strong>Stay current:</strong></p>
+<pre><code>What documents in the Product team site have been updated 
+in the last week?
+</code></pre>
+<p><strong>Track project changes:</strong></p>
+<pre><code>What changes were made to the onboarding PRD recently?
+</code></pre>
+<p><strong>Monitor team activity:</strong></p>
+<pre><code>What new documents have been added to the Q1 Planning folder?
+</code></pre>
+<hr>
+<h2>Exercise 4: Integrated Workflow</h2>
+<p><strong>Do this now:</strong></p>
+<p>Try a workflow that combines SharePoint with other sources:</p>
+<pre><code>Find all documents related to [your current project] and create 
+a summary of:
+1. Current project status
+2. Key decisions made
+3. Open questions or blockers
+4. Next steps
+</code></pre>
+<p>Or for meeting prep:</p>
+<pre><code>I have a meeting about [topic] tomorrow. Find relevant documents 
+from SharePoint and summarize what I should know going in.
+</code></pre>
+<hr>
+<h2>SharePoint Copilot Best Practices</h2>
+<h3>Do:</h3>
+<ul>
+<li>✅ Use natural language, not keywords</li>
+<li>✅ Be specific about what you&#39;re looking for</li>
+<li>✅ Ask about documents without opening them first</li>
+<li>✅ Combine SharePoint search with other M365 sources</li>
+<li>✅ Use Copilot to stay updated on changes</li>
+</ul>
+<h3>Don&#39;t:</h3>
+<ul>
+<li>❌ Expect access to sites you don&#39;t have permission for</li>
+<li>❌ Rely on Copilot for confidential document security</li>
+<li>❌ Assume all content is indexed (new content takes time)</li>
+<li>❌ Skip verifying important information</li>
+<li>❌ Forget that Copilot only sees what you can see</li>
+</ul>
+<hr>
+<h2>Prompt Templates for SharePoint</h2>
+<p>Save these for quick use:</p>
+<h3>Document Discovery</h3>
+<pre><code>Find documents about [topic] in [location/team site]
+that were created in [timeframe]
+</code></pre>
+<h3>Document Summary</h3>
+<pre><code>Summarize [document name] including:
+1. Main purpose
+2. Key points
+3. Decisions or recommendations
+4. Action items
+</code></pre>
+<h3>Site Overview</h3>
+<pre><code>Give me an overview of the [Team] SharePoint site:
+1. What is it for?
+2. Key document types
+3. Most important resources
+4. Recent activity
+</code></pre>
+<h3>Project Research</h3>
+<pre><code>Find all SharePoint documents related to [project name] and:
+1. List the key documents
+2. Summarize the project status
+3. Identify any gaps in documentation
+</code></pre>
+<hr>
+<h2>Combining the Collaboration Trilogy</h2>
+<p>You&#39;ve now mastered Teams, Outlook, and SharePoint with Copilot. Here&#39;s how they work together:</p>
+<table>
+<thead>
+<tr>
+<th>Need</th>
+<th>Tool</th>
+<th>Copilot Action</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Real-time discussion</td>
+<td>Teams</td>
+<td>Meeting summaries, chat help</td>
+</tr>
+<tr>
+<td>Async communication</td>
+<td>Outlook</td>
+<td>Email drafting, thread summaries</td>
+</tr>
+<tr>
+<td>Document storage</td>
+<td>SharePoint</td>
+<td>Document discovery, site intelligence</td>
+</tr>
+</tbody></table>
+<h3>Power Workflow Example</h3>
+<p><strong>Preparing for a product review:</strong></p>
+<ol>
+<li><strong>SharePoint:</strong> &quot;Find all documents related to Q1 product review&quot;</li>
+<li><strong>Outlook:</strong> &quot;Summarize email threads about the Q1 review&quot;</li>
+<li><strong>Teams:</strong> &quot;What was discussed in the last product sync meeting?&quot;</li>
+<li><strong>Combine:</strong> &quot;Based on all of this, create an agenda for the review&quot;</li>
+</ol>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ How to find documents using natural language</li>
+<li>✅ How to ask questions about documents without opening them</li>
+<li>✅ How to summarize SharePoint sites and libraries</li>
+<li>✅ How to track recent updates and changes</li>
+<li>✅ How to integrate SharePoint into PM workflows</li>
+</ul>
+<hr>
+<h2>Level 1 Complete! 🎉</h2>
+<p>Congratulations! You&#39;ve completed all 10 modules of Level 1: Foundation.</p>
+<p><strong>Full Level 1 Summary:</strong></p>
+<table>
+<thead>
+<tr>
+<th>Module</th>
+<th>Topic</th>
+<th>Time Saved</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1.1-1.3</td>
+<td>Basics &amp; First Tasks</td>
+<td>3 hrs/week</td>
+</tr>
+<tr>
+<td>1.4-1.5</td>
+<td>Agents &amp; Personas</td>
+<td>1 hr/week</td>
+</tr>
+<tr>
+<td>1.6-1.7</td>
+<td>Memory &amp; M365 Apps</td>
+<td>1 hr/week</td>
+</tr>
+<tr>
+<td>1.8</td>
+<td>Teams</td>
+<td>2.5 hrs/week</td>
+</tr>
+<tr>
+<td>1.9</td>
+<td>Outlook</td>
+<td>1.5 hrs/week</td>
+</tr>
+<tr>
+<td>1.10</td>
+<td>SharePoint</td>
+<td>2 hrs/week</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td></td>
+<td><strong>11+ hrs/week</strong> <em>(full Level 1 cumulative across all modules)</em></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Next Steps</h2>
+<p>Continue to <strong>Level 2: Advanced PM Workflows</strong></p>
+<p>In Level 2, you&#39;ll tackle:</p>
+<ul>
+<li>Module 2.1: Writing PRDs with Copilot</li>
+<li>Module 2.2: Analyzing Product Data  </li>
+<li>Module 2.3: Product Strategy</li>
+</ul>
+<hr>
+<h2>Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Prompt Pattern</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Find document</td>
+<td>&quot;Find [description] in [location]&quot;</td>
+</tr>
+<tr>
+<td>Summarize doc</td>
+<td>&quot;Summarize [document name]&quot;</td>
+</tr>
+<tr>
+<td>Ask about doc</td>
+<td>&quot;What does [doc] say about [topic]?&quot;</td>
+</tr>
+<tr>
+<td>Site overview</td>
+<td>&quot;Summarize what [site] contains&quot;</td>
+</tr>
+<tr>
+<td>Recent updates</td>
+<td>&quot;What was updated in [location] this week?&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Great work completing Level 1! On to Level 2!</strong></p>
+
+    </div>
+    <div class="nav-footer"><a href="module-1.9.html" class="nav-btn prev">&larr; 1.9 Copilot in Outlook</a><a href="index.html" class="nav-btn home">Home</a><a href="module-2.1.html" class="nav-btn next">2.1 Writing PRDs with Copilot &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

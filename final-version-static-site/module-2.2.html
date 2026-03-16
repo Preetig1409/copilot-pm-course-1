@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2.2: Analyzing Product Data - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 2: Advanced PM Workflows &rsaquo; Module 2.2
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">30 min</span>
+        <span class="meta-tag level">Level 2: Advanced PM Workflows</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 2.2: Analyzing Product Data with Copilot (Enterprise Edition)</h1>
+<p><strong>Duration:</strong> 30 minutes
+<strong>Prerequisites:</strong> Module 2.1 completed</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Analyze enterprise adoption funnels and utilization data</li>
+<li>Use Excel Copilot for enterprise metrics analysis</li>
+<li>Interpret pilot test results for internal tools</li>
+<li>Calculate ROI for steering committee presentations</li>
+<li>Use the Analyst agent for complex business reasoning</li>
+</ol>
+<hr>
+<blockquote>
+<p><strong>Environment note:</strong> Keyboard shortcuts may vary. If Alt+I does not work, use the Copilot icon in the Excel ribbon (Home tab). See Module 1.7 for full shortcut troubleshooting.</p>
+</blockquote>
+<h2>Why Enterprise PMs Need Data Analysis</h2>
+<blockquote>
+<p><strong>Enterprise data guidance:</strong> The financial figures, metrics, and business data used throughout this module are realistic examples for learning purposes. In real use, replace with your organization&#39;s actual data. Always verify calculations independently before presenting to stakeholders.</p>
+</blockquote>
+<p>Enterprise internal product decisions require strong data support:</p>
+<table>
+<thead>
+<tr>
+<th>Decision Type</th>
+<th>Data Needed</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Investment justification</strong></td>
+<td>ROI calculations, productivity gains</td>
+</tr>
+<tr>
+<td><strong>Steering committee updates</strong></td>
+<td>Adoption trends, utilization metrics</td>
+</tr>
+<tr>
+<td><strong>Change management</strong></td>
+<td>Adoption funnel analysis, barrier identification</td>
+</tr>
+<tr>
+<td><strong>Portfolio prioritization</strong></td>
+<td>Comparative feature impact, resource efficiency</td>
+</tr>
+<tr>
+<td><strong>Business case validation</strong></td>
+<td>Pilot results, projected benefits</td>
+</tr>
+</tbody></table>
+<p>Copilot makes enterprise data analysis accessible without needing SQL or Python.</p>
+<hr>
+<h2>Enterprise Metrics That Matter</h2>
+<p>Unlike external products focused on revenue and growth, enterprise internal tools track:</p>
+<h3>Adoption Metrics</h3>
+<ul>
+<li><strong>Weekly Active Users (WAU)</strong> - Consistent platform usage</li>
+<li><strong>Provisioned vs. Active</strong> - How many with access actually use it</li>
+<li><strong>Feature Adoption</strong> - Which capabilities are being used</li>
+<li><strong>Adoption by Role</strong> - Partners vs. Consultants vs. Delivery Managers</li>
+</ul>
+<h3>Utilization Metrics</h3>
+<ul>
+<li><strong>Search Success Rate</strong> - Finding what you need</li>
+<li><strong>Time to Find Expert</strong> - Expert discovery efficiency</li>
+<li><strong>Content Quality Scores</strong> - Relevance and freshness</li>
+<li><strong>Workflow Completion</strong> - End-to-end task completion</li>
+</ul>
+<h3>Business Impact Metrics</h3>
+<ul>
+<li><strong>Time Savings</strong> - Hours saved per user per week</li>
+<li><strong>Deals Won</strong> - Impact on competitive wins</li>
+<li><strong>Productivity Gain</strong> - Billable hour efficiency</li>
+<li><strong>Talent Retention</strong> - Employee satisfaction correlation</li>
+</ul>
+<hr>
+<h2>Three Ways to Analyze Enterprise Data</h2>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Best For</th>
+<th>How</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Copilot Chat</strong></td>
+<td>Quick analysis, summaries</td>
+<td>Upload file to chat</td>
+</tr>
+<tr>
+<td><strong>Excel Copilot</strong></td>
+<td>Spreadsheet work, formulas</td>
+<td>Alt+I in Excel (or Copilot button in Home tab)</td>
+</tr>
+<tr>
+<td><strong>Analyst Agent</strong></td>
+<td>Complex reasoning, ROI</td>
+<td>Left panel → Analyst</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Which method should I use?</strong></p>
+<ul>
+<li>Have a spreadsheet open and want in-context analysis → <strong>Excel Copilot</strong></li>
+<li>Need to upload a file and get a quick summary → <strong>Copilot Chat</strong></li>
+<li>Need statistical validation, ROI calculations, or complex multi-step reasoning → <strong>Analyst Agent</strong></li>
+<li>Unsure? Start with <strong>Copilot Chat</strong> — if the question requires deeper analysis, switch to <strong>Analyst Agent</strong></li>
+</ul>
+</blockquote>
+<hr>
+<h2>Method 1: Adoption Funnel Analysis</h2>
+<h3>Exercise 1: Analyze AKX Adoption Funnel</h3>
+<p>Let&#39;s analyze AKX&#39;s adoption funnel - a critical metric for internal tools.</p>
+<p><strong>Sample Data (or use <code>sample-files/data/adoption-funnel.csv</code>):</strong></p>
+<pre><code>Week,Provisioned_Users,Logged_In,Searched,Found_Useful,Returned_Next_Week,WAU_Rate
+Week 1,680000,340000,238000,166600,119952,17.6%
+Week 2,682000,347000,250000,175000,131250,19.2%
+Week 3,685000,356000,263000,189360,142020,20.7%
+Week 4,687000,370000,281000,210750,163000,23.7%
+...
+Week 24,700000,448000,358000,286000,294000,42.0%
+</code></pre>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Upload the adoption funnel data to Copilot</li>
+<li>Use this prompt:</li>
+</ol>
+<pre><code>Analyze this AKX (Accenture Knowledge Exchange) adoption funnel data.
+
+Context: AKX is an internal knowledge management platform for 700,000 Accenture employees.
+Our target is 60% WAU. Current state shown in data.
+
+Please provide:
+
+1. **Funnel Health Assessment**
+   - Current conversion rates at each stage
+   - Where are the biggest drop-offs?
+   - What&#39;s the overall provisioned-to-WAU rate?
+
+2. **Trend Analysis**
+   - Is adoption improving over time?
+   - What&#39;s the weekly growth rate?
+   - Project when we&#39;ll hit 60% WAU at current trajectory
+
+3. **Bottleneck Identification**
+   - Which funnel stage has the biggest opportunity?
+   - If we improve &quot;Found Useful&quot; from 70% to 80%, what&#39;s the impact on WAU?
+   - Quantify the opportunity for each stage
+
+4. **Segment Analysis**
+   - Any patterns in the data suggesting user segment differences?
+   - What would you want to slice by (role, practice, geography)?
+
+5. **Steering Committee Summary**
+   - 3-sentence summary for executive sponsors
+   - Key metric trend to highlight
+   - Primary recommendation
+
+Format as a report suitable for a steering committee update.
+</code></pre>
+<hr>
+<h2>Exercise 2: Utilization Data Analysis</h2>
+<p>Internal tools also need to track productivity impact.</p>
+<p><strong>Sample Data (or use <code>sample-files/data/utilization-data.csv</code>):</strong></p>
+<pre><code>Practice,Consultants,AKX_Active_Users,Avg_Searches_Week,Avg_Search_Time_Min,Expert_Connections,Utilization_Rate
+Technology,85000,38250,12.5,2.8,1250,92%
+Strategy,35000,14000,8.2,3.4,890,89%
+Operations,45000,15750,6.1,4.2,450,87%
+Financial Services,55000,23100,10.8,2.1,980,91%
+Health &amp; Public Service,40000,14000,7.5,3.8,560,88%
+</code></pre>
+<p><strong>Do this now:</strong></p>
+<p>Use this prompt:</p>
+<pre><code>Analyze this AKX utilization data by practice at Accenture.
+
+Please provide:
+
+1. **Practice Comparison**
+   - Which practices have highest/lowest AKX adoption?
+   - Correlation between AKX usage and practice utilization rate?
+   - Are high-utilization practices using AKX more?
+
+2. **Search Efficiency Analysis**
+   - Which practices have most efficient search (lowest time)?
+   - What might explain the differences?
+   - Benchmark: Target is 2 minutes average. Who&#39;s meeting it?
+
+3. **Expert Connection Analysis**
+   - Expert connections per active user by practice
+   - Which practices are getting most value from expert discovery?
+
+4. **ROI Estimation**
+   - If Technology practice saves 5 min/search vs. old system (8 min)
+   - Calculate weekly time savings across all 38,250 active users
+   - At $300/hour billing rate, what&#39;s the annual value?
+
+5. **Recommendations**
+   - Which practices need adoption support?
+   - What best practices from Technology should be shared?
+   - Priority actions for Change Management team
+</code></pre>
+<hr>
+<h2>Method 2: Excel Copilot for Enterprise Data</h2>
+<h3>How to Access</h3>
+<ol>
+<li>Open your data file in Excel</li>
+<li>Press <strong>Alt+I</strong> to open Copilot, or click the <strong>Copilot button</strong> in the Home tab of the Excel ribbon</li>
+</ol>
+<h3>Enterprise-Specific Excel Tasks</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Example Prompt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Add ROI formulas</td>
+<td>&quot;Add column calculating time savings value at $300/hour&quot;</td>
+</tr>
+<tr>
+<td>Create adoption charts</td>
+<td>&quot;Create trend chart showing WAU over 24 weeks&quot;</td>
+</tr>
+<tr>
+<td>Practice comparison</td>
+<td>&quot;Create pivot table by practice with average adoption&quot;</td>
+</tr>
+<tr>
+<td>Highlight concerns</td>
+<td>&quot;Highlight practices where adoption &lt; 30%&quot;</td>
+</tr>
+<tr>
+<td>Forecast</td>
+<td>&quot;Project WAU for next 12 weeks based on trend&quot;</td>
+</tr>
+<tr>
+<td>Executive summary</td>
+<td>&quot;Create summary statistics for steering committee&quot;</td>
+</tr>
+</tbody></table>
+<h3>Exercise 3: Excel Copilot for Enterprise Metrics</h3>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open utilization data in Excel</li>
+<li>Press Alt+I to open Copilot, or click the <strong>Copilot button</strong> in the Home tab of the Excel ribbon</li>
+<li>Try these prompts:</li>
+</ol>
+<pre><code>Add a column calculating the ROI per practice assuming:
+- Time saved per search: 5 minutes
+- Billing rate: $300/hour
+- Formula: Active_Users × Avg_Searches_Week × 5/60 × $300 × 52 weeks
+</code></pre>
+<pre><code>Create a scatter chart showing relationship between AKX_Active_Users
+and Utilization_Rate by practice
+</code></pre>
+<pre><code>Create a pivot table summarizing total time savings by practice,
+sorted from highest to lowest
+</code></pre>
+<hr>
+<h2>Method 3: Analyst Agent for Business Cases</h2>
+<p>For complex reasoning, ROI validation, and statistical analysis, use the Analyst agent.</p>
+<h3>When to Use Analyst for Enterprise</h3>
+<ul>
+<li>Validating business case assumptions</li>
+<li>Statistical significance of pilot results</li>
+<li>Multi-variable analysis</li>
+<li>ROI projections with scenarios</li>
+<li>Pre/post comparisons</li>
+</ul>
+<h3>Exercise 4: Pilot Test Analysis</h3>
+<p><strong>Scenario:</strong> You ran a pilot of AI-powered search with the Technology practice.</p>
+<p><strong>Sample Data (or use <code>sample-files/data/expert-search-metrics.csv</code>):</strong></p>
+<pre><code>Control Group (Old Search):
+- 5,000 consultants in pilot
+- Average search time: 8.2 minutes
+- Search success rate: 67%
+- Time to find expert: 55 hours average
+- User satisfaction: 3.2/5
+- Weekly searches per user: 6.5
+
+Test Group (AI-Powered Search):
+- 5,000 consultants in pilot
+- Average search time: 2.4 minutes
+- Search success rate: 82%
+- Time to find expert: 12 hours average
+- User satisfaction: 4.1/5
+- Weekly searches per user: 9.2
+</code></pre>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Click <strong>Analyst</strong> in the left panel</li>
+<li>Enter this prompt:</li>
+</ol>
+<pre><code>Analyze this pilot test result for AKX AI-Powered Search at Accenture.
+
+Control Group (Old Search): 5,000 users
+- Average search time: 8.2 minutes
+- Search success rate: 67%
+- Time to find expert: 55 hours
+- User satisfaction: 3.2/5
+- Weekly searches: 6.5 per user
+
+Test Group (AI-Powered Search): 5,000 users
+- Average search time: 2.4 minutes
+- Search success rate: 82%
+- Time to find expert: 12 hours
+- User satisfaction: 4.1/5
+- Weekly searches: 9.2 per user
+
+Please provide:
+
+1. **Statistical Significance**
+   - Is the improvement in search time statistically significant?
+   - Is the improvement in satisfaction significant?
+   - Show your calculations
+
+2. **Efficiency Gains**
+   - Time saved per search: [calculate]
+   - Additional searches enabled per user per week
+   - Total time savings across 5,000 pilot users
+
+3. **ROI Projection for Full Rollout**
+   - If rolled out to all 300,000 potential weekly active users
+   - Average consultant billing rate: $300/hour
+   - Calculate annual productivity value
+   - Include conservative, moderate, and optimistic scenarios
+
+4. **Business Case Validation**
+   - Does this justify the $2M investment?
+   - What&#39;s the payback period?
+   - What&#39;s the ROI multiple?
+
+5. **Steering Committee Recommendation**
+   - Should we proceed with full rollout?
+   - What metrics should we track post-rollout?
+   - Any risks or caveats to mention?
+
+Show your reasoning step by step. This will be presented to the CKO sponsor.
+</code></pre>
+<hr>
+<h2>Common Enterprise Data Scenarios</h2>
+<h3>Scenario 1: Adoption Cohort Analysis</h3>
+<pre><code>Analyze adoption cohorts for new hires at Accenture:
+
+September cohort: 5,000 new hires
+- 68% logged in first week
+- 44% performed a search
+- 22% weekly active at 30 days
+
+October cohort: 5,500 new hires
+- 70% logged in first week
+- 50% performed a search
+- 26% weekly active at 30 days
+
+November cohort: 4,800 new hires
+- 75% logged in first week
+- 60% performed a search
+- 33% weekly active at 30 days
+
+Questions:
+1. Is the improvement trend significant?
+2. What&#39;s driving better activation for newer cohorts?
+3. Project December cohort performance
+4. What should we present to Change Management?
+</code></pre>
+<h3>Scenario 2: Practice Benchmarking</h3>
+<pre><code>Compare AKX performance across Accenture practices:
+
+For each practice, analyze:
+- Adoption rate vs. company average
+- Search efficiency metrics
+- Expert connection rates
+- Correlation with practice performance metrics
+
+Identify:
+- Best-in-class practices (what are they doing?)
+- Practices needing support
+- Recommendations for practice-specific interventions
+</code></pre>
+<h3>Scenario 3: Feature ROI Analysis</h3>
+<pre><code>Analyze ROI of AKX features to inform roadmap prioritization:
+
+Features and usage data:
+- Basic Search: 85% of users, 3.5 satisfaction
+- Expert Finder: 35% of users, 4.2 satisfaction
+- Content Curation: 20% of users, 3.8 satisfaction
+- AI Recommendations: 15% of users (pilot), 4.5 satisfaction
+
+Questions:
+1. Which features drive the most value?
+2. What&#39;s the potential if we increased Expert Finder adoption?
+3. Should we expand AI Recommendations?
+4. Investment recommendations for steering committee?
+</code></pre>
+<h3>Scenario 4: Competitive Benchmark Analysis</h3>
+<pre><code>Benchmark AKX against what we know about competitor platforms:
+
+Our metrics:
+- WAU: 43%
+- Search time: 3.5 minutes
+- Search satisfaction: 3.8/5
+- Expert discovery time: 18 hours
+
+Industry benchmarks (consulting firms):
+- McKinsey Knowledge Center: ~65% WAU (estimated)
+- BCG internal tools: ~55% WAU (estimated)
+- Deloitte knowledge platform: ~50% WAU (estimated)
+
+Analysis:
+1. How do we compare?
+2. What gap needs to close?
+3. What&#39;s the business impact of the gap?
+4. Recommendation for steering committee
+</code></pre>
+<hr>
+<h2>Data Analysis Workflow for Enterprise PMs</h2>
+<h3>Step 1: Define the Business Question</h3>
+<ul>
+<li>What decision needs data support?</li>
+<li>Who is the audience (steering committee, sponsors, change management)?</li>
+<li>What would change our recommendation?</li>
+</ul>
+<h3>Step 2: Gather Enterprise Data</h3>
+<ul>
+<li>Export from internal analytics platforms</li>
+<li>Combine multiple data sources if needed</li>
+<li>Note data limitations and gaps</li>
+</ul>
+<h3>Step 3: Explore and Validate</h3>
+<pre><code>Summarize this data. What patterns do you see?
+Flag any data quality issues.
+What&#39;s surprising or concerning?
+</code></pre>
+<h3>Step 4: Answer Business Questions</h3>
+<pre><code>Based on this data:
+- Should we increase investment in AI Search?
+- Which practices need adoption support?
+- What&#39;s the ROI case for steering committee?
+</code></pre>
+<h3>Step 5: Stress-Test Findings</h3>
+<ul>
+<li>Are sample sizes sufficient?</li>
+<li>What assumptions are we making?</li>
+<li>What would skeptics challenge?</li>
+</ul>
+<h3>Step 6: Package for Stakeholders</h3>
+<ul>
+<li>Executive summary for steering committee</li>
+<li>Detailed backup for questions</li>
+<li>Clear recommendation with data support</li>
+</ul>
+<hr>
+<h2>Best Practices for Enterprise Data Analysis</h2>
+<h3>Do:</h3>
+<ul>
+<li>✅ Connect analysis to business outcomes (revenue, efficiency, talent)</li>
+<li>✅ Use Analyst for complex ROI calculations</li>
+<li>✅ Compare to industry benchmarks</li>
+<li>✅ Show confidence levels and scenarios</li>
+<li>✅ Prepare for steering committee questions</li>
+</ul>
+<h3>Don&#39;t:</h3>
+<ul>
+<li>❌ Present data without business context</li>
+<li>❌ Skip statistical validation for pilots</li>
+<li>❌ Ignore practice/segment differences</li>
+<li>❌ Assume correlation means causation</li>
+<li>❌ Hide limitations or data gaps</li>
+</ul>
+<blockquote>
+<p><em>For your organization&#39;s guidance on AI usage and data handling, refer to your Responsible AI policy (search &quot;Responsible AI guidelines&quot; on your internal intranet).</em></p>
+</blockquote>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ How to analyze enterprise adoption funnels</li>
+<li>✅ How to use Excel Copilot for utilization metrics</li>
+<li>✅ How to interpret pilot test results with statistical rigor</li>
+<li>✅ How to calculate ROI for steering committee presentations</li>
+<li>✅ The enterprise data analysis workflow</li>
+</ul>
+<p><strong>Quick Self-Check</strong>
+Before moving on, can you:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Choose the right analysis method (Chat vs. Excel Copilot vs. Analyst) for a given scenario</li>
+<li><input disabled="" type="checkbox"> Open Copilot in Excel using either the keyboard shortcut or the ribbon icon</li>
+<li><input disabled="" type="checkbox"> Explain how to validate Copilot&#39;s statistical claims before presenting to stakeholders</li>
+</ul>
+<p><em>If you&#39;re unsure about any of these, re-read that section before continuing.</em></p>
+<hr>
+<h2>Next Steps</h2>
+<p>Continue to <strong>Module 2.3: Enterprise Product Strategy with Copilot</strong></p>
+<p>In Module 2.3, you&#39;ll learn:</p>
+<ul>
+<li>Enterprise portfolio strategy (vs. product-market fit)</li>
+<li>Governance and steering committee alignment</li>
+<li>Strategic frameworks for internal tools</li>
+<li>Multi-stakeholder strategy communication</li>
+</ul>
+<hr>
+<h2>Quick Reference: Enterprise Data Prompts</h2>
+<table>
+<thead>
+<tr>
+<th>Analysis Type</th>
+<th>Tool</th>
+<th>Example Prompt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Adoption funnel</td>
+<td>Copilot Chat</td>
+<td>&quot;Analyze this adoption funnel data...&quot;</td>
+</tr>
+<tr>
+<td>Utilization trends</td>
+<td>Excel Copilot</td>
+<td>&quot;Create pivot table by practice...&quot;</td>
+</tr>
+<tr>
+<td>Pilot validation</td>
+<td>Analyst</td>
+<td>&quot;Is this pilot result significant?&quot;</td>
+</tr>
+<tr>
+<td>ROI calculation</td>
+<td>Analyst</td>
+<td>&quot;Calculate ROI for steering committee...&quot;</td>
+</tr>
+<tr>
+<td>Practice benchmarking</td>
+<td>Copilot Chat</td>
+<td>&quot;Compare performance across practices...&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Ready for enterprise strategy? Let&#39;s go to Module 2.3!</strong></p>
+
+    </div>
+    <div class="nav-footer"><a href="module-2.1.html" class="nav-btn prev">&larr; 2.1 Writing PRDs with Copilot</a><a href="index.html" class="nav-btn home">Home</a><a href="module-2.3.html" class="nav-btn next">2.3 Product Strategy &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

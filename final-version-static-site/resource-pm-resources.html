@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PM Learning Resources - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; References &rsaquo; PM Learning Resources
+      </div>
+    </div>
+    <div class="content">
+      <h1>Product Management Resources</h1>
+<p>A curated collection of publicly accessible resources for product managers looking to deepen their skills.</p>
+<hr>
+<h2>Books</h2>
+<p>Start here. These are the most widely referenced books in the PM community.</p>
+<table>
+<thead>
+<tr>
+<th>Book</th>
+<th>Author</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Inspired</strong></td>
+<td>Marty Cagan</td>
+<td>How top companies build products people love — the foundational PM book</td>
+</tr>
+<tr>
+<td><strong>Empowered</strong></td>
+<td>Marty Cagan</td>
+<td>Leading product teams and building product culture</td>
+</tr>
+<tr>
+<td><strong>The Lean Product Playbook</strong></td>
+<td>Dan Olsen</td>
+<td>Practical framework for achieving product-market fit</td>
+</tr>
+<tr>
+<td><strong>Continuous Discovery Habits</strong></td>
+<td>Teresa Torres</td>
+<td>Making customer research an ongoing practice, not a one-off</td>
+</tr>
+<tr>
+<td><strong>Escaping the Build Trap</strong></td>
+<td>Melissa Perri</td>
+<td>Shipping outcomes over features — product-led organizations</td>
+</tr>
+<tr>
+<td><strong>The Lean Startup</strong></td>
+<td>Eric Ries</td>
+<td>Validated learning and iterative product development</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Free &amp; Low-Cost Courses</h2>
+<table>
+<thead>
+<tr>
+<th>Course</th>
+<th>Platform</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Digital Product Management Specialization</strong></td>
+<td>Coursera (U. of Virginia)</td>
+<td>5-course series — agile, prototyping, hypothesis testing. Free to audit</td>
+</tr>
+<tr>
+<td><strong>IBM Digital Product Management</strong></td>
+<td>Coursera</td>
+<td>Product lifecycle, design thinking, agile delivery. Free to audit</td>
+</tr>
+<tr>
+<td><strong>Product Management</strong></td>
+<td>edX (U. of Maryland)</td>
+<td>MVPs, user research, lifecycle planning. Free to audit</td>
+</tr>
+<tr>
+<td><strong>AI for Everyone</strong></td>
+<td>Coursera (Andrew Ng)</td>
+<td>Non-technical AI introduction — useful context for AI-powered products</td>
+</tr>
+<tr>
+<td><strong>IBM AI Product Manager Certificate</strong></td>
+<td>Coursera</td>
+<td>Hands-on GenAI tools, ethical AI considerations</td>
+</tr>
+<tr>
+<td><strong>Microsoft AI Product Manager Certificate</strong></td>
+<td>Coursera</td>
+<td>AI product strategy with Copilot and other Microsoft tools</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><strong>Tip:</strong> Most Coursera and edX courses are free to audit (watch videos, read materials). You only pay if you want the certificate.</p>
+</blockquote>
+<hr>
+<h2>Certifications</h2>
+<p>If your organization values formal credentials:</p>
+<table>
+<thead>
+<tr>
+<th>Certification</th>
+<th>Provider</th>
+<th>Why It&#39;s Recognized</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Pragmatic Institute PM Certification</strong></td>
+<td>Pragmatic Institute</td>
+<td>Industry standard since 1993; 36,000+ alumni. Employers ask for it by name</td>
+</tr>
+<tr>
+<td><strong>Certified Product Manager (CPM)</strong></td>
+<td>AIPMM</td>
+<td>Largest international PM association (65+ countries). Most affordable comprehensive option</td>
+</tr>
+<tr>
+<td><strong>Product Management Certificate</strong></td>
+<td>Product School</td>
+<td>Portfolio-building emphasis; instructors from Google, Meta, Amazon</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Newsletters</h2>
+<p>Free, high-quality PM content delivered to your inbox:</p>
+<table>
+<thead>
+<tr>
+<th>Newsletter</th>
+<th>Author</th>
+<th>Why Read It</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Lenny&#39;s Newsletter</strong></td>
+<td>Lenny Rachitsky (ex-Airbnb)</td>
+<td>1M+ subscribers. Strategy, growth, building products. The most influential PM newsletter</td>
+</tr>
+<tr>
+<td><strong>SVPG</strong></td>
+<td>Marty Cagan</td>
+<td>Product leadership and strategy from the author of Inspired and Empowered</td>
+</tr>
+<tr>
+<td><strong>Prioritised</strong></td>
+<td>Mind the Product</td>
+<td>Curated insights from a 300,000+ PM community</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Podcasts</h2>
+<p>For learning during commutes or downtime:</p>
+<table>
+<thead>
+<tr>
+<th>Podcast</th>
+<th>Host</th>
+<th>What to Expect</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Lenny&#39;s Podcast</strong></td>
+<td>Lenny Rachitsky</td>
+<td>Interviews with CEOs, CPOs, and founders — the most popular PM podcast</td>
+</tr>
+<tr>
+<td><strong>The Product Podcast</strong></td>
+<td>Product School</td>
+<td>Weekly conversations with PMs from Google, Meta, Netflix, Amazon</td>
+</tr>
+<tr>
+<td><strong>Product Thinking</strong></td>
+<td>Melissa Perri</td>
+<td>Expert conversations on product management strategy</td>
+</tr>
+<tr>
+<td><strong>One Knight in Product</strong></td>
+<td>Jason Knight</td>
+<td>Honest, sometimes contrarian perspectives on PM</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Communities</h2>
+<p>Connect with other PMs for peer learning and support:</p>
+<table>
+<thead>
+<tr>
+<th>Community</th>
+<th>Size</th>
+<th>How to Join</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Mind the Product Slack</strong></td>
+<td>30,000+ members</td>
+<td>mindtheproduct.com — largest international PM community</td>
+</tr>
+<tr>
+<td><strong>Product School Slack</strong></td>
+<td>60,000+ members</td>
+<td>productschool.com/slack-community — weekly AMAs with top PMs</td>
+</tr>
+<tr>
+<td><strong>Women in Product</strong></td>
+<td>Active network</td>
+<td>Networking, collaboration, job board</td>
+</tr>
+<tr>
+<td><strong>Products That Count</strong></td>
+<td>200,000+ members</td>
+<td>Founded by Facebook/Nokia PM veteran</td>
+</tr>
+<tr>
+<td><strong>The Product Folks</strong></td>
+<td>10,000+ members</td>
+<td>Weekly AMAs and peer discussions</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>PM Frameworks Quick Reference</h2>
+<p>Frameworks you&#39;ll encounter throughout your career:</p>
+<h3>Strategy &amp; Goals</h3>
+<ul>
+<li><strong>OKRs</strong> (Objectives &amp; Key Results) — Set qualitative goals with 3-5 measurable key results. Used by Google, Spotify, LinkedIn</li>
+<li><strong>Jobs to Be Done (JTBD)</strong> — Understand the &quot;job&quot; the customer is trying to accomplish, not just what they say they want</li>
+</ul>
+<h3>Prioritization</h3>
+<ul>
+<li><strong>RICE</strong> (Reach, Impact, Confidence, Effort) — Data-driven scoring for feature prioritization. Introduced by Intercom</li>
+<li><strong>MoSCoW</strong> (Must, Should, Could, Won&#39;t) — Scope management for sprint planning</li>
+<li><strong>Value vs. Effort Matrix</strong> — Simple 2x2 for quick trade-off decisions</li>
+<li><strong>Kano Model</strong> — Distinguish must-haves from delighters based on customer satisfaction</li>
+</ul>
+<h3>Discovery</h3>
+<ul>
+<li><strong>Design Thinking</strong> — Empathize, Define, Ideate, Prototype, Test</li>
+<li><strong>Continuous Discovery</strong> — Weekly customer touchpoints, opportunity solution trees</li>
+</ul>
+<blockquote>
+<p><strong>Where to find templates:</strong> Atlassian&#39;s PM guides, Product School&#39;s framework library, and ProductPlan&#39;s learning center all offer free, downloadable templates.</p>
+</blockquote>
+<hr>
+<h2>AI for Product Managers</h2>
+<p>Resources specifically about using AI in PM workflows:</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Type</th>
+<th>Focus</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Microsoft AI Product Manager Certificate</strong></td>
+<td>Course (Coursera)</td>
+<td>AI product strategy with Copilot</td>
+</tr>
+<tr>
+<td><strong>IBM AI Product Manager Certificate</strong></td>
+<td>Course (Coursera)</td>
+<td>GenAI tools, ethical AI</td>
+</tr>
+<tr>
+<td><strong>Product School AI Roadmap</strong></td>
+<td>Guide</td>
+<td>Learning path for AI-savvy PMs</td>
+</tr>
+<tr>
+<td><strong>Microsoft Copilot Prompt Gallery</strong></td>
+<td>Tool</td>
+<td>Curated prompts for M365 Copilot</td>
+</tr>
+</tbody></table>
+<p>Key AI competencies for PMs: problem definition for AI use cases, prompt engineering, bias detection, data interpretation, and integration planning.</p>
+<hr>
+<p><em>This reference page is part of the Microsoft Copilot for Product Managers course. These resources complement the hands-on Copilot skills taught in the course modules.</em></p>
+
+    </div>
+    <div class="nav-footer">
+      <a href="index.html" class="nav-btn home">&larr; Back to Course Home</a>
+    </div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

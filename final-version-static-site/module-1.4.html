@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.4: Using Researcher &amp; Analyst Agents - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 1: Foundation &rsaquo; Module 1.4
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">25 min</span>
+        <span class="meta-tag level">Level 1: Foundation</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 1.4: Using Researcher &amp; Analyst Agents</h1>
+<p><strong>Duration:</strong> 20 minutes
+<strong>Prerequisites:</strong> Modules 1.1-1.3 completed</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Understand what Copilot agents are and how they differ from regular chat</li>
+<li>Use the <strong>Researcher</strong> agent for deep, multi-step research</li>
+<li>Use the <strong>Analyst</strong> agent for complex data analysis</li>
+<li>Know when to use agents vs regular Copilot Chat</li>
+<li>Leverage the <strong>Workflows</strong> agent for automation</li>
+</ol>
+<hr>
+<h2>What Are Copilot Agents?</h2>
+<p>Agents are <strong>specialized AI assistants</strong> built into Microsoft 365 Copilot. They&#39;re designed for specific types of complex tasks.</p>
+<h3>Regular Copilot Chat vs Agents</h3>
+<table>
+<thead>
+<tr>
+<th>Regular Copilot Chat</th>
+<th>Agents</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Quick Q&amp;A</td>
+<td>Multi-step reasoning</td>
+</tr>
+<tr>
+<td>Single-turn tasks</td>
+<td>Extended workflows</td>
+</tr>
+<tr>
+<td>Immediate responses</td>
+<td>Takes 5-10 minutes</td>
+</tr>
+<tr>
+<td>General purpose</td>
+<td>Specialized tasks</td>
+</tr>
+<tr>
+<td>Latest Microsoft language model</td>
+<td>Advanced reasoning model</td>
+</tr>
+</tbody></table>
+<h3>Available Agents in M365 Copilot</h3>
+<ol>
+<li><strong>Researcher</strong> - Deep research across web and work data</li>
+<li><strong>Analyst</strong> - Complex data analysis and reasoning</li>
+<li><strong>Workflows</strong> - Automation across M365 apps (availability varies by tenant)</li>
+</ol>
+<p><strong>Note:</strong> You get 25 combined Researcher + Analyst queries per month with M365 Copilot license.</p>
+<hr>
+<h2>Accessing Agents</h2>
+<p>To access agents in Copilot:</p>
+<ol>
+<li>Go to <strong>copilot.microsoft.com</strong></li>
+<li>Look at the <strong>left panel</strong></li>
+<li>You&#39;ll see agents listed (Researcher, Analyst, etc.)</li>
+<li>Click an agent to start a specialized session</li>
+</ol>
+<p>Alternatively, in the chat:</p>
+<ul>
+<li>Type <strong>@Researcher</strong> followed by your question</li>
+<li>Type <strong>@Analyst</strong> followed by your data analysis request</li>
+</ul>
+<hr>
+<h2>The Researcher Agent</h2>
+<p>Researcher is your <strong>AI research assistant</strong>. It performs deep, multi-step research and produces comprehensive reports.</p>
+<h3>What Researcher Does</h3>
+<ol>
+<li>Breaks your question into sub-questions</li>
+<li>Searches across web AND your work data</li>
+<li>Evaluates multiple sources</li>
+<li>Synthesizes findings</li>
+<li>Produces a cited report</li>
+</ol>
+<h3>When to Use Researcher</h3>
+<table>
+<thead>
+<tr>
+<th>Use Researcher For</th>
+<th>Don&#39;t Use For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Competitive analysis (consulting firms)</td>
+<td>Quick facts</td>
+</tr>
+<tr>
+<td>Industry best practices</td>
+<td>Simple questions</td>
+</tr>
+<tr>
+<td>Multi-source synthesis</td>
+<td>Single document analysis</td>
+</tr>
+<tr>
+<td>Strategic reports for steering committees</td>
+<td>Real-time data</td>
+</tr>
+<tr>
+<td>Change management research</td>
+<td>Basic summaries</td>
+</tr>
+</tbody></table>
+<h3>Researcher Example: Competitive Intelligence</h3>
+<p><strong>Prompt:</strong></p>
+<pre><code>Research how major consulting firms (McKinsey, BCG, Deloitte) handle
+internal knowledge management and expert discovery. I need to understand:
+
+1. What platforms/tools do they use?
+2. How do they approach content curation at scale?
+3. What AI/GenAI investments have they made in internal tools?
+4. What are their adoption rates (if publicly available)?
+5. What best practices can Accenture learn from?
+
+I&#39;m a Product Owner at Accenture responsible for AKX (our internal
+knowledge platform with 700,000+ users). Create a comprehensive
+competitive intelligence report I can share with our steering committee.
+</code></pre>
+<p><strong>What happens:</strong></p>
+<ul>
+<li>Researcher shows its &quot;thinking&quot; as it works</li>
+<li>Takes 5-10 minutes</li>
+<li>Produces a multi-page report with citations</li>
+<li>You can export to Word</li>
+</ul>
+<hr>
+<blockquote>
+<p><strong>Response times:</strong> Agent responses take longer than regular chat. Researcher typically takes 5-10 minutes, Analyst 2-5 minutes. This is expected — do not refresh the page while waiting.</p>
+</blockquote>
+<h2>Exercise 1: Use Researcher</h2>
+<p>Let&#39;s try a research task relevant to your Accenture PM role.</p>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Click on <strong>Researcher</strong> in the left panel</li>
+<li>Enter this prompt:</li>
+</ol>
+<pre><code>Research best practices for driving adoption of internal enterprise tools.
+I&#39;m a Product Owner at Accenture responsible for an internal knowledge
+management platform. Our weekly active users are stuck at 43% (target: 60%).
+
+I need:
+1. Industry benchmarks for internal tool adoption at large enterprises
+2. Top strategies companies use to drive adoption of internal platforms
+3. Case studies of companies that significantly improved internal tool usage
+4. Role of change management vs product improvements
+5. Metrics we should track beyond WAU
+
+Create a strategic report with actionable recommendations
+for our steering committee.
+</code></pre>
+<ol start="3">
+<li>Watch Researcher work (notice the &quot;thinking&quot; display)</li>
+<li>Review the final report</li>
+</ol>
+<p><strong>What to notice:</strong></p>
+<ul>
+<li>The depth of analysis</li>
+<li>Citations and sources</li>
+<li>Structured, actionable output</li>
+<li>Takes longer but more thorough</li>
+</ul>
+<hr>
+<h2>The Analyst Agent</h2>
+<p>Analyst is your <strong>AI data scientist</strong>. It uses reasoning models to solve complex analytical problems.</p>
+<h3>What Analyst Does</h3>
+<ol>
+<li>Understands your data analysis question</li>
+<li>Applies multi-step reasoning</li>
+<li>Performs calculations and analysis</li>
+<li>Explains its methodology</li>
+<li>Provides insights and recommendations</li>
+</ol>
+<h3>When to Use Analyst</h3>
+<table>
+<thead>
+<tr>
+<th>Use Analyst For</th>
+<th>Don&#39;t Use For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Complex adoption funnel analysis</td>
+<td>Simple sums/averages</td>
+</tr>
+<tr>
+<td>Statistical significance testing</td>
+<td>Basic charts</td>
+</tr>
+<tr>
+<td>Multi-variable problems</td>
+<td>Quick calculations</td>
+</tr>
+<tr>
+<td>Predictive insights</td>
+<td>Real-time dashboards</td>
+</tr>
+<tr>
+<td>ROI calculations for business cases</td>
+<td>Data cleaning</td>
+</tr>
+</tbody></table>
+<h3>Analyst Example: Adoption Cohort Analysis</h3>
+<blockquote>
+<p><em>This is a realistic enterprise PM scenario. The numbers are illustrative — your actual data will vary. The goal is to practice the prompt structure, not to memorize these specific figures.</em></p>
+</blockquote>
+<p><strong>Prompt:</strong></p>
+<pre><code>I&#39;m analyzing AKX adoption cohorts at Accenture. Here&#39;s the data:
+
+September cohort (new hires):
+- 5,000 provisioned users
+- 3,400 logged in first week (68%)
+- 2,200 performed a search (44%)
+- 1,100 weekly active at 30 days (22%)
+
+October cohort (new hires):
+- 5,500 provisioned users
+- 3,850 logged in first week (70%)
+- 2,750 performed a search (50%)
+- 1,430 weekly active at 30 days (26%)
+
+November cohort (new hires):
+- 4,800 provisioned users
+- 3,600 logged in first week (75%)
+- 2,880 performed a search (60%)
+- 1,584 weekly active at 30 days (33%)
+
+Analyze this data and help me understand:
+1. What&#39;s the trend in activation and retention?
+2. Is the improvement statistically significant?
+3. Where&#39;s the biggest drop-off in the funnel?
+4. What should we project for December if the trend continues?
+5. What should I present to the steering committee?
+</code></pre>
+<p><strong>What Analyst provides:</strong></p>
+<ul>
+<li>Statistical analysis of trends</li>
+<li>Significance calculations</li>
+<li>Funnel analysis identifying bottlenecks</li>
+<li>Projections with confidence levels</li>
+<li>Clear explanation of methodology</li>
+</ul>
+<hr>
+<h2>Exercise 2: Use Analyst</h2>
+<p>Let&#39;s try a data analysis task relevant to enterprise internal tools.</p>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Click on <strong>Analyst</strong> in the left panel</li>
+<li>Enter this prompt:</li>
+</ol>
+<pre><code>Help me analyze this A/B test result for AKX AI Search:
+
+Control group (old search):
+- 5,000 users in pilot
+- Average search time: 8.2 minutes
+- Search success rate: 67%
+- User satisfaction: 3.2/5
+- Time to find expert: 55 hours average
+
+Test group (AI-powered search):
+- 5,000 users in pilot
+- Average search time: 2.4 minutes
+- Search success rate: 82%
+- User satisfaction: 4.1/5
+- Time to find expert: 12 hours average
+
+Questions:
+1. Are these results statistically significant?
+2. What&#39;s the estimated time savings across 700,000 users?
+3. What&#39;s the ROI if average consultant billing rate is $300/hour?
+4. Should we roll out to 100% of users?
+5. Write a recommendation for the steering committee with ROI justification.
+</code></pre>
+<ol start="3">
+<li>Review Analyst&#39;s methodology and conclusions</li>
+</ol>
+<p><strong>What to notice:</strong></p>
+<ul>
+<li>Step-by-step reasoning</li>
+<li>Statistical rigor</li>
+<li>ROI calculations</li>
+<li>Clear recommendations with business justification</li>
+<li>Explains the &quot;why&quot; behind conclusions</li>
+</ul>
+<hr>
+<h2>The Workflows Agent</h2>
+<p>Workflows is your <strong>automation assistant</strong>. It helps you create automated flows across M365 apps.</p>
+<h3>What Workflows Can Do</h3>
+<ol>
+<li>Send automated emails and reminders</li>
+<li>Create calendar events based on triggers</li>
+<li>Post updates to Teams channels</li>
+<li>Manage SharePoint files</li>
+<li>Connect to Planner and other M365 services</li>
+</ol>
+<h3>Example Workflow: Steering Committee Prep</h3>
+<p><strong>Prompt:</strong></p>
+<pre><code>Create a workflow that:
+1. Every Thursday at 2pm
+2. Sends me an email reminder to update AKX metrics for steering committee
+3. On Friday at 9am, reminds me to finalize the steering committee deck
+4. Then on Monday at 8am (before the 9am meeting)
+5. Posts a reminder to my team&#39;s Teams channel that steering committee is today
+</code></pre>
+<p>Workflows builds this automation without you needing to use Power Automate directly.</p>
+<blockquote>
+<p><strong>Environment note:</strong> The Workflows agent may appear as &quot;Workflow Frontier&quot; in some enterprise environments. The concepts and prompt patterns apply to both. If neither is available in your environment, skip this exercise.</p>
+</blockquote>
+<p><em>(Optional — complete if Workflows/Workflow Frontier is available in your environment)</em></p>
+<hr>
+<h2>When to Use Each Tool</h2>
+<p>Here&#39;s a decision framework for enterprise PM tasks:</p>
+<pre><code>Is it a quick question?
+├── YES → Use regular Copilot Chat
+└── NO → Does it require deep research?
+    ├── YES → Use Researcher (5-10 min)
+    │   Examples: Competitive intel, best practices, industry research
+    └── NO → Does it require complex analysis?
+        ├── YES → Use Analyst
+        │   Examples: Adoption analysis, ROI calc, statistical tests
+        └── NO → Does it need automation?
+            ├── YES → Use Workflows
+            │   Examples: Reminders, status updates, recurring tasks
+            └── NO → Use regular Copilot Chat
+</code></pre>
+<h3>Combined Agent Workflow: Research + Analysis</h3>
+<p>For complex enterprise analysis tasks, use both agents in sequence:</p>
+<p><strong>Step 1 — Researcher:</strong> Use for data gathering and source retrieval</p>
+<blockquote>
+<p><em>&quot;Research best practices for enterprise knowledge management adoption...&quot;</em></p>
+</blockquote>
+<p><strong>Step 2 — Analyst:</strong> Pass Researcher output into Analyst for synthesis</p>
+<blockquote>
+<p><em>&quot;Based on the research above, analyze which strategies apply to our context and calculate the ROI impact...&quot;</em></p>
+</blockquote>
+<p>This sequencing produces richer, more analytically sound outputs than either agent alone.</p>
+<h3>Quick Reference for Enterprise PMs</h3>
+<table>
+<thead>
+<tr>
+<th>Task Type</th>
+<th>Use This</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;What is McKinsey doing with their KM tools?&quot;</td>
+<td>Researcher</td>
+</tr>
+<tr>
+<td>&quot;Summarize this steering committee doc&quot;</td>
+<td>Copilot Chat</td>
+</tr>
+<tr>
+<td>&quot;Research enterprise adoption best practices&quot;</td>
+<td>Researcher</td>
+</tr>
+<tr>
+<td>&quot;Analyze our adoption funnel for bottlenecks&quot;</td>
+<td>Analyst</td>
+</tr>
+<tr>
+<td>&quot;Is this A/B test result significant?&quot;</td>
+<td>Analyst</td>
+</tr>
+<tr>
+<td>&quot;What ROI can I present to sponsors?&quot;</td>
+<td>Analyst</td>
+</tr>
+<tr>
+<td>&quot;Remind me every Friday to update metrics&quot;</td>
+<td>Workflows</td>
+</tr>
+<tr>
+<td>&quot;Post updates to leadership channel when...&quot;</td>
+<td>Workflows</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Agent Limits &amp; Best Practices</h2>
+<h3>Monthly Limits</h3>
+<ul>
+<li><strong>25 queries</strong> for Researcher + Analyst combined</li>
+<li>No limit on Workflows</li>
+<li>No limit on regular Copilot Chat</li>
+</ul>
+<h3>Best Practices for Enterprise PMs</h3>
+<ol>
+<li><strong>Save complex work for agents</strong> - Don&#39;t waste queries on simple tasks</li>
+<li><strong>Be specific about your enterprise context</strong> - Include company size, industry, constraints</li>
+<li><strong>Export important outputs</strong> - Save to Word/OneDrive for steering committee decks</li>
+<li><strong>Iterate in chat first</strong> - Refine your question before using an agent</li>
+<li><strong>Include business context</strong> - Mention ROI needs, stakeholder concerns, governance requirements</li>
+<li><strong>Track your usage</strong> - 25 queries/month requires strategic use</li>
+</ol>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ What Copilot agents are and how they differ from chat</li>
+<li>✅ How to use Researcher for competitive and industry research</li>
+<li>✅ How to use Analyst for adoption analysis and ROI calculations</li>
+<li>✅ When to use each tool (chat vs agents)</li>
+<li>✅ How Workflows automates enterprise PM tasks</li>
+</ul>
+<p><strong>Quick Self-Check</strong>
+Before moving on, can you:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Explain when to use Researcher vs. Analyst vs. regular Copilot Chat</li>
+<li><input disabled="" type="checkbox"> Write a Researcher prompt that specifies scope, sources, and output format</li>
+<li><input disabled="" type="checkbox"> Describe the combined Research → Analysis workflow for complex enterprise tasks</li>
+</ul>
+<p><em>If you&#39;re unsure about any of these, re-read that section before continuing.</em></p>
+<hr>
+<h2>Next Steps</h2>
+<p>Continue to <strong>Module 1.5: Persona Prompting for Different Perspectives</strong></p>
+<p>In Module 1.5, you&#39;ll learn how to:</p>
+<ul>
+<li>Get feedback from enterprise stakeholder perspectives (Partners, Consultants, Sponsors)</li>
+<li>Create reusable persona prompts</li>
+<li>Use Copilot as your virtual advisory board</li>
+</ul>
+<hr>
+<h2>Quick Reference: Agent Access</h2>
+<table>
+<thead>
+<tr>
+<th>Agent</th>
+<th>Access</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Researcher</td>
+<td>Left panel or @Researcher</td>
+<td>Competitive intel, best practices</td>
+</tr>
+<tr>
+<td>Analyst</td>
+<td>Left panel or @Analyst</td>
+<td>Adoption analysis, ROI, statistics</td>
+</tr>
+<tr>
+<td>Workflows</td>
+<td>Left panel</td>
+<td>Steering committee prep, reminders</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Ready to get multiple perspectives? Let&#39;s go to Module 1.5!</strong></p>
+
+    </div>
+    <div class="nav-footer"><a href="module-1.3.html" class="nav-btn prev">&larr; 1.3 Your First PM Tasks</a><a href="index.html" class="nav-btn home">Home</a><a href="module-1.5.html" class="nav-btn next">1.5 Persona Prompting for Different Perspectives &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

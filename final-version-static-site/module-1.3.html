@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.3: Your First PM Tasks - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 1: Foundation &rsaquo; Module 1.3
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">30 min</span>
+        <span class="meta-tag level">Level 1: Foundation</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 1.3: Your First PM Tasks with Copilot</h1>
+<p><strong>Duration:</strong> 30 minutes
+<strong>Prerequisites:</strong> Modules 1.1-1.2 completed</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Process steering committee notes into clear action items</li>
+<li>Synthesize multiple stakeholder interview transcripts</li>
+<li>Transform the same content for different audiences (Partners vs. Consultants vs. Executives)</li>
+<li>Analyze design mockups and provide feedback</li>
+<li>Perform rapid competitive research on consulting firms</li>
+</ol>
+<p>These are the <strong>core PM skills</strong> that will save you hours every week!</p>
+<hr>
+<h2>Scenario: A Day at Accenture</h2>
+<p>It&#39;s Monday morning in Accenture&#39;s Internal Digital Products team. As Senior Product Owner for AKX and ADH, you have:</p>
+<ul>
+<li>📝 Notes from last week&#39;s steering committee meeting that need processing</li>
+<li>🎤 8 stakeholder interviews that need synthesis (Partners, Consultants, Delivery Managers)</li>
+<li>📧 An update that needs to go to 3 different audiences (leadership, partners, consultants)</li>
+<li>🎨 A design mockup for the new AI search feature that needs PM feedback</li>
+<li>🔍 Research needed on what McKinsey and BCG are doing with their knowledge platforms</li>
+</ul>
+<p>Let&#39;s tackle each one with Copilot!</p>
+<hr>
+<h2>Task 1: Steering Committee Notes → Action Items</h2>
+<p><strong>Time without Copilot:</strong> 45 minutes
+<strong>Time with Copilot:</strong> 3 minutes</p>
+<h3>The Problem</h3>
+<p>You have raw notes from multiple meetings including a steering committee. You need:</p>
+<ul>
+<li>Clear action items with owners and deadlines</li>
+<li>Key decisions documented for the record</li>
+<li>Risks and escalations flagged</li>
+<li>Executive summary for your sponsor</li>
+</ul>
+<h3>Step-by-Step</h3>
+<ol>
+<li><p><strong>Upload the meeting notes file</strong></p>
+<ul>
+<li>Use the 📎 button or drag and drop</li>
+<li>Upload: <code>meeting-notes-raw.md</code> from the sample files</li>
+</ul>
+</li>
+<li><p><strong>Use this prompt:</strong></p>
+</li>
+</ol>
+<pre><code>Please analyze these meeting notes from Accenture&#39;s Internal Digital Products team
+and create a structured summary suitable for enterprise governance:
+
+## Executive Summary
+- 3-4 sentences summarizing the key outcomes
+
+## Action Items
+- List each action item
+- Assign owner (based on context)
+- Note deadline if mentioned
+- Flag priority (Critical/High/Medium)
+
+## Decisions Made
+- List any decisions finalized in these meetings
+- Note who made/approved the decision
+
+## Risks &amp; Escalations
+- Any issues that need to be escalated to sponsors
+- Competitive threats mentioned
+
+## Open Questions
+- Items needing follow-up or sponsor input
+
+## Next Steps
+- What happens next? When is the next checkpoint?
+
+Format as clean markdown suitable for a steering committee update.
+</code></pre>
+<ol start="3">
+<li><strong>Review and refine</strong><ul>
+<li>Copilot extracts the structure</li>
+<li>You verify owners and deadlines</li>
+<li>Copy to your status deck or SharePoint</li>
+</ul>
+</li>
+</ol>
+<blockquote>
+<p><em>After reviewing Copilot&#39;s initial output, verify the priorities reflect your actual context. Try a follow-up prompt:</em></p>
+<pre><code>The priorities look reasonable. However, please reprioritize [specific item]
+as Critical because [your reason]. Update the action item list.
+</code></pre>
+<p><em>Note: Copilot assigns priorities based on language in the source text. Always review AI-generated priorities against your own judgment of urgency.</em></p>
+</blockquote>
+<h3>Try It Now!</h3>
+<p>Use this sample steering committee notes content if you don&#39;t have the file:</p>
+<pre><code>AKX steering committee 2/13
+richard (CKO sponsor) concerned about WAU - stuck at 43%
+david kim (MD tech practice) says search is terrible
+&quot;my team searches for SAP expertise, gets 500 results, most from 2019&quot;
+sarah mitchell mentioned we lost a deal to BCG - they identified experts in 48 hrs, we took 4 days
+decision: AI search is #1 priority, mobile can slip if needed
+jennifer to assess if we can accelerate Q2 to Q1 end
+TODO: me - draft proposal for auto skill profiles from ADH
+david will identify 3 practice leads for pilot
+richard presenting to CEO next month, needs to show progress
+change mgmt meeting later - need adoption campaign for AI search launch
+technical review with raj and amit on ADH integration
+</code></pre>
+<hr>
+<h2>Task 2: Synthesize Stakeholder Interviews</h2>
+<p><strong>Time without Copilot:</strong> 3-4 hours
+<strong>Time with Copilot:</strong> 5 minutes</p>
+<h3>The Problem</h3>
+<p>You have 8 stakeholder interview transcripts from across Accenture:</p>
+<ul>
+<li>Partners and Practice Leads (Priya&#39;s persona)</li>
+<li>Senior Consultants (Marcus&#39;s persona)</li>
+<li>Delivery Managers (Elena&#39;s persona)</li>
+<li>New Analysts, Project Managers, Knowledge Managers, Operations Leads, Executives</li>
+</ul>
+<p>You need to find patterns across roles and prioritize insights by business impact.</p>
+<h3>Step-by-Step</h3>
+<p><strong>Important:</strong> Copilot can analyze multiple files at once (typically 5–10 depending on file size and your license). For 8 files, we recommend batching:</p>
+<ol>
+<li><strong>Batch 1: Upload first 5 interviews</strong><ul>
+<li>Upload files together</li>
+<li>Use this prompt:</li>
+</ul>
+</li>
+</ol>
+<pre><code>Analyze these 5 stakeholder interviews from Accenture employees. I&#39;m looking
+for patterns that will inform our AKX and ADH product priorities.
+
+Please identify:
+1. **Common Pain Points** - Issues mentioned by 2+ stakeholders (note their roles)
+2. **Feature Requests** - Specific capabilities stakeholders asked for
+3. **Competitive Comparisons** - Any mentions of McKinsey, BCG, Deloitte tools
+4. **Adoption Barriers** - Why people don&#39;t use AKX/ADH
+5. **Quick Wins** - Things that seem easy to fix with high impact
+
+For each finding, note:
+- Which interviews mentioned it (by participant role)
+- Business impact (revenue, efficiency, talent retention)
+- Include a compelling quote
+
+Group findings by persona type: Partners, Consultants, Delivery Managers, Others
+</code></pre>
+<ol start="2">
+<li><p><strong>Batch 2: Upload remaining interviews</strong></p>
+<p>Upload the remaining interview files, then use this prompt:</p>
+</li>
+</ol>
+<pre><code>Analyze these additional stakeholder interviews from Accenture.
+Use the same format as your previous analysis: identify pain points
+by role, feature requests, competitive comparisons, adoption barriers,
+and quick wins. Include quotes and note business impact.
+</code></pre>
+<ol start="3">
+<li><strong>Combine findings</strong><ul>
+<li>Ask Copilot to merge the two analyses:</li>
+</ul>
+</li>
+</ol>
+<pre><code>Here are findings from two batches of stakeholder interviews at Accenture.
+Please merge into a single, prioritized synthesis.
+
+Rank pain points by:
+1. Business impact (revenue/efficiency)
+2. Frequency (how many mentioned it)
+3. Feasibility (how hard to fix)
+
+Create a &quot;Key Insights for Steering Committee&quot; section with the top 5 findings.
+</code></pre>
+<h3>Alternative: Use Researcher Agent</h3>
+<p>For complex synthesis, try the Researcher agent:</p>
+<ol>
+<li>Upload all files first</li>
+<li>Click on &quot;Researcher&quot; in the left panel</li>
+<li>Ask: &quot;Analyze these stakeholder interviews and create a comprehensive research synthesis report for our steering committee&quot;</li>
+</ol>
+<p>Researcher takes longer (5-10 min) but produces more thorough analysis.</p>
+<hr>
+<h2>Task 3: Communication Transformation</h2>
+<p><strong>Time without Copilot:</strong> 60 minutes
+<strong>Time with Copilot:</strong> 5 minutes</p>
+<h3>The Problem</h3>
+<p>You have ONE update about AI search launching. You need to communicate it to:</p>
+<ul>
+<li><strong>Partners (Priya)</strong> - High-level business impact, time savings</li>
+<li><strong>Consultants (Marcus)</strong> - How it helps their daily work</li>
+<li><strong>Executive Sponsors (Richard)</strong> - Metrics, competitive positioning, ROI</li>
+</ul>
+<h3>Step-by-Step</h3>
+<ol>
+<li><strong>Start with your core message:</strong></li>
+</ol>
+<pre><code>I need to communicate this product update to three different audiences at Accenture.
+
+THE UPDATE:
+We&#39;re launching AI-powered search for AKX next month. In beta testing with
+the Technology practice (500 users), average search time dropped from 8 minutes
+to 2 minutes. Search satisfaction improved from 3.2/5 to 4.1/5. Expert discovery
+improved - users found relevant experts in 15 minutes vs. 2+ days previously.
+
+Please create three versions:
+
+1. **PARTNER COMMUNICATION** (for Practice Leads like Priya)
+   - Focus on business impact (winning deals, finding experts)
+   - Lead with time savings and competitive advantage
+   - 2 short paragraphs, professional but not formal
+   - End with &quot;how to get involved in pilot&quot;
+
+2. **CONSULTANT EMAIL** (for consultants like Marcus)
+   - Focus on how it helps their daily work
+   - Emphasize: find templates faster, stop recreating work
+   - Casual, peer-to-peer tone
+   - Include 2-3 specific use cases
+   - 3-4 short paragraphs
+
+3. **EXECUTIVE BRIEFING** (for steering committee sponsors like Richard)
+   - Lead with metrics and competitive positioning
+   - Include: adoption targets, ROI, timeline, risks
+   - Reference competitive pressure (McKinsey, BCG)
+   - Structured with headers
+   - Include &quot;asks&quot; for executive support
+</code></pre>
+<ol start="2">
+<li><strong>Review each version</strong><ul>
+<li>Copilot adapts tone, detail level, and focus</li>
+<li>Each version serves its audience perfectly</li>
+</ul>
+</li>
+</ol>
+<h3>The Power of Style Templates</h3>
+<p>For recurring communication needs, we&#39;ve included templates in the <code>communication-styles/</code> folder:</p>
+<ul>
+<li><code>style-slack-update.md</code> - Template for Teams/Slack messages</li>
+<li><code>style-executive-email.md</code> - Template for exec communications</li>
+<li><code>style-notion-doc.md</code> - Template for wiki documentation</li>
+</ul>
+<p><strong>Pro tip:</strong> Upload a style template and ask Copilot to &quot;Write in this style.&quot;</p>
+<hr>
+<h2>Task 4: Design Mockup Feedback</h2>
+<p><strong>Time without Copilot:</strong> 20 minutes
+<strong>Time with Copilot:</strong> 3 minutes</p>
+<h3>The Problem</h3>
+<p>Design sent you a mockup for the new AI search interface in AKX. You need to provide structured PM feedback covering usability, alignment with personas, and enterprise considerations.</p>
+<h3>Step-by-Step</h3>
+<blockquote>
+<p>If you have access to a design mockup file, upload it here. If not, use the text description below — Copilot can analyze described mockups just as effectively for learning purposes.</p>
+</blockquote>
+<ol>
+<li><p><strong>Upload the design image</strong></p>
+<ul>
+<li>Drag &amp; drop the mockup image</li>
+<li>Or use 📎 to attach</li>
+</ul>
+</li>
+<li><p><strong>Use this prompt:</strong></p>
+</li>
+</ol>
+<pre><code>Analyze this design mockup from a Product Manager perspective.
+
+Context: This is for AKX (Accenture Knowledge Exchange), an internal knowledge
+management platform for 700,000+ Accenture employees.
+
+Our users are:
+- Priya (Partner) - uses mobile between meetings, needs results in 5 minutes
+- Marcus (Consultant) - power user, needs quality filtering, compares to BCG tools
+- Elena (Delivery Manager) - occasional user, needs project templates
+
+Please provide feedback on:
+
+1. **Usability** - Is it intuitive? Any confusion points?
+2. **Persona Fit** - How well does it serve each user type?
+3. **Information Hierarchy** - Is the most important info prominent?
+4. **Enterprise Considerations** - Accessibility, data privacy, scale
+5. **Mobile Readiness** - Will this work on Partner&#39;s phones?
+6. **Competitive Comparison** - How does this compare to what we know about McKinsey/BCG?
+7. **Questions for Design** - What should I ask the designer?
+
+Be constructive and specific. Reference our personas by name.
+</code></pre>
+<ol start="3">
+<li><strong>Copilot analyzes the visual</strong><ul>
+<li>It can read text in images</li>
+<li>It understands UI patterns</li>
+<li>It provides structured feedback</li>
+</ul>
+</li>
+</ol>
+<h3>Sample Mockup Exercise</h3>
+<p>If you don&#39;t have a mockup, describe one to Copilot:</p>
+<pre><code>Imagine an AKX search interface mockup with:
+- Top search bar with &quot;AI-powered&quot; badge
+- Filter panel on left (industry, capability, content type, date)
+- Main results area showing document cards
+- Each card shows: title, preview snippet, author, date, quality score (1-5 stars)
+- Right sidebar showing &quot;Related Experts&quot; with profile photos
+- Mobile responsive design
+
+Analyze this from a PM perspective for AKX serving our three personas.
+</code></pre>
+<hr>
+<h2>Task 5: Competitive Research - Consulting Firms</h2>
+<p><strong>Time without Copilot:</strong> 90 minutes
+<strong>Time with Copilot:</strong> 10 minutes</p>
+<h3>The Problem</h3>
+<p>The steering committee wants to understand what competitors are doing with their knowledge management platforms. You need quick intelligence on McKinsey, BCG, and Deloitte.</p>
+<h3>Option A: Quick Research (5 min)</h3>
+<p>Use regular Copilot Chat:</p>
+<pre><code>I&#39;m a Product Owner at Accenture responsible for our internal knowledge
+management platform (AKX). Our competitors are McKinsey, BCG, and Deloitte.
+
+What do you know about their internal knowledge management and expert discovery
+tools? Specifically:
+
+1. McKinsey Knowledge Center - what makes it the &quot;gold standard&quot;?
+2. BCG&#39;s AI investments in internal tools
+3. Deloitte&#39;s knowledge platform modernization efforts
+
+I need to understand:
+- What capabilities they have that we might lack
+- Their approach to content curation
+- AI/GenAI investments
+- What Accenture employees who came from these firms say about the tools
+
+This is for a steering committee discussion.
+</code></pre>
+<p>Copilot uses its knowledge + web grounding to answer.</p>
+<h3>Option B: Deep Research (10 min)</h3>
+<p>Use the <strong>Researcher</strong> agent for comprehensive analysis:</p>
+<ol>
+<li>Click &quot;Researcher&quot; in the left panel</li>
+<li>Enter this prompt:</li>
+</ol>
+<pre><code>Research knowledge management and expert discovery platforms at major consulting firms.
+I need competitive intelligence for Accenture&#39;s internal tools team.
+
+Firms to research: McKinsey, BCG, Deloitte, Bain, IBM Consulting
+
+For each firm, find:
+- Internal knowledge management platform name and capabilities
+- AI/GenAI investments in internal tools
+- Expert discovery and matching capabilities
+- Any public information about adoption rates or effectiveness
+- Recent news or announcements about internal tool improvements
+
+Also research:
+- Industry best practices for enterprise knowledge management
+- Common challenges at consulting firm scale (50,000+ employees)
+- How firms measure KM platform success
+
+Create a competitive comparison report I can present to our steering committee.
+Include recommendations for where Accenture should focus.
+</code></pre>
+<ol start="3">
+<li>Researcher works for 5-10 minutes</li>
+<li>Returns a comprehensive, cited report</li>
+</ol>
+<hr>
+<h2>Your Time Savings Summary</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Old Way</th>
+<th>With Copilot</th>
+<th>Saved</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Steering committee notes</td>
+<td>45 min</td>
+<td>3 min</td>
+<td>42 min</td>
+</tr>
+<tr>
+<td>8 stakeholder interviews</td>
+<td>3-4 hours</td>
+<td>5 min</td>
+<td>~3.5 hrs</td>
+</tr>
+<tr>
+<td>3 audience communications</td>
+<td>60 min</td>
+<td>5 min</td>
+<td>55 min</td>
+</tr>
+<tr>
+<td>Design feedback</td>
+<td>20 min</td>
+<td>3 min</td>
+<td>17 min</td>
+</tr>
+<tr>
+<td>Competitive research</td>
+<td>90 min</td>
+<td>10 min</td>
+<td>80 min</td>
+</tr>
+<tr>
+<td><strong>TOTAL</strong></td>
+<td><strong>~6.5 hours</strong></td>
+<td><strong>~26 min</strong></td>
+<td><strong>~6 hours</strong></td>
+</tr>
+</tbody></table>
+<p><strong>That&#39;s almost a full workday saved on just these 5 tasks!</strong></p>
+<hr>
+<h2>Practice Exercise: End-of-Week Processing</h2>
+<p>Let&#39;s put it all together. Imagine it&#39;s Friday and you need to prepare for Monday&#39;s steering committee:</p>
+<ol>
+<li>Process all your meeting notes from the week</li>
+<li>Extract action items and status updates</li>
+<li>Summarize key findings for your sponsor</li>
+<li>Draft the agenda for next steering committee</li>
+</ol>
+<p><strong>Try this prompt:</strong></p>
+<pre><code>I&#39;m a Senior Product Owner at Accenture preparing for Monday&#39;s AKX steering
+committee. Here are my notes from this week:
+[Paste or upload your notes]
+
+Please help me prepare:
+
+1. **Status Update** - Progress on AI search, expert matching, adoption
+2. **Action Item Summary** - What was completed, what&#39;s in progress, what&#39;s blocked
+3. **Key Metrics** - Current WAU, search satisfaction, any changes from last week
+4. **Risks &amp; Issues** - What the steering committee needs to know
+5. **Decisions Needed** - What do I need sponsor input on?
+6. **Suggested Agenda** - Proposed topics for Monday&#39;s meeting
+
+Format for a 30-minute steering committee meeting.
+Include recommended discussion time for each topic.
+</code></pre>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know how to:</p>
+<ul>
+<li>✅ Process steering committee notes into structured governance summaries</li>
+<li>✅ Synthesize multiple stakeholder interviews (in batches)</li>
+<li>✅ Transform content for different enterprise audiences</li>
+<li>✅ Analyze design mockups with enterprise PM perspective</li>
+<li>✅ Perform competitive research on consulting firms</li>
+</ul>
+<p><strong>Quick Self-Check</strong>
+Before moving on, can you:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Upload a document to Copilot and get a structured summary with action items</li>
+<li><input disabled="" type="checkbox"> Rewrite Copilot output for a different audience (e.g., executive vs. team lead)</li>
+<li><input disabled="" type="checkbox"> Describe the difference between Batch 1 and Batch 2 interview analysis approaches</li>
+</ul>
+<p><em>If you&#39;re unsure about any of these, re-read that section before continuing.</em></p>
+<hr>
+<h2>Next Steps</h2>
+<p>Continue to <strong>Module 1.4: Using Researcher &amp; Analyst Agents</strong></p>
+<p>In Module 1.4, you&#39;ll discover Copilot&#39;s built-in specialized agents:</p>
+<ul>
+<li><strong>Researcher</strong> - For deep, multi-step research</li>
+<li><strong>Analyst</strong> - For data analysis and reasoning</li>
+<li><strong>Workflows</strong> - For automation</li>
+</ul>
+<p>These agents take Copilot to the next level!</p>
+<hr>
+<h2>Quick Reference: Prompts from This Module</h2>
+<h3>Steering Committee Notes</h3>
+<pre><code>Analyze these meeting notes and extract: executive summary, action items
+with owners and priority, decisions made, risks/escalations, open questions.
+Format for steering committee governance.
+</code></pre>
+<h3>Stakeholder Interview Synthesis</h3>
+<pre><code>Analyze these interviews for: pain points by role, feature requests,
+competitive comparisons, adoption barriers, quick wins. Include quotes
+and business impact.
+</code></pre>
+<h3>Multi-Audience Communication (Enterprise)</h3>
+<pre><code>Transform this update into 3 versions: Partner (business impact),
+Consultant (daily work), Executive (metrics and ROI).
+</code></pre>
+<h3>Design Feedback (Enterprise)</h3>
+<pre><code>Analyze this mockup from enterprise PM perspective: usability, persona fit,
+information hierarchy, enterprise considerations, mobile readiness,
+competitive comparison, questions for designer.
+</code></pre>
+<h3>Competitive Research (Consulting)</h3>
+<pre><code>Research knowledge management platforms at McKinsey, BCG, Deloitte.
+Provide: capabilities, AI investments, expert discovery, adoption.
+Create competitive comparison for steering committee.
+</code></pre>
+<hr>
+<p><strong>Great work! Ready for the agents? Let&#39;s go to Module 1.4!</strong></p>
+
+    </div>
+    <div class="nav-footer"><a href="module-1.2.html" class="nav-btn prev">&larr; 1.2 Setting Up Your Workspace</a><a href="index.html" class="nav-btn home">Home</a><a href="module-1.4.html" class="nav-btn next">1.4 Using Researcher &amp; Analyst Agents &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

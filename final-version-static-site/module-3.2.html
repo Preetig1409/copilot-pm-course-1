@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 3.2: PM Visuals - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 3: Product Visuals &rsaquo; Module 3.2
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">25 min</span>
+        <span class="meta-tag level">Level 3: Product Visuals</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 3.2: Creating PM Visuals (Enterprise Edition)</h1>
+<p><strong>Duration:</strong> 25 minutes
+<strong>Prerequisites:</strong> Module 3.1 completed</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Create enterprise stakeholder persona illustrations</li>
+<li>Generate journey maps and adoption flow diagrams</li>
+<li>Build enterprise roadmap and governance visuals</li>
+<li>Create internal launch and change management assets</li>
+<li>Develop a consistent visual library for enterprise presentations</li>
+</ol>
+<blockquote>
+<p><strong>Suggested Pacing:</strong> This module has 5 sections. You don&#39;t need to complete all of them in one session — each section is self-contained. Work through Sections 1 and 2 first, then return for others as your work requires.</p>
+</blockquote>
+<hr>
+<h2>Enterprise PM Visual Types</h2>
+<p>Internal enterprise PMs commonly need these visual assets:</p>
+<table>
+<thead>
+<tr>
+<th>Visual Type</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Stakeholder Personas</strong></td>
+<td>User research, steering committee presentations</td>
+</tr>
+<tr>
+<td><strong>Adoption Journeys</strong></td>
+<td>Change management, training materials</td>
+</tr>
+<tr>
+<td><strong>Process Diagrams</strong></td>
+<td>Governance documentation, approval flows</td>
+</tr>
+<tr>
+<td><strong>Roadmaps</strong></td>
+<td>Steering committee updates, portfolio reviews</td>
+</tr>
+<tr>
+<td><strong>Internal Launch Assets</strong></td>
+<td>Change management communications, training</td>
+</tr>
+<tr>
+<td><strong>Presentation Graphics</strong></td>
+<td>Steering committee decks, executive briefings</td>
+</tr>
+</tbody></table>
+<p>Let&#39;s create each type!</p>
+<hr>
+<h2>1. Enterprise Stakeholder Persona Illustrations — <strong>Try this now</strong></h2>
+<h3>Basic Persona Image</h3>
+<pre><code>Create a professional headshot-style illustration of an
+enterprise persona named Priya Sharma:
+- Female, mid-40s, South Asian
+- Partner and Practice Lead at a consulting firm
+- Authoritative, strategic, time-constrained
+- Executive attire (formal business)
+- Modern corporate office background
+- Clean, professional illustration style
+- Confident, no-nonsense expression
+</code></pre>
+<h3>Exercise: Create Accenture Personas</h3>
+<p>Generate images for all three Accenture personas:</p>
+<p><strong>Priya Sharma (Partner &amp; Practice Lead):</strong></p>
+<pre><code>Create a professional illustration of Priya Sharma:
+- Female, mid-40s, South Asian
+- Partner at a global consulting firm, 18 years experience
+- Authoritative, strategic, always between meetings
+- Formal executive attire (suit)
+- Executive conference room background
+- Illustration style: corporate, premium, polished
+- Expression: confident, decisive
+</code></pre>
+<p><strong>Marcus Johnson (Senior Consultant):</strong></p>
+<pre><code>Create a professional illustration of Marcus Johnson:
+- Male, early 30s, African American
+- Senior consultant at a consulting firm, 5 years experience
+- Analytical, efficient, compares to competitors
+- Business casual attire (dress shirt, no tie)
+- Modern open office with laptop background
+- Illustration style: professional, approachable
+- Expression: focused, thoughtful
+</code></pre>
+<p><strong>Elena Rodriguez (Delivery Manager):</strong></p>
+<pre><code>Create a professional illustration of Elena Rodriguez:
+- Female, early 40s, Hispanic/Latina
+- Delivery Manager at a consulting firm, 12 years experience
+- Organized, data-driven, manages multiple projects
+- Professional business attire
+- Office with project dashboards visible in background
+- Illustration style: professional, competent
+- Expression: organized, attentive
+</code></pre>
+<blockquote>
+<p><em>Copilot will produce a working draft — not a final deliverable. Plan to refine in Microsoft Designer or your presentation software.</em></p>
+</blockquote>
+<blockquote>
+<p><em>Generated persona illustrations work well for: internal presentations, team alignment workshops, change management materials. They are not production-ready brand assets — for those, involve your communications team.</em></p>
+</blockquote>
+<hr>
+<h2>2. Adoption Journeys and Flow Diagrams — <strong>Try this now</strong></h2>
+<h3>Adoption Journey Visual (for Change Management)</h3>
+<pre><code>Create an illustrated adoption journey map showing the AKX
+(knowledge platform) adoption flow:
+
+5 stages from left to right:
+1. Awareness (person receiving communication)
+2. First Login (person at laptop, curious)
+3. First Search (finding information, satisfied)
+4. Regular Use (productive consultant)
+5. Champion (person helping colleagues)
+
+Style: Modern flat illustration, connected by a dotted line path
+Colors: Blue to green gradient progression (brand colors)
+Mood: Progressive, achievement-focused
+Include small icons representing each stage
+</code></pre>
+<h3>Enterprise Approval Flow Diagram</h3>
+<pre><code>Create a flowchart diagram showing enterprise governance:
+
+Investment Approval Flow:
+START → Product Owner Proposal → VP Review → Steering Committee
+→ [Decision Diamond: &lt;$500K or &gt;$500K]
+→ If &lt;$500K: Sponsor Approval → Proceed
+→ If &gt;$500K: Executive Committee → Finance Review → Proceed
+
+Style: Clean, professional flowchart
+Shapes: Rounded rectangles, diamond for decisions
+Colors: Corporate blue, green for approvals, gray for process
+Include: Small governance icons in each box
+Professional enough for steering committee presentation
+</code></pre>
+<h3>Adoption Funnel Diagram</h3>
+<pre><code>Create a funnel diagram showing enterprise tool adoption:
+
+Funnel stages (top to bottom, narrowing):
+1. Provisioned Users (700,000)
+2. Logged In (350,000)
+3. Searched (245,000)
+4. Found Useful (171,500)
+5. Weekly Active (120,000)
+
+Style: Clean funnel visualization
+Colors: Gradient from light blue (top) to dark blue (bottom)
+Include percentage labels on each stage
+Professional enough for steering committee metrics review
+</code></pre>
+<blockquote>
+<p><em>Copilot will produce a working draft — not a final deliverable. Plan to refine in Microsoft Designer or your presentation software.</em></p>
+</blockquote>
+<hr>
+<h2>3. Enterprise Roadmap Visuals — <strong>Reference for later</strong></h2>
+<blockquote>
+<p><strong>Before creating data-driven visuals, prepare your data:</strong></p>
+<ul>
+<li>Roadmaps: List your initiatives with quarter, team/track, and status (committed vs. planned)</li>
+<li>Adoption funnels: Have your actual stage percentages ready (provisioned → active → WAU)</li>
+<li>Priority matrices: Score each initiative on both axes before prompting</li>
+</ul>
+<p><em>Copilot can generate accurate visuals when given clean, structured input. Vague inputs produce generic visuals.</em></p>
+</blockquote>
+<h3>Portfolio Roadmap</h3>
+<pre><code>Create a product roadmap visualization for internal tools portfolio:
+
+Timeline: Q1 → Q2 → Q3 → Q4
+
+AKX (Knowledge Platform) Track:
+- Q1: AI-Powered Search (large, in progress)
+- Q2: Expert Matching (large)
+- Q3: Content Quality Scoring (medium)
+
+ADH (Delivery Hub) Track:
+- Q1: Utilization Dashboard (medium, in progress)
+- Q2: AKX Integration (medium)
+- Q3: Predictive Analytics (large)
+
+Style: Modern horizontal timeline with two swim lanes
+Color code: Blue for AKX, Green for ADH
+         Solid for committed, Outline for planned
+Clean, professional, steering committee ready
+</code></pre>
+<h3>Enterprise Prioritization Matrix</h3>
+<pre><code>Create a 2x2 prioritization matrix for enterprise initiatives:
+
+Y-axis: Business Impact (Low to High)
+X-axis: Change Management Complexity (Low to High)
+
+Quadrants with initiatives:
+- Top-Left (High Impact, Low Complexity): &quot;AI Search&quot;, &quot;Quick Wins&quot;
+- Top-Right (High Impact, High Complexity): &quot;Full Mobile Redesign&quot;, &quot;Strategic Bets&quot;
+- Bottom-Left (Low Impact, Low Complexity): &quot;Minor Fixes&quot;, &quot;Easy Wins&quot;
+- Bottom-Right (Low Impact, High Complexity): &quot;Defer&quot;, &quot;Low Priority&quot;
+
+Style: Clean corporate diagram
+Colors: Green (top-left), Yellow (top-right),
+        Light blue (bottom-left), Gray (bottom-right)
+Professional for steering committee prioritization discussion
+</code></pre>
+<blockquote>
+<p><em>Copilot will produce a working draft — not a final deliverable. Plan to refine in Microsoft Designer or your presentation software.</em></p>
+</blockquote>
+<hr>
+<h2>4. Internal Launch and Change Management Assets — <strong>Reference for later</strong></h2>
+<h3>Internal Announcement Graphic</h3>
+<pre><code>Create an internal communications graphic for AKX AI Search launch:
+
+Visual elements:
+- &quot;Coming Soon&quot; or &quot;Now Available&quot; badge
+- Simple illustration of person finding knowledge quickly
+- Accenture-style corporate aesthetic
+- &quot;AI-Powered Search&quot; title
+- Tagline: &quot;Find what you need in seconds, not hours&quot;
+
+Style: Professional internal communications graphic
+Colors: Corporate blue, clean white background
+Size: Wide banner format for email/Teams announcement
+NOT external marketing style - this is internal
+</code></pre>
+<h3>Change Management Training Visual</h3>
+<pre><code>Create a training illustration for AKX onboarding:
+
+Show: Three-step getting started process
+1. Search (magnifying glass, search bar)
+2. Find (document results, relevant content)
+3. Connect (network of people, experts)
+
+Style: Clean iconographic illustration
+Colors: Consistent blue palette
+Simple enough to use in training materials
+Include &quot;Get Started with AKX&quot; header concept
+</code></pre>
+<h3>Adoption Campaign Poster</h3>
+<pre><code>Create an internal adoption campaign visual:
+
+Content:
+- &quot;AKX: Your Knowledge Advantage&quot;
+- Illustration showing consultant finding expert help quickly
+- Stats callout: &quot;2 minutes to find what you need&quot;
+- Clean, motivational but not overly promotional
+
+Style: Internal campaign poster
+Colors: Corporate, professional
+Mood: Encouraging adoption, not hard-sell
+Would be displayed on internal channels/screens
+</code></pre>
+<blockquote>
+<p><em>Copilot will produce a working draft — not a final deliverable. Plan to refine in Microsoft Designer or your presentation software.</em></p>
+</blockquote>
+<hr>
+<h2>5. Enterprise Presentation Graphics — <strong>Reference for later</strong></h2>
+<h3>Steering Committee Title Slide Background</h3>
+<pre><code>Create a presentation title slide background:
+
+- Abstract geometric pattern suggesting connectivity
+- Subtle, professional, executive-appropriate
+- Corporate blue and white color scheme
+- Space for title text in center
+- Modern enterprise aesthetic
+- Clean and not distracting
+
+Style: Executive presentation background
+Should work with white text overlaid
+Professional enough for C-suite presentation
+</code></pre>
+<h3>Adoption Metrics Visualization</h3>
+<pre><code>Create an illustration to accompany adoption metrics:
+
+Show:
+- Upward trending adoption concept
+- 43% → 60% progress journey represented visually
+- Users engaging with platform
+- Success/growth indication
+
+Style: Modern infographic illustration
+Colors: Blue to green gradient (progress)
+Clean, steering committee presentation ready
+Data visualization enhancement, not the data itself
+</code></pre>
+<h3>Portfolio Overview Visual</h3>
+<pre><code>Create a visual showing internal tools portfolio:
+
+Show two connected platforms:
+- AKX (Knowledge) - represented by brain/books icon
+- ADH (Delivery) - represented by project/people icon
+- Connection between them (integration arrows)
+- &quot;Knowledge to Delivery&quot; value proposition concept
+
+Style: Clean conceptual diagram
+Colors: Different but complementary colors for each
+Professional, abstract, conceptual
+Executive-friendly visual for portfolio discussions
+</code></pre>
+<hr>
+<h2>Building an Enterprise Visual Library</h2>
+<h3>Creating Consistency for Enterprise</h3>
+<p>For consistent visuals across your enterprise work:</p>
+<ol>
+<li><strong>Follow brand guidelines</strong> - Use approved corporate colors</li>
+<li><strong>Keep it professional</strong> - Internal ≠ informal</li>
+<li><strong>Design for executives</strong> - Clean, minimal, clear</li>
+<li><strong>Save prompts</strong> - Keep successful prompts for reuse</li>
+</ol>
+<h3>Prompt Template Library for Enterprise</h3>
+<p><strong>For Stakeholder Personas:</strong></p>
+<pre><code>Create a professional illustration of [NAME]:
+- [Gender], [age range], [ethnicity if relevant]
+- [Role at consulting firm], [years experience]
+- [Key personality traits relevant to role]
+- [Attire description appropriate to seniority]
+- [Background setting matching their work context]
+- Illustration style: corporate, professional
+- Expression: [appropriate to their persona]
+</code></pre>
+<p><strong>For Enterprise Flow Diagrams:</strong></p>
+<pre><code>Create a [type] diagram showing [process]:
+[Steps numbered and connected with decision points]
+Style: Clean, professional, governance-appropriate
+Shapes: Rounded rectangles, diamonds for decisions
+Colors: Corporate blue, professional palette
+Layout: [horizontal/vertical] flow
+Include: Relevant icons for each step
+Professional enough for steering committee presentation
+</code></pre>
+<p><strong>For Internal Communications:</strong></p>
+<pre><code>Create an internal [announcement/training/campaign] graphic:
+Visual elements: [list specific elements]
+Text to include: [headlines/taglines]
+Style: Professional internal communications
+Colors: Corporate palette, not external marketing
+Mood: [encouraging/informative/celebratory]
+Purpose: [change management/training/awareness]
+</code></pre>
+<hr>
+<h2>Designer for Enterprise Polish</h2>
+<p>Use Microsoft Designer for final touches:</p>
+<h3>Common Enterprise Enhancements</h3>
+<ol>
+<li><strong>Add approved text</strong> - Use exact corporate messaging</li>
+<li><strong>Insert logos</strong> - Add appropriate brand elements</li>
+<li><strong>Ensure accessibility</strong> - Alt text, contrast ratios</li>
+<li><strong>Create templates</strong> - Reusable designs for recurring needs</li>
+<li><strong>Format for channels</strong> - Email, Teams, screens, decks</li>
+</ol>
+<h3>Workflow: Copilot → Designer → Delivery</h3>
+<ol>
+<li>Generate base image in Copilot</li>
+<li>Download the image</li>
+<li>Open in Designer</li>
+<li>Add corporate text, logos, enhancements</li>
+<li>Export in needed format/size</li>
+<li>Get brand/communications approval if needed</li>
+<li>Distribute through appropriate channels</li>
+</ol>
+<hr>
+<h2>Credit-Efficient Workflow for Enterprise</h2>
+<p>With limited credits, be strategic:</p>
+<h3>Before Generating</h3>
+<ol>
+<li>Write your prompt fully with enterprise context</li>
+<li>Specify &quot;professional/corporate/executive-ready&quot;</li>
+<li>Reference successful past enterprise prompts</li>
+<li>Be specific about colors matching brand guidelines</li>
+</ol>
+<h3>Batch Similar Work</h3>
+<p>Generate all personas in one session:</p>
+<ul>
+<li>Similar prompts iterate better</li>
+<li>Consistent style across stakeholder images</li>
+<li>Efficient use of your time</li>
+</ul>
+<h3>Reuse Across Enterprise</h3>
+<ul>
+<li>Save all generated images to shared drive</li>
+<li>Many visuals work across presentations</li>
+<li>Minor edits in Designer vs. regenerating</li>
+<li>Build a shared enterprise visual library</li>
+</ul>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ How to create enterprise stakeholder persona illustrations</li>
+<li>✅ How to generate adoption journeys and governance diagrams</li>
+<li>✅ How to build enterprise roadmap visuals</li>
+<li>✅ How to create internal launch and change management assets</li>
+<li>✅ How to build a consistent enterprise visual library</li>
+</ul>
+<hr>
+<h2>Course Complete! 🎉</h2>
+<p>Congratulations on completing the Microsoft Copilot for Enterprise Product Managers course!</p>
+<h3>What You&#39;ve Learned</h3>
+<p><strong>Level 1: Foundation</strong></p>
+<ul>
+<li>Copilot basics and workspace setup</li>
+<li>First enterprise PM tasks (steering committees, stakeholder interviews)</li>
+<li>Researcher and Analyst agents for enterprise</li>
+<li>Persona prompting for enterprise stakeholders (MDs, CKOs, Consultants)</li>
+<li>Building context with Memory</li>
+</ul>
+<p><strong>Level 2: Advanced Enterprise PM Work</strong></p>
+<ul>
+<li>Writing Enterprise PRDs with business cases and governance</li>
+<li>Analyzing adoption and utilization data</li>
+<li>Enterprise portfolio strategy and steering committee alignment</li>
+</ul>
+<p><strong>Level 3: Product Visuals</strong></p>
+<ul>
+<li>Image generation basics</li>
+<li>Enterprise PM-specific visuals and assets</li>
+</ul>
+<h3>Estimated Time Savings for Enterprise PMs</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Weekly Savings</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Steering committee prep</td>
+<td>2 hours</td>
+</tr>
+<tr>
+<td>Stakeholder research synthesis</td>
+<td>1.5 hours</td>
+</tr>
+<tr>
+<td>Multi-audience communications</td>
+<td>1 hour</td>
+</tr>
+<tr>
+<td>Data analysis and ROI</td>
+<td>1.5 hours</td>
+</tr>
+<tr>
+<td>PRD and business case drafting</td>
+<td>2 hours</td>
+</tr>
+<tr>
+<td><strong>Total</strong></td>
+<td><strong>8+ hours/week</strong></td>
+</tr>
+</tbody></table>
+<h3>Next Steps</h3>
+<ol>
+<li><strong>Practice with real work</strong> - Use Copilot for actual steering committees</li>
+<li><strong>Build your enterprise prompt library</strong> - Save what works for your context</li>
+<li><strong>Share with your team</strong> - Multiply the impact across the product org</li>
+<li><strong>Stay updated</strong> - Copilot evolves rapidly; keep learning</li>
+</ol>
+<hr>
+<h2>Quick Reference: Enterprise Prompt Types</h2>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Prompt Pattern</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Steering Committee Notes</strong></td>
+<td>&quot;Analyze for action items, decisions, risks...&quot;</td>
+</tr>
+<tr>
+<td><strong>Stakeholder Synthesis</strong></td>
+<td>&quot;Analyze interviews by role and business impact...&quot;</td>
+</tr>
+<tr>
+<td><strong>Multi-Audience Comms</strong></td>
+<td>&quot;Transform for Partners/Consultants/Executives...&quot;</td>
+</tr>
+<tr>
+<td><strong>MD Perspective</strong></td>
+<td>&quot;As a Managing Director, evaluate...&quot;</td>
+</tr>
+<tr>
+<td><strong>CKO Perspective</strong></td>
+<td>&quot;As Chief Knowledge Officer, assess...&quot;</td>
+</tr>
+<tr>
+<td><strong>Enterprise PRD</strong></td>
+<td>&quot;Draft with business case, RACI, governance...&quot;</td>
+</tr>
+<tr>
+<td><strong>Adoption Analysis</strong></td>
+<td>&quot;Analyze funnel for bottlenecks and ROI...&quot;</td>
+</tr>
+<tr>
+<td><strong>Portfolio Strategy</strong></td>
+<td>&quot;Apply enterprise strategic framework to...&quot;</td>
+</tr>
+<tr>
+<td><strong>Enterprise Visuals</strong></td>
+<td>&quot;Create professional [subject] for [audience]...&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Thank you for completing the course!</strong></p>
+<p>You&#39;re now equipped to work smarter with Microsoft Copilot as an enterprise PM.</p>
+<p>Go drive adoption and demonstrate business value! 🚀</p>
+
+    </div>
+    <div class="nav-footer"><a href="module-3.1.html" class="nav-btn prev">&larr; 3.1 Image Generation Basics</a><a href="index.html" class="nav-btn home">Home</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

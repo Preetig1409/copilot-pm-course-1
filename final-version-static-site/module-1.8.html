@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.8: Copilot in Microsoft Teams - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 1: Foundation &rsaquo; Module 1.8
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">25 min</span>
+        <span class="meta-tag level">Level 1: Foundation</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 1.8: Copilot in Microsoft Teams</h1>
+<p><strong>Duration:</strong> 25 minutes
+<strong>Prerequisites:</strong> Modules 1.1-1.7 completed, Teams with Copilot enabled</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Use Copilot to get meeting summaries and action items</li>
+<li>Catch up on meetings you missed</li>
+<li>Use Copilot in Teams chats for quick assistance</li>
+<li>Leverage Copilot in channels for collaboration</li>
+<li>Save hours on meeting follow-ups and team communication</li>
+</ol>
+<hr>
+<h2>Why Teams + Copilot Matters for PMs</h2>
+<p>PMs spend a significant portion of their time in meetings and team communication:</p>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Typical Time/Week</th>
+<th>With Copilot</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Meeting notes &amp; follow-ups</td>
+<td>3-4 hours</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>Catching up on missed meetings</td>
+<td>1-2 hours</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>Reading long chat threads</td>
+<td>1 hour</td>
+<td>10 min</td>
+</tr>
+<tr>
+<td><strong>Total Savings</strong></td>
+<td></td>
+<td><strong>~5 hours/week</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Section 1: Meeting Intelligence</h2>
+<p>Copilot in Teams can summarize meetings, extract action items, and help you catch up on discussions.</p>
+<h3>Accessing Meeting Summaries</h3>
+<p>After a Teams meeting with transcription enabled:</p>
+<ol>
+<li>Open the meeting chat or calendar event</li>
+<li>Click the <strong>Copilot</strong> icon in the meeting</li>
+<li>Or type in the meeting chat: &quot;Summarize this meeting&quot;</li>
+</ol>
+<h3>Key Prompts for Meetings</h3>
+<p><strong>Get a summary:</strong></p>
+<pre><code>Summarize the key points from this meeting
+</code></pre>
+<p><strong>Extract action items:</strong></p>
+<pre><code>What action items were assigned in this meeting? 
+List each with the person responsible.
+</code></pre>
+<p><strong>Find specific topics:</strong></p>
+<pre><code>What was discussed about the onboarding project?
+</code></pre>
+<p><strong>Catch up on what you missed:</strong></p>
+<pre><code>I joined 15 minutes late. What did I miss?
+</code></pre>
+<p><strong>Get decisions made:</strong></p>
+<pre><code>What decisions were made in this meeting?
+</code></pre>
+<hr>
+<h2>Exercise 1: Summarize a Meeting</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open a recent Teams meeting you attended (that had transcription)</li>
+<li>Click the Copilot icon or open the meeting chat</li>
+<li>Try these prompts:</li>
+</ol>
+<pre><code>Summarize this meeting in 5 bullet points
+</code></pre>
+<pre><code>What are all the action items from this meeting?
+Who is responsible for each?
+</code></pre>
+<pre><code>What decisions were made?
+</code></pre>
+<p><strong>What to notice:</strong></p>
+<ul>
+<li>Copilot pulls from the transcript</li>
+<li>Action items include speaker attribution</li>
+<li>You can ask follow-up questions</li>
+</ul>
+<hr>
+<h2>Catching Up on Missed Meetings</h2>
+<p>One of the most powerful features: understanding meetings you couldn&#39;t attend.</p>
+<h3>Prompts for Missed Meetings</h3>
+<pre><code>I missed this meeting. Give me a complete summary including:
+1. Key discussion points
+2. Decisions made
+3. Action items (especially any assigned to me)
+4. What I need to know before the next meeting
+</code></pre>
+<pre><code>Was I mentioned in this meeting? What was said?
+</code></pre>
+<pre><code>Were there any action items assigned to the product team?
+</code></pre>
+<h3>Exercise 2: Catch Up on a Missed Meeting</h3>
+<blockquote>
+<p><strong>Before this exercise:</strong></p>
+<ul>
+<li>Find a meeting where <strong>transcription was enabled</strong> (you&#39;ll see a transcript icon in the meeting recap)</li>
+<li>If no such meeting exists yet, use the Exercise 1 meeting summary instead</li>
+</ul>
+<p><em>Note: Copilot can only summarize meetings that were transcribed. Enable transcription by default on your Teams meetings for future use.</em></p>
+</blockquote>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Find a meeting you were invited to but didn&#39;t attend</li>
+<li>Open the meeting recap</li>
+<li>Ask Copilot:</li>
+</ol>
+<pre><code>I couldn&#39;t attend this meeting. Please summarize:
+1. What was the main topic?
+2. What decisions were made?
+3. Are there any action items for me?
+4. What do I need to prepare for next time?
+</code></pre>
+<blockquote>
+<p><em>Copilot transcribes spoken words. If a presenter shares their screen and points to items without describing them verbally, those details won&#39;t appear in summaries.</em></p>
+</blockquote>
+<hr>
+<h2>Section 2: Chat Assistance</h2>
+<p>Copilot works in Teams chats for quick help while you&#39;re messaging.</p>
+<h3>Accessing Copilot in Chat</h3>
+<ol>
+<li>Open any Teams chat (1:1 or group)</li>
+<li>Click the <strong>Copilot</strong> icon below the message box</li>
+<li>Or type <code>/</code> to see Copilot options</li>
+</ol>
+<h3>Chat Use Cases for PMs</h3>
+<p><strong>Summarize a long thread:</strong></p>
+<pre><code>Summarize the last 20 messages in this chat
+</code></pre>
+<p><strong>Draft a response:</strong></p>
+<pre><code>Help me draft a response to the last message. 
+I want to agree but suggest we delay by one week.
+</code></pre>
+<p><strong>Quick research:</strong></p>
+<pre><code>What&#39;s the current status of the onboarding project 
+based on this chat history?
+</code></pre>
+<p><strong>Find information:</strong></p>
+<pre><code>When did we last discuss the API integration in this chat?
+</code></pre>
+<hr>
+<h2>Exercise 3: Chat Summarization</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open a busy group chat (one with many messages)</li>
+<li>Click the Copilot icon</li>
+<li>Try:</li>
+</ol>
+<pre><code>Summarize what I missed in the last 24 hours
+</code></pre>
+<pre><code>What are the key decisions or action items from recent messages?
+</code></pre>
+<pre><code>Are there any questions that were asked but not answered?
+</code></pre>
+<hr>
+<h2>Section 3: Channel Workflows</h2>
+<blockquote>
+<p><strong>Enterprise Note:</strong> Copilot in Teams <strong>channels</strong> may be restricted by your tenant configuration, even if Copilot is available in personal chats.</p>
+<p><strong>If Copilot is not visible in a channel:</strong></p>
+<ul>
+<li>Check that Copilot is enabled for that specific channel (requires channel owner or admin action)</li>
+<li>As an alternative, use <strong>Copilot Chat</strong> (copilot.microsoft.com) to query channel content</li>
+<li>Contact your IT helpdesk to request Copilot be enabled for your team&#39;s channels</li>
+</ul>
+</blockquote>
+<p>Copilot helps you stay on top of Teams channels without reading every message.</p>
+<h3>Channel Copilot Features</h3>
+<ol>
+<li>Open any Teams channel</li>
+<li>Click <strong>Copilot</strong> in the channel header</li>
+<li>Ask questions about channel activity</li>
+</ol>
+<h3>Channel Prompts</h3>
+<p><strong>Daily catch-up:</strong></p>
+<pre><code>What&#39;s been discussed in this channel in the last 24 hours?
+</code></pre>
+<p><strong>Find specific topics:</strong></p>
+<pre><code>What has been said about the Q1 launch in this channel?
+</code></pre>
+<p><strong>Identify action items:</strong></p>
+<pre><code>Are there any open questions or action items in recent posts?
+</code></pre>
+<p><strong>Draft a post:</strong></p>
+<pre><code>Help me draft an update post for this channel about 
+the onboarding wizard launch. Keep it concise.
+</code></pre>
+<hr>
+<h2>Exercise 4: Channel Intelligence</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open an active Teams channel</li>
+<li>Click Copilot</li>
+<li>Try:</li>
+</ol>
+<pre><code>Summarize the important updates from the last week
+</code></pre>
+<pre><code>Draft a quick update post announcing that the 
+onboarding wizard is ready for beta testing.
+Keep it to 3-4 sentences.
+</code></pre>
+<hr>
+<h2>Teams Copilot Best Practices</h2>
+<h3>Do:</h3>
+<ul>
+<li>✅ Enable meeting transcription for all important meetings</li>
+<li>✅ Use Copilot immediately after meetings for follow-ups</li>
+<li>✅ Ask specific questions (not just &quot;summarize&quot;)</li>
+<li>✅ Verify action items with attendees</li>
+<li>✅ Use channel summaries for daily catch-up</li>
+</ul>
+<h3>Don&#39;t:</h3>
+<ul>
+<li>❌ Rely solely on Copilot for critical decisions</li>
+<li>❌ Skip meetings assuming Copilot will cover it</li>
+<li>❌ Share Copilot summaries without review</li>
+<li>❌ Forget that transcription must be enabled</li>
+<li>❌ Ignore context Copilot might miss</li>
+</ul>
+<hr>
+<h2>Prompt Templates for Teams</h2>
+<p>Save these for quick access:</p>
+<h3>Meeting Summary Template</h3>
+<pre><code>Summarize this meeting with:
+1. Key discussion points (3-5 bullets)
+2. Decisions made
+3. Action items with owners
+4. Open questions
+5. Next steps
+</code></pre>
+<h3>Missed Meeting Template</h3>
+<pre><code>I missed this meeting. Provide:
+1. 2-sentence overview
+2. Key decisions
+3. Action items (especially for me or product team)
+4. What I need to prepare for next time
+</code></pre>
+<h3>Chat Catch-Up Template</h3>
+<pre><code>Summarize what I missed since [time/date]:
+1. Key updates
+2. Decisions made
+3. Questions asked of me
+4. Action items
+</code></pre>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ How to get meeting summaries and action items</li>
+<li>✅ How to catch up on missed meetings</li>
+<li>✅ How to use Copilot in chats</li>
+<li>✅ How to leverage Copilot in channels</li>
+<li>✅ Best practices for Teams + Copilot</li>
+</ul>
+<hr>
+<h2>Time Savings Recap</h2>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>Before</th>
+<th>After</th>
+<th>Saved</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Meeting notes</td>
+<td>20 min</td>
+<td>2 min</td>
+<td>18 min</td>
+</tr>
+<tr>
+<td>Missed meeting catch-up</td>
+<td>30 min</td>
+<td>3 min</td>
+<td>27 min</td>
+</tr>
+<tr>
+<td>Chat thread reading</td>
+<td>10 min</td>
+<td>1 min</td>
+<td>9 min</td>
+</tr>
+<tr>
+<td>Channel catch-up</td>
+<td>15 min</td>
+<td>2 min</td>
+<td>13 min</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Next Steps</h2>
+<p>Continue to <strong>Module 1.9: Copilot in Outlook</strong></p>
+<p>In Module 1.9, you&#39;ll learn:</p>
+<ul>
+<li>Email drafting with tone adjustment</li>
+<li>Summarizing long email threads</li>
+<li>Calendar and meeting prep assistance</li>
+<li>Managing inbox overload</li>
+</ul>
+<hr>
+<h2>Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>How To</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Meeting summary</td>
+<td>Copilot icon in meeting → &quot;Summarize&quot;</td>
+</tr>
+<tr>
+<td>Chat Copilot</td>
+<td>Copilot icon below chat box</td>
+</tr>
+<tr>
+<td>Channel Copilot</td>
+<td>Copilot icon in channel header</td>
+</tr>
+<tr>
+<td>Action items</td>
+<td>&quot;What action items were assigned?&quot;</td>
+</tr>
+<tr>
+<td>Missed meeting</td>
+<td>&quot;I missed this meeting, summarize...&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Ready for Outlook? Let&#39;s go to Module 1.9!</strong></p>
+
+    </div>
+    <div class="nav-footer"><a href="module-1.7.html" class="nav-btn prev">&larr; 1.7 Copilot Across M365 Apps</a><a href="index.html" class="nav-btn home">Home</a><a href="module-1.9.html" class="nav-btn next">1.9 Copilot in Outlook &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

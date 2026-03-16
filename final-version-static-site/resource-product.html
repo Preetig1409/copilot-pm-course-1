@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Details - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Company Context &rsaquo; Product Details
+      </div>
+    </div>
+    <div class="content">
+      <h1>Accenture Internal Products Overview</h1>
+<p><strong>Your complete guide to AKX and ADH</strong></p>
+<hr>
+<h2>Overview</h2>
+<p>You own two internal products that serve Accenture&#39;s 700,000+ employees:</p>
+<ol>
+<li><strong>Accenture Knowledge Exchange (AKX)</strong> - Knowledge management and expert discovery</li>
+<li><strong>Accenture Delivery Hub (ADH)</strong> - Project delivery and resource management</li>
+</ol>
+<p>These products are critical infrastructure for how Accenture operates. Unlike external B2B products, your &quot;customers&quot; are employees, adoption is influenced by mandates and culture, and success is measured by enterprise-wide efficiency rather than revenue.</p>
+<hr>
+<h2>Product 1: Accenture Knowledge Exchange (AKX)</h2>
+<h3>What is AKX?</h3>
+<p>AKX is Accenture&#39;s internal knowledge management platform. Think <strong>&quot;Google for Accenture&quot;</strong> - a unified search and discovery experience for finding past work, methodologies, and subject matter experts.</p>
+<h3>Core Value Proposition</h3>
+<p><strong>For Accenture consultants who struggle with finding relevant past work and experts,</strong> AKX is an enterprise knowledge platform <strong>that provides intelligent search, expert discovery, and content curation.</strong> Unlike searching scattered SharePoint sites, AKX <strong>delivers relevant results quickly, surfaces experts, and reduces duplicate work.</strong></p>
+<hr>
+<h3>Product Philosophy</h3>
+<p><strong>Key Principles:</strong></p>
+<p><strong>1. Relevance over comprehensiveness</strong></p>
+<ul>
+<li>Quality search results, not everything that exists</li>
+<li>Surfacing the best 10 results, not 10,000</li>
+<li>Freshness and quality signals matter</li>
+</ul>
+<p><strong>2. Expert-centric design</strong></p>
+<ul>
+<li>People are as important as documents</li>
+<li>Connect users with experts, not just content</li>
+<li>Enable collaboration, not just consumption</li>
+</ul>
+<p><strong>3. Integrated into workflows</strong></p>
+<ul>
+<li>Available where consultants work (Office, Teams)</li>
+<li>Quick answers, not tool-switching</li>
+<li>Mobile-first for traveling consultants</li>
+</ul>
+<p><strong>4. Trust through curation</strong></p>
+<ul>
+<li>Verified content with clear provenance</li>
+<li>Subject matter expert endorsements</li>
+<li>Clear content lifecycle management</li>
+</ul>
+<hr>
+<h3>Core Features</h3>
+<h4>1. Intelligent Search</h4>
+<p><strong>What users can do:</strong></p>
+<ul>
+<li>Natural language search (&quot;cloud migration case studies for banking&quot;)</li>
+<li>Filter by industry, capability, content type, date</li>
+<li>Preview documents without downloading</li>
+<li>Save searches and set alerts</li>
+</ul>
+<p><strong>Our differentiation:</strong></p>
+<ul>
+<li><strong>Semantic search:</strong> Understands intent, not just keywords</li>
+<li><strong>Quality ranking:</strong> Surfaces best content first, not just newest</li>
+<li><strong>Expert boosting:</strong> Includes SME-authored content prominently</li>
+</ul>
+<p><strong>Current performance:</strong></p>
+<ul>
+<li>Average search time: 8 minutes (target: 2 minutes)</li>
+<li>Search success rate: 67% (target: 85%)</li>
+<li>Results relevance score: 3.2/5 (target: 4.0/5)</li>
+</ul>
+<h4>2. Expert Discovery</h4>
+<p><strong>What users can do:</strong></p>
+<ul>
+<li>Search for experts by skill, industry, topic</li>
+<li>View expert profiles with credentials, past work, availability</li>
+<li>Request introductions through the platform</li>
+<li>Follow experts for updates</li>
+</ul>
+<p><strong>Our differentiation:</strong></p>
+<ul>
+<li><strong>Verified credentials:</strong> Skills validated by project history</li>
+<li><strong>Availability signals:</strong> Real-time staffing status from ADH</li>
+<li><strong>Warm introductions:</strong> Mutual connections highlighted</li>
+</ul>
+<p><strong>Current performance:</strong></p>
+<ul>
+<li>Expert search usage: 12,000 searches/week</li>
+<li>Expert connection rate: 34% (target: 50%)</li>
+<li>Time to expert: 2.3 days average (target: 4 hours)</li>
+</ul>
+<h4>3. Content Library</h4>
+<p><strong>What users can do:</strong></p>
+<ul>
+<li>Browse curated collections by industry, capability, topic</li>
+<li>Access proposal templates, case studies, methodologies</li>
+<li>Download and customize approved content</li>
+<li>Rate and review content</li>
+</ul>
+<p><strong>Our differentiation:</strong></p>
+<ul>
+<li><strong>Curated collections:</strong> Practice leads maintain quality libraries</li>
+<li><strong>Version control:</strong> Always access latest approved version</li>
+<li><strong>Usage analytics:</strong> See what content performs well</li>
+</ul>
+<p><strong>Current state:</strong></p>
+<ul>
+<li>2.3 million documents indexed</li>
+<li>50,000 curated &quot;gold standard&quot; documents</li>
+<li>450 official methodologies and frameworks</li>
+</ul>
+<h4>4. Personal Knowledge Hub</h4>
+<p><strong>What users can do:</strong></p>
+<ul>
+<li>Save favorite content and searches</li>
+<li>Build personal collections</li>
+<li>Track contribution metrics</li>
+<li>Set personalized recommendations</li>
+</ul>
+<p><strong>Our differentiation:</strong></p>
+<ul>
+<li><strong>AI recommendations:</strong> &quot;Based on your work, you might find...&quot;</li>
+<li><strong>Contribution tracking:</strong> For promotion portfolios</li>
+<li><strong>Learning integration:</strong> Connected to training recommendations</li>
+</ul>
+<hr>
+<h3>AKX User Personas</h3>
+<p><strong>Primary:</strong> Marcus (Senior Consultant)</p>
+<ul>
+<li>Uses AKX daily for project work</li>
+<li>Needs fast, relevant search results</li>
+<li>Values templates and examples</li>
+</ul>
+<p><strong>Secondary:</strong> Priya (Partner)</p>
+<ul>
+<li>Uses AKX for expert discovery and proposal content</li>
+<li>Needs results in minutes, not hours</li>
+<li>Mobile-first usage between meetings</li>
+</ul>
+<p><strong>Tertiary:</strong> Elena (Delivery Manager)</p>
+<ul>
+<li>Occasional use for project templates</li>
+<li>Needs best practices and lessons learned</li>
+</ul>
+<hr>
+<h3>AKX Metrics</h3>
+<h4>North Star Metric</h4>
+<p><strong>Weekly Active Users (WAU):</strong> Employees who complete at least one meaningful action per week</p>
+<p><strong>Definition:</strong> Search, expert lookup, document access, or content save</p>
+<p><strong>Why this metric?</strong></p>
+<ul>
+<li>Indicates real engagement (not just logins)</li>
+<li>Leading indicator of knowledge reuse</li>
+<li>Correlates with reduced duplicate work</li>
+</ul>
+<p><strong>Current:</strong> 43% WAU (301,000 weekly users)
+<strong>Target (EOY):</strong> 60% WAU (420,000 weekly users)</p>
+<h4>Product Health Metrics</h4>
+<p><strong>Adoption:</strong></p>
+<ul>
+<li>WAU: 43% (target: 60%)</li>
+<li>DAU: 18% (target: 25%)</li>
+<li>New user activation (first search within 7 days): 67% (target: 80%)</li>
+</ul>
+<p><strong>Engagement:</strong></p>
+<ul>
+<li>Searches per user per week: 4.2 (target: 6.0)</li>
+<li>Documents accessed per search: 2.1 (target: 3.5)</li>
+<li>Expert connections per week: 4,300 (target: 8,000)</li>
+</ul>
+<p><strong>Satisfaction:</strong></p>
+<ul>
+<li>NPS: +12 (industry average for internal tools: +8, target: +20)</li>
+<li>Search satisfaction rating: 3.2/5 (target: 4.0/5)</li>
+<li>Support tickets per 1,000 users: 15 (target: 8)</li>
+</ul>
+<p><strong>Business Impact:</strong></p>
+<ul>
+<li>Estimated time saved per user: 2.3 hours/week (target: 4 hours/week)</li>
+<li>Duplicate work reduction: 18% (estimated, target: 30%)</li>
+<li>Proposal content reuse rate: 45% (target: 65%)</li>
+</ul>
+<hr>
+<h3>AKX Roadmap</h3>
+<h4>Currently Shipping (This Quarter)</h4>
+<ul>
+<li>AI-powered semantic search</li>
+<li>Expert profile enhancements</li>
+<li>Mobile app improvements</li>
+<li>Integration with Microsoft 365 Copilot</li>
+</ul>
+<h4>Next Quarter</h4>
+<ul>
+<li>Real-time expert availability from ADH</li>
+<li>Content quality scoring</li>
+<li>Personalized recommendations engine</li>
+<li>Proposal builder with template library</li>
+</ul>
+<h4>Future (6+ months)</h4>
+<ul>
+<li>AI-generated content summaries</li>
+<li>Automatic content tagging</li>
+<li>Expert matching for project staffing</li>
+<li>Competitive intelligence module</li>
+</ul>
+<hr>
+<h2>Product 2: Accenture Delivery Hub (ADH)</h2>
+<h3>What is ADH?</h3>
+<p>ADH is Accenture&#39;s project delivery and resource management platform. Think <strong>&quot;Mission Control for Delivery Managers&quot;</strong> - a real-time view of project health, resource utilization, and capacity planning.</p>
+<h3>Core Value Proposition</h3>
+<p><strong>For delivery managers who struggle with project visibility and resource planning,</strong> ADH is a delivery management platform <strong>that provides real-time project health, resource utilization, and capacity forecasting.</strong> Unlike manual spreadsheets and status meetings, ADH <strong>automates reporting, predicts staffing needs, and surfaces risks early.</strong></p>
+<hr>
+<h3>Product Philosophy</h3>
+<p><strong>Key Principles:</strong></p>
+<p><strong>1. Automation over manual effort</strong></p>
+<ul>
+<li>Status should update itself, not require reports</li>
+<li>Data should flow between systems automatically</li>
+<li>Eliminate duplicate data entry</li>
+</ul>
+<p><strong>2. Early warning over post-mortem</strong></p>
+<ul>
+<li>Surface risks before they become problems</li>
+<li>Predictive analytics over historical reporting</li>
+<li>Enable proactive management</li>
+</ul>
+<p><strong>3. Single source of truth</strong></p>
+<ul>
+<li>One place for project data</li>
+<li>Eliminate spreadsheet proliferation</li>
+<li>Trusted data for decision-making</li>
+</ul>
+<p><strong>4. Manager-centric design</strong></p>
+<ul>
+<li>Built for delivery managers, not executives</li>
+<li>Actionable insights, not just dashboards</li>
+<li>Quick access on any device</li>
+</ul>
+<hr>
+<h3>Core Features</h3>
+<h4>1. Project Health Dashboard</h4>
+<p><strong>What users can do:</strong></p>
+<ul>
+<li>View all projects at a glance (RAG status)</li>
+<li>Drill into project details</li>
+<li>See risk and issue summary</li>
+<li>Track milestones and deliverables</li>
+</ul>
+<p><strong>Our differentiation:</strong></p>
+<ul>
+<li><strong>Auto-calculated health:</strong> Based on actual data, not PM optimism</li>
+<li><strong>Trend analysis:</strong> Is project getting better or worse?</li>
+<li><strong>Cross-project view:</strong> Compare across portfolio</li>
+</ul>
+<p><strong>Current performance:</strong></p>
+<ul>
+<li>Projects with accurate health status: 67% (target: 95%)</li>
+<li>Average dashboard load time: 4.2 seconds (target: 2 seconds)</li>
+<li>Manager satisfaction with visibility: 3.4/5 (target: 4.5/5)</li>
+</ul>
+<h4>2. Resource Management</h4>
+<p><strong>What users can do:</strong></p>
+<ul>
+<li>View team utilization and availability</li>
+<li>Search for available consultants by skill</li>
+<li>Create staffing requests</li>
+<li>Forecast future capacity needs</li>
+</ul>
+<p><strong>Our differentiation:</strong></p>
+<ul>
+<li><strong>Real-time availability:</strong> Updated daily from project data</li>
+<li><strong>Skills-based search:</strong> Find by capability, not just name</li>
+<li><strong>Forecasting:</strong> Predict availability 90 days out</li>
+</ul>
+<p><strong>Current performance:</strong></p>
+<ul>
+<li>Utilization visibility: 67% (target: 95%)</li>
+<li>Staffing request fulfillment time: 5.2 days (target: 2 days)</li>
+<li>Forecast accuracy: 65% (target: 85%)</li>
+</ul>
+<h4>3. Status Reporting</h4>
+<p><strong>What users can do:</strong></p>
+<ul>
+<li>Generate weekly status reports automatically</li>
+<li>Customize report templates</li>
+<li>Distribute to stakeholders</li>
+<li>Archive historical reports</li>
+</ul>
+<p><strong>Our differentiation:</strong></p>
+<ul>
+<li><strong>Auto-generation:</strong> Pull data from system, not manual entry</li>
+<li><strong>Template library:</strong> Practice-specific formats</li>
+<li><strong>Distribution automation:</strong> Right reports to right people</li>
+</ul>
+<p><strong>Current state:</strong></p>
+<ul>
+<li>Manual reporting time: 4 hours/week per project (target: 30 minutes)</li>
+<li>Reports generated via system: 35% (target: 80%)</li>
+<li>Stakeholder satisfaction with reports: 3.6/5 (target: 4.5/5)</li>
+</ul>
+<h4>4. Capacity Planning</h4>
+<p><strong>What users can do:</strong></p>
+<ul>
+<li>View demand vs. supply over time</li>
+<li>Model staffing scenarios</li>
+<li>Identify skills gaps</li>
+<li>Plan hiring needs</li>
+</ul>
+<p><strong>Our differentiation:</strong></p>
+<ul>
+<li><strong>Rolling forecast:</strong> Updated weekly with actuals</li>
+<li><strong>Scenario modeling:</strong> &quot;What if we win this deal?&quot;</li>
+<li><strong>Skills gap analysis:</strong> Where are we short?</li>
+</ul>
+<p><strong>Current state:</strong></p>
+<ul>
+<li>Forecasting horizon: 30 days (target: 90 days)</li>
+<li>Planning accuracy: 65% (target: 85%)</li>
+<li>Usage of planning features: 23% of delivery managers (target: 60%)</li>
+</ul>
+<hr>
+<h3>ADH User Personas</h3>
+<p><strong>Primary:</strong> Elena (Delivery Manager)</p>
+<ul>
+<li>Uses ADH daily for project oversight</li>
+<li>Needs real-time health visibility</li>
+<li>Values automated reporting</li>
+</ul>
+<p><strong>Secondary:</strong> Priya (Partner)</p>
+<ul>
+<li>Uses ADH for resource availability</li>
+<li>Needs staffing for new pursuits</li>
+<li>Values quick lookups between meetings</li>
+</ul>
+<p><strong>Tertiary:</strong> Marcus (Senior Consultant)</p>
+<ul>
+<li>Uses ADH for time entry</li>
+<li>Needs visibility into his utilization</li>
+<li>Values accurate project assignment data</li>
+</ul>
+<hr>
+<h3>ADH Metrics</h3>
+<h4>North Star Metric</h4>
+<p><strong>Utilization Visibility Score:</strong> % of consultant hours with accurate, real-time tracking</p>
+<p><strong>Definition:</strong> Consultants with current project assignment, accurate hours, and skill profile</p>
+<p><strong>Why this metric?</strong></p>
+<ul>
+<li>Indicates data quality and completeness</li>
+<li>Enables accurate resource planning</li>
+<li>Correlates with utilization improvement</li>
+</ul>
+<p><strong>Current:</strong> 67% visibility
+<strong>Target (EOY):</strong> 95% visibility</p>
+<h4>Product Health Metrics</h4>
+<p><strong>Data Quality:</strong></p>
+<ul>
+<li>Utilization visibility: 67% (target: 95%)</li>
+<li>Project status accuracy: 72% (target: 90%)</li>
+<li>Skills profile completeness: 58% (target: 80%)</li>
+</ul>
+<p><strong>Efficiency:</strong></p>
+<ul>
+<li>Status reporting time: 4 hours/week (target: 30 minutes)</li>
+<li>Staffing request fulfillment: 5.2 days (target: 2 days)</li>
+<li>Dashboard load time: 4.2 seconds (target: 2 seconds)</li>
+</ul>
+<p><strong>Satisfaction:</strong></p>
+<ul>
+<li>NPS: +8 (target: +18)</li>
+<li>Delivery manager satisfaction: 3.4/5 (target: 4.5/5)</li>
+<li>Consultant satisfaction (time entry): 2.8/5 (target: 3.8/5)</li>
+</ul>
+<p><strong>Business Impact:</strong></p>
+<ul>
+<li>Utilization improvement: +0.5 percentage points attributed to ADH</li>
+<li>Project delivery on-time rate: 82% (target: 92%)</li>
+<li>Staffing cost reduction: $8M annually (target: $20M)</li>
+</ul>
+<hr>
+<h3>ADH Roadmap</h3>
+<h4>Currently Shipping (This Quarter)</h4>
+<ul>
+<li>Automated status report generation</li>
+<li>Mobile time entry improvements</li>
+<li>Integration with financial systems</li>
+<li>Skills profile enhancements</li>
+</ul>
+<h4>Next Quarter</h4>
+<ul>
+<li>Predictive project health scoring</li>
+<li>AI-powered staffing recommendations</li>
+<li>Real-time bench notifications</li>
+<li>Resource scenario planning</li>
+</ul>
+<h4>Future (6+ months)</h4>
+<ul>
+<li>Client satisfaction integration</li>
+<li>Automated risk identification</li>
+<li>Portfolio optimization recommendations</li>
+<li>Advanced workforce analytics</li>
+</ul>
+<hr>
+<h2>How AKX and ADH Work Together</h2>
+<h3>Integration Points</h3>
+<p><strong>1. Expert Availability:</strong></p>
+<ul>
+<li>AKX shows expert profiles</li>
+<li>ADH provides real-time availability</li>
+<li>Users see &quot;Available in 2 weeks&quot; on expert cards</li>
+</ul>
+<p><strong>2. Project Context:</strong></p>
+<ul>
+<li>ADH tracks project assignments</li>
+<li>AKX uses this for content recommendations</li>
+<li>&quot;Relevant to your current project...&quot;</li>
+</ul>
+<p><strong>3. Skills &amp; Experience:</strong></p>
+<ul>
+<li>Consultants maintain skills in ADH</li>
+<li>AKX surfaces experts based on verified skills</li>
+<li>Project history proves expertise</li>
+</ul>
+<p><strong>4. Content Attribution:</strong></p>
+<ul>
+<li>ADH tracks who worked on what</li>
+<li>AKX attributes content to project teams</li>
+<li>Enables &quot;Find work by this team&quot;</li>
+</ul>
+<h3>User Journeys Across Products</h3>
+<p><strong>Priya (Partner) Journey:</strong></p>
+<ol>
+<li>Client asks about blockchain expertise</li>
+<li>Searches AKX for experts → finds Marcus</li>
+<li>Checks ADH for Marcus&#39;s availability → available in 3 weeks</li>
+<li>Uses AKX to find proposal content → finds relevant case study</li>
+<li>Staffs Marcus on the project via ADH</li>
+</ol>
+<p><strong>Elena (Delivery Manager) Journey:</strong></p>
+<ol>
+<li>Needs to staff a cloud architect</li>
+<li>Searches ADH for available consultants with AWS skills</li>
+<li>Reviews candidate profiles in AKX for past work</li>
+<li>Creates staffing request in ADH</li>
+<li>Uses AKX to find onboarding materials for new team member</li>
+</ol>
+<hr>
+<h2>Enterprise Context</h2>
+<h3>How Internal Products Differ from External Products</h3>
+<table>
+<thead>
+<tr>
+<th>Aspect</th>
+<th>External B2B Product</th>
+<th>Internal Enterprise Product</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Users</strong></td>
+<td>Paying customers</td>
+<td>Employees (no choice)</td>
+</tr>
+<tr>
+<td><strong>Revenue</strong></td>
+<td>Direct (subscriptions)</td>
+<td>Indirect (efficiency gains)</td>
+</tr>
+<tr>
+<td><strong>Adoption</strong></td>
+<td>User chooses to use</td>
+<td>Mandated or encouraged</td>
+</tr>
+<tr>
+<td><strong>Competition</strong></td>
+<td>Other products in market</td>
+<td>Shadow IT, workarounds, status quo</td>
+</tr>
+<tr>
+<td><strong>Success metric</strong></td>
+<td>Revenue, retention</td>
+<td>Adoption, efficiency, satisfaction</td>
+</tr>
+<tr>
+<td><strong>Pricing</strong></td>
+<td>Per-user or usage</td>
+<td>Internal budget allocation</td>
+</tr>
+<tr>
+<td><strong>Sales process</strong></td>
+<td>Procurement</td>
+<td>Steering committee approval</td>
+</tr>
+<tr>
+<td><strong>Change management</strong></td>
+<td>Customer success</td>
+<td>Internal communications, training</td>
+</tr>
+</tbody></table>
+<h3>Governance Structure</h3>
+<p><strong>AKX Steering Committee:</strong></p>
+<ul>
+<li>Richard Thorne (CKO) - Executive Sponsor</li>
+<li>Jennifer Walsh (VP Internal Digital Products) - Product Lead</li>
+<li>David Kim (MD Technology) - Business Representative</li>
+<li>Sarah Mitchell (MD Strategy) - Business Representative</li>
+<li>You (Senior Product Owner) - Product Owner</li>
+</ul>
+<p><strong>ADH Steering Committee:</strong></p>
+<ul>
+<li>Maya Patel (CPO) - Executive Sponsor</li>
+<li>Jennifer Walsh (VP Internal Digital Products) - Product Lead</li>
+<li>Elena Rodriguez (Delivery Manager) - User Representative</li>
+<li>Finance Representative - Budget and ROI</li>
+<li>You (Senior Product Owner) - Product Owner</li>
+</ul>
+<h3>Funding Model</h3>
+<p><strong>Annual Operating Budget:</strong></p>
+<ul>
+<li>AKX: $8M (team, infrastructure, licensing, support)</li>
+<li>ADH: $5M (team, infrastructure, licensing, support)</li>
+</ul>
+<p><strong>Investment Approval:</strong></p>
+<ul>
+<li>&lt; $50K: Product Owner approval</li>
+<li>$50K - $100K: VP approval</li>
+<li>$100K - $500K: Business case + Sponsor approval</li>
+<li><blockquote>
+<p>$500K: Steering Committee approval</p>
+</blockquote>
+</li>
+</ul>
+<h3>Business Case Requirements</h3>
+<p>For features requiring investment approval:</p>
+<ol>
+<li><strong>Problem Statement:</strong> What business problem does this solve?</li>
+<li><strong>User Impact:</strong> How many users affected? What&#39;s the time savings?</li>
+<li><strong>Financial Impact:</strong> ROI calculation (cost savings, revenue enablement)</li>
+<li><strong>Stakeholder Analysis:</strong> Who supports this? Who might resist?</li>
+<li><strong>Implementation Plan:</strong> Timeline, resources, dependencies</li>
+<li><strong>Risk Assessment:</strong> What could go wrong? Mitigation plans</li>
+<li><strong>Success Metrics:</strong> How will we measure success?</li>
+</ol>
+<hr>
+<h2>Technology Stack</h2>
+<p><strong>AKX:</strong></p>
+<ul>
+<li>Frontend: React + TypeScript, Fluent UI</li>
+<li>Backend: .NET Core, Azure Functions</li>
+<li>Search: Azure Cognitive Search (AI-enhanced)</li>
+<li>Database: Azure SQL, Cosmos DB</li>
+<li>Infrastructure: Azure (PaaS)</li>
+<li>Integration: Microsoft Graph API, SharePoint</li>
+</ul>
+<p><strong>ADH:</strong></p>
+<ul>
+<li>Frontend: Angular, PrimeNG</li>
+<li>Backend: Java Spring Boot</li>
+<li>Database: Oracle, Redis</li>
+<li>Infrastructure: Azure (IaaS + PaaS)</li>
+<li>Integration: Workday, SAP, ServiceNow</li>
+</ul>
+<p><strong>Shared:</strong></p>
+<ul>
+<li>Identity: Azure Active Directory</li>
+<li>Analytics: Power BI, Application Insights</li>
+<li>DevOps: Azure DevOps, Terraform</li>
+<li>Mobile: React Native (shared codebase)</li>
+</ul>
+<hr>
+<h2>Your Current Projects</h2>
+<h3>AKX Projects (Q1-Q2)</h3>
+<p><strong>Project 1: AI-Powered Search</strong></p>
+<ul>
+<li>Goal: Improve search relevance and speed</li>
+<li>Timeline: Q1 (in progress)</li>
+<li>Status: Development phase</li>
+<li>Key metrics: Search time 8 min → 4 min, satisfaction 3.2 → 4.0</li>
+</ul>
+<p><strong>Project 2: Expert Matching</strong></p>
+<ul>
+<li>Goal: Surface relevant experts automatically</li>
+<li>Timeline: Q1-Q2</li>
+<li>Status: Requirements gathering</li>
+<li>Key metrics: Time to expert 2.3 days → 4 hours</li>
+</ul>
+<p><strong>Project 3: Mobile Experience</strong></p>
+<ul>
+<li>Goal: Partner-friendly mobile app</li>
+<li>Timeline: Q2</li>
+<li>Status: Design phase</li>
+<li>Key metrics: Mobile MAU 15% → 35%</li>
+</ul>
+<h3>ADH Projects (Q1-Q2)</h3>
+<p><strong>Project 4: Automated Status Reports</strong></p>
+<ul>
+<li>Goal: Eliminate manual status reporting</li>
+<li>Timeline: Q1 (in progress)</li>
+<li>Status: Development phase</li>
+<li>Key metrics: Reporting time 4 hours → 30 minutes</li>
+</ul>
+<p><strong>Project 5: Predictive Staffing</strong></p>
+<ul>
+<li>Goal: AI-powered resource recommendations</li>
+<li>Timeline: Q2</li>
+<li>Status: Research phase</li>
+<li>Key metrics: Staffing time 5 days → 2 days</li>
+</ul>
+<p><strong>Project 6: Financial Integration</strong></p>
+<ul>
+<li>Goal: Real-time project financials</li>
+<li>Timeline: Q2</li>
+<li>Status: Requirements gathering</li>
+<li>Key metrics: Forecast accuracy 65% → 85%</li>
+</ul>
+<hr>
+<p><strong>Throughout this course, you&#39;ll write PRDs, analyze data, and plan features for AKX and ADH. Understanding both products and how they serve different personas is critical for making good product decisions.</strong></p>
+
+    </div>
+    <div class="nav-footer">
+      <a href="index.html" class="nav-btn home">&larr; Back to Course Home</a>
+    </div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

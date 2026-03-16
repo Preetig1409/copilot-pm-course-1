@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.2: Setting Up Your Workspace - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 1: Foundation &rsaquo; Module 1.2
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">15 min</span>
+        <span class="meta-tag level">Level 1: Foundation</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 1.2: Setting Up Your Copilot Workspace</h1>
+<p><strong>Duration:</strong> 15 minutes
+<strong>Prerequisites:</strong> Module 1.1 completed, Microsoft 365 Copilot access</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Set up an optimal workspace for Copilot productivity</li>
+<li>Understand how to upload files to Copilot</li>
+<li>Know how OneDrive integrates with Copilot</li>
+<li>Use Copilot Chat alongside M365 apps</li>
+<li>Master the ContextIQ feature for adding content</li>
+</ol>
+<hr>
+<h2>The Optimal Workspace Setup</h2>
+<p>Unlike command-line tools, Microsoft Copilot works best when you have:</p>
+<ol>
+<li><strong>Browser with Copilot Chat open</strong> (copilot.microsoft.com)</li>
+<li><strong>M365 apps ready</strong> (Word, Excel for outputs)</li>
+<li><strong>Files organized in OneDrive</strong> (for easy access)</li>
+</ol>
+<h3>Recommended Screen Layout</h3>
+<p><strong>Option A: Split Screen</strong></p>
+<ul>
+<li>Left half: Copilot Chat (browser)</li>
+<li>Right half: Word/Excel for outputs</li>
+</ul>
+<p><strong>Option B: Dual Monitors</strong></p>
+<ul>
+<li>Monitor 1: Copilot Chat</li>
+<li>Monitor 2: M365 apps and file explorer</li>
+</ul>
+<p><strong>Option C: Side-by-Side in M365 Apps</strong></p>
+<ul>
+<li>Open Word/Excel</li>
+<li>Press Alt+I to open Copilot panel</li>
+<li>Work with document and Copilot together</li>
+</ul>
+<hr>
+<h2>Understanding File Handling in Copilot</h2>
+<p>Copilot handles files differently than local tools. Here&#39;s what you need to know:</p>
+<h3>File Upload Methods</h3>
+<p><strong>Method 1: Direct Upload in Chat</strong></p>
+<ol>
+<li>Click the attachment icon (📎) in the chat input</li>
+<li>Select file from your computer</li>
+<li>File is uploaded to OneDrive automatically</li>
+<li>Copilot can now analyze it</li>
+</ol>
+<p><strong>Method 2: Drag and Drop</strong></p>
+<ol>
+<li>Drag a file from your desktop or File Explorer</li>
+<li>Drop it into the Copilot chat input area (you&#39;ll see a highlight indicating the drop zone)</li>
+<li>The file uploads and appears as an attachment above the chat input</li>
+<li>Type your prompt and press Enter — Copilot will analyze the attached file</li>
+</ol>
+<p><strong>Method 3: OneDrive Reference</strong></p>
+<ol>
+<li>Files in OneDrive can be referenced via ContextIQ</li>
+<li>Type <code>/</code> in chat to see content options</li>
+<li>Select &quot;Files&quot; and browse OneDrive</li>
+</ol>
+<h3>Supported File Types</h3>
+<table>
+<thead>
+<tr>
+<th>File Type</th>
+<th>What Copilot Can Do</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Word (.docx)</strong></td>
+<td>Read, summarize, analyze, extract data</td>
+</tr>
+<tr>
+<td><strong>Excel (.xlsx)</strong></td>
+<td>Analyze data, create charts, find patterns</td>
+</tr>
+<tr>
+<td><strong>PowerPoint (.pptx)</strong></td>
+<td>Summarize, extract key points, analyze images</td>
+</tr>
+<tr>
+<td><strong>PDF</strong></td>
+<td>Read, summarize, extract text and images</td>
+</tr>
+<tr>
+<td><strong>Images (.png, .jpg)</strong></td>
+<td>Analyze, describe, extract text (OCR)</td>
+</tr>
+<tr>
+<td><strong>CSV</strong></td>
+<td>Analyze data, find patterns, calculations</td>
+</tr>
+</tbody></table>
+<h3>File Limits</h3>
+<ul>
+<li><strong>Size:</strong> Up to 512 MB per file (Enterprise)</li>
+<li><strong>Pages:</strong> Up to 300 pages for document analysis</li>
+<li><strong>Multi-file:</strong> Can analyze multiple files at once (typically 5–10 depending on file size and your license)</li>
+</ul>
+<blockquote>
+<p><em>Note: Microsoft updates file limits periodically. If you&#39;re unsure of your current limit, test by uploading additional files and observing whether Copilot accepts them.</em></p>
+</blockquote>
+<hr>
+<h2>Exercise 1: Upload Your First File</h2>
+<p>Let&#39;s practice uploading a file to Copilot.</p>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Download this sample meeting notes file (or create a simple text file with meeting notes)</li>
+<li>Open Copilot Chat at copilot.microsoft.com</li>
+<li>Click the 📎 attachment icon</li>
+<li>Select your file</li>
+<li>Once uploaded, type this prompt:</li>
+</ol>
+<pre><code>Please analyze this meeting notes file and:
+1. Extract all action items
+2. Identify who is responsible for each
+3. Note any decisions that were made
+4. Flag any items that need follow-up
+</code></pre>
+<ol start="6">
+<li>Review Copilot&#39;s analysis</li>
+</ol>
+<p><strong>What you should notice:</strong></p>
+<ul>
+<li>Copilot reads the entire document</li>
+<li>It structures the output clearly</li>
+<li>It identifies patterns and key information</li>
+</ul>
+<hr>
+<h2>ContextIQ: Adding Content to Prompts</h2>
+<p>ContextIQ is a powerful feature that lets you add context from your work environment.</p>
+<h3>How to Use ContextIQ</h3>
+<ol>
+<li><p>In Copilot Chat, type <code>/</code> (forward slash)</p>
+</li>
+<li><p>A menu appears with options:</p>
+<ul>
+<li><strong>Files</strong> - Browse OneDrive files</li>
+<li><strong>People</strong> - Reference colleagues</li>
+<li><strong>Meetings</strong> - Access meeting transcripts</li>
+<li><strong>Emails</strong> - Reference recent emails</li>
+</ul>
+</li>
+<li><p>Select what you want to add</p>
+</li>
+<li><p>It becomes part of your prompt context</p>
+</li>
+</ol>
+<blockquote>
+<p><strong>Enterprise Note:</strong> The <code>/</code> ContextIQ menu may be restricted in some enterprise tenants or may require specific Copilot license tiers. If the menu does not appear:</p>
+<ul>
+<li>Use the 📎 attachment icon to upload files directly</li>
+<li>In the chat, paste a document summary inline as context</li>
+<li>Check with your IT administrator whether ContextIQ is enabled for your account</li>
+</ul>
+</blockquote>
+<h3>Example: Reference Multiple Sources</h3>
+<pre><code>Based on /[meeting transcript from yesterday] and /[Q4 planning doc],
+summarize the key priorities for our team this quarter.
+</code></pre>
+<hr>
+<h2>Exercise 2: Use ContextIQ</h2>
+<p>Let&#39;s try using ContextIQ to reference your work content.</p>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>In Copilot Chat, type: <code>/</code></li>
+<li>Select &quot;Files&quot; from the menu</li>
+<li>Browse to any document in your OneDrive</li>
+<li>Select it to add as context</li>
+<li>Now type a prompt like:</li>
+</ol>
+<pre><code>Summarize the key points from this document in 3 bullet points.
+</code></pre>
+<p><strong>Note:</strong> If you don&#39;t have files in OneDrive yet, you can upload the sample files from this course first.</p>
+<hr>
+<h2>OneDrive Integration</h2>
+<p>When you use Copilot, your files are automatically connected to OneDrive.</p>
+<h3>What This Means</h3>
+<ol>
+<li><strong>Uploaded files are saved</strong> - Files you upload go to &quot;Microsoft Copilot Chat Files&quot; folder in OneDrive</li>
+<li><strong>You can re-access them</strong> - Find previous uploads in OneDrive</li>
+<li><strong>Enterprise security</strong> - Your data stays within your tenant</li>
+<li><strong>Not used for training</strong> - Microsoft doesn&#39;t train models on your data</li>
+</ol>
+<h3>Setting Up Your Course Files</h3>
+<p>For this course, we recommend creating a folder structure:</p>
+<pre><code>OneDrive/
+├── Copilot-Course/
+│   ├── TaskFlow-Context/
+│   │   ├── COMPANY.md
+│   │   ├── PRODUCT.md
+│   │   └── PERSONAS.md
+│   ├── Meeting-Notes/
+│   ├── User-Interviews/
+│   └── Data-Files/
+</code></pre>
+<p><strong>Action:</strong> Create this folder structure in your OneDrive and upload the course sample files.</p>
+<blockquote>
+<hr>
+<p><strong>Enterprise Data Guidance</strong>
+Before uploading files or sharing data with Copilot:</p>
+<ul>
+<li>Copilot operates within your Microsoft 365 tenant — data is not shared externally</li>
+<li>Files labeled &quot;Highly Confidential — Encrypted&quot; may be blocked by Copilot due to sensitivity policies</li>
+<li>Do not share client names, deal values, or engagement codes in Copilot prompts</li>
+<li>For your organization&#39;s Responsible AI policy, consult your internal guidelines</li>
+</ul>
+<hr>
+</blockquote>
+<hr>
+<h2>Copilot in M365 Apps vs Browser Chat</h2>
+<p>You have two main ways to use Copilot. Here&#39;s when to use each:</p>
+<h3>Browser Chat (copilot.microsoft.com)</h3>
+<p><strong>Best for:</strong></p>
+<ul>
+<li>Research and exploration</li>
+<li>Multi-file analysis</li>
+<li>Complex questions</li>
+<li>Deep Research tasks</li>
+<li>Starting new work</li>
+</ul>
+<h3>In-App Copilot (Alt+I)</h3>
+<p><strong>Best for:</strong></p>
+<ul>
+<li>Working within a specific document</li>
+<li>Generating content for the current file</li>
+<li>Rewriting or editing existing text</li>
+<li>Creating charts from data in Excel</li>
+<li>Document-specific questions</li>
+</ul>
+<hr>
+<h2>Exercise 3: Try In-App Copilot</h2>
+<p>Let&#39;s experience Copilot inside a Microsoft 365 app.</p>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open Microsoft Word</li>
+<li>Create a new document</li>
+<li>Press <strong>Alt+I</strong> (Windows) or <strong>Option+I</strong> (Mac)</li>
+<li>The Copilot panel opens on the right</li>
+<li>Type this prompt:</li>
+</ol>
+<pre><code>Write a brief executive summary for a product called TaskFlow -
+a project management tool for remote teams. Include: what it does,
+who it&#39;s for, and key differentiators. Keep it to 3 paragraphs.
+</code></pre>
+<ol start="6">
+<li>Copilot generates content directly in your document!</li>
+</ol>
+<p><strong>What you should notice:</strong></p>
+<ul>
+<li>Content appears right in your Word document</li>
+<li>You can edit it immediately</li>
+<li>Copilot understands document context</li>
+</ul>
+<hr>
+<h2>Workspace Tips for PMs</h2>
+<h3>Tip 1: Pin Copilot Chat</h3>
+<ul>
+<li>Keep copilot.microsoft.com as a pinned tab</li>
+<li>Quick access whenever you need it</li>
+</ul>
+<h3>Tip 2: Create a &quot;Context&quot; Document</h3>
+<ul>
+<li>Make a Word doc with your project context</li>
+<li>Upload it at the start of important sessions</li>
+<li>Copilot will reference it throughout</li>
+</ul>
+<h3>Tip 3: Use Voice Input</h3>
+<ul>
+<li>Hold Alt+Spacebar for 2 seconds</li>
+<li>Speak your prompt</li>
+<li>Great for quick questions while multitasking</li>
+</ul>
+<h3>Tip 4: Save Successful Prompts</h3>
+<ul>
+<li>When a prompt works well, save it</li>
+<li>Create a &quot;Prompt Library&quot; document</li>
+<li>Reuse for similar tasks</li>
+</ul>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ How to set up an optimal Copilot workspace</li>
+<li>✅ Three methods for uploading files</li>
+<li>✅ How to use ContextIQ (/) for adding content</li>
+<li>✅ The difference between browser chat and in-app Copilot</li>
+<li>✅ OneDrive integration for file management</li>
+</ul>
+<hr>
+<h2>Next Steps</h2>
+<p>Continue to <strong>Module 1.3: Your First PM Tasks with Copilot</strong></p>
+<p>In Module 1.3, you&#39;ll do real PM work:</p>
+<ul>
+<li>Process messy meeting notes into action items</li>
+<li>Synthesize multiple user interviews</li>
+<li>Transform content for different audiences</li>
+<li>Analyze design mockups</li>
+<li>Perform web research</li>
+</ul>
+<p>This is where things get practical!</p>
+<hr>
+<h2>Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>How To</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Upload file</td>
+<td>Click 📎 or drag &amp; drop</td>
+</tr>
+<tr>
+<td>Add context</td>
+<td>Type <code>/</code> for ContextIQ</td>
+</tr>
+<tr>
+<td>Open in-app Copilot</td>
+<td>Alt+I (Win) / Option+I (Mac)</td>
+</tr>
+<tr>
+<td>Voice input</td>
+<td>Hold Alt+Spacebar 2 seconds</td>
+</tr>
+<tr>
+<td>Find uploads</td>
+<td>OneDrive &gt; Microsoft Copilot Chat Files</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Ready for real PM work? Let&#39;s go to Module 1.3!</strong></p>
+
+    </div>
+    <div class="nav-footer"><a href="module-1.1.html" class="nav-btn prev">&larr; 1.1 Welcome to Microsoft Copilot</a><a href="index.html" class="nav-btn home">Home</a><a href="module-1.3.html" class="nav-btn next">1.3 Your First PM Tasks &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

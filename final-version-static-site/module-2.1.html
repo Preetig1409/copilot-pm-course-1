@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2.1: Writing PRDs with Copilot - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 2: Advanced PM Workflows &rsaquo; Module 2.1
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">35 min</span>
+        <span class="meta-tag level">Level 2: Advanced PM Workflows</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 2.1: Writing PRDs with Copilot (Enterprise Edition)</h1>
+<p><strong>Duration:</strong> 35 minutes
+<strong>Prerequisites:</strong> Level 1 completed</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Draft a business case section of an enterprise PRD including ROI calculations using Copilot prompts</li>
+<li>Create a RACI matrix for a major internal product initiative</li>
+<li>Build a stakeholder engagement plan that maps decision-makers to their concerns</li>
+<li>Assess your own PRD draft for steering committee readiness using the quality checklist</li>
+<li>Get multi-perspective feedback from MD, CKO, and Consultant personas on a PRD section</li>
+</ol>
+<blockquote>
+<p><em>Quick navigation: Phase 1 Business Context | Phase 2 Solution &amp; Impact | Phase 3 Document &amp; Governance | Phase 4 Review &amp; Alignment | Quality Checklist</em></p>
+</blockquote>
+<hr>
+<h2>Enterprise PRDs Are Different</h2>
+<p>Internal enterprise PRDs require elements that external product PRDs don&#39;t:</p>
+<table>
+<thead>
+<tr>
+<th>Standard PRD</th>
+<th>Enterprise Internal PRD</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Problem statement</td>
+<td>Problem + Business case</td>
+</tr>
+<tr>
+<td>User stories</td>
+<td>Stakeholder analysis</td>
+</tr>
+<tr>
+<td>Success metrics</td>
+<td>Adoption metrics + ROI</td>
+</tr>
+<tr>
+<td>Technical requirements</td>
+<td>Integration requirements</td>
+</tr>
+<tr>
+<td>Risks</td>
+<td>Governance &amp; change management</td>
+</tr>
+<tr>
+<td>Launch plan</td>
+<td>Change management &amp; communications</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p><em>Each of these enterprise additions is covered in the exercises below. Business Case → Phase 1, Stakeholder Analysis → Phase 1, Governance → Phase 3, Change Management → Phase 2, RACI → Phase 3.</em></p>
+</blockquote>
+<hr>
+<h2>The Right Mindset: Thinking Partner, Not Ghostwriter</h2>
+<p><strong>Important:</strong> Copilot should help you think through your PRD, not write it for you.</p>
+<h3>The Right Approach</h3>
+<table>
+<thead>
+<tr>
+<th>Don&#39;t Do This</th>
+<th>Do This Instead</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>&quot;Write a PRD for feature X&quot;</td>
+<td>&quot;Help me build the business case for feature X&quot;</td>
+</tr>
+<tr>
+<td>&quot;Create requirements for me&quot;</td>
+<td>&quot;What governance considerations should I address?&quot;</td>
+</tr>
+<tr>
+<td>&quot;Generate the full document&quot;</td>
+<td>&quot;Let&#39;s structure the stakeholder analysis section&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>The Enterprise PRD Workflow</h2>
+<h3>Phase 1: Business Context</h3>
+<ul>
+<li>Define the business problem and opportunity</li>
+<li>Build ROI case</li>
+<li>Identify stakeholders and governance</li>
+</ul>
+<h3>Phase 2: Solution &amp; Impact</h3>
+<ul>
+<li>Explore solution options</li>
+<li>Define success metrics</li>
+<li>Plan change management</li>
+</ul>
+<h3>Phase 3: Document &amp; Governance</h3>
+<ul>
+<li>Structure the PRD with enterprise sections</li>
+<li>Create RACI matrix</li>
+<li>Prepare for steering committee</li>
+</ul>
+<h3>Phase 4: Review &amp; Alignment</h3>
+<ul>
+<li>Multi-perspective stakeholder review</li>
+<li>Address governance concerns</li>
+<li>Prepare for approval</li>
+</ul>
+<hr>
+<h2>Phase 1: Business Context</h2>
+<h3>Step 1: Define Business Problem</h3>
+<p>Use this prompt to clarify the business context:</p>
+<pre><code>I&#39;m writing an enterprise PRD for AKX&#39;s AI-powered search feature.
+
+Here&#39;s what I know:
+- Current AKX weekly active users: 43% (target: 60%)
+- Average search time: 8 minutes (target: 2 minutes)
+- Search satisfaction: 3.2/5 (target: 4.0/5)
+- Competitors (McKinsey, BCG) have better knowledge platforms
+- Lost $20M deal because we couldn&#39;t identify an expert in 48 hours
+
+Help me articulate:
+1. The business problem (not just user problem)
+2. Competitive implications
+3. Financial impact of NOT solving this
+4. How this aligns with company strategic priorities
+
+Ask me clarifying questions if needed.
+</code></pre>
+<h3>Step 2: Build the Business Case</h3>
+<blockquote>
+<p><strong>Enterprise data guidance:</strong> The financial figures, metrics, and business data used throughout this module are realistic examples for learning purposes. In real use, replace with your organization&#39;s actual data. Always verify calculations independently before presenting to stakeholders.</p>
+</blockquote>
+<p>This is critical for enterprise PRDs - you need to justify the investment.</p>
+<pre><code>Help me build a business case for AI-powered search in AKX.
+
+Investment context:
+- Development cost: ~$2M over 6 months
+- Ongoing cost: ~$500K/year
+
+Potential benefits:
+- Time saved per consultant: 4+ hours/week
+- 300,000 potential weekly users
+- Average consultant billing rate: $300/hour
+- Faster expert discovery → more deals won
+- Reduced duplicate work → higher efficiency
+
+Please create:
+
+1. **ROI Calculation**
+   - Quantified time savings
+   - Productivity gain value
+   - Conservative, moderate, and optimistic scenarios
+
+2. **Strategic Value**
+   - Competitive positioning benefits
+   - Talent retention impact
+   - Revenue enablement potential
+
+3. **Risk-Adjusted Analysis**
+   - What could reduce ROI?
+   - What assumptions are we making?
+
+Format this for a steering committee business case presentation.
+</code></pre>
+<h3>Step 3: Stakeholder Analysis</h3>
+<pre><code>Help me identify stakeholders for the AKX AI Search initiative.
+
+Known stakeholders:
+- Richard Thorne (CKO) - Executive Sponsor
+- Jennifer Walsh (VP Internal Digital Products) - Product Lead
+- David Kim (MD Technology Practice) - Business Champion
+- Sarah Mitchell (MD Strategy Practice) - Business Champion
+
+For a comprehensive stakeholder analysis, help me identify:
+
+1. **Decision Makers** - Who has approval authority?
+2. **Champions** - Who will actively promote this?
+3. **Influencers** - Who shapes opinions?
+4. **Users** - Who will use this daily?
+5. **Impacted Parties** - Who is affected even if not direct users?
+
+For each stakeholder group:
+- Their key interests/concerns
+- How to engage them
+- Risk if not aligned
+
+Format as a stakeholder map with engagement strategy.
+</code></pre>
+<hr>
+<h2>Phase 2: Solution &amp; Impact</h2>
+<h3>Generate Strategic Approaches</h3>
+<pre><code>Let&#39;s develop 3 distinct approaches for AI-powered search in AKX:
+
+**Approach A: AI Search Only**
+(Semantic search with quality ranking)
+
+**Approach B: AI Search + Expert Matching**
+(Search plus automated expert recommendations)
+
+**Approach C: Full AI Knowledge Assistant**
+(Search + experts + personalized recommendations + content generation)
+
+For each approach, outline:
+1. Scope and features
+2. Investment required
+3. Time to deliver
+4. Adoption complexity
+5. ROI potential
+6. Risk profile
+7. Steering committee appeal
+
+Include recommendation for which approach to pursue.
+</code></pre>
+<h3>Define Success Metrics (Enterprise)</h3>
+<pre><code>Help me define success metrics for AI Search that will satisfy:
+
+1. **Executive Sponsors** (Richard, CKO)
+   - Strategic metrics they&#39;ll report to the board
+   - Competitive positioning indicators
+
+2. **Business Champions** (David, Sarah - MDs)
+   - Practice-level impact metrics
+   - Revenue enablement indicators
+
+3. **Users** (Partners, Consultants)
+   - Daily experience metrics
+   - Time savings indicators
+
+4. **Product Team** (Jennifer, me)
+   - Leading indicators for product health
+   - Adoption and engagement metrics
+
+Create a metrics framework with:
+- Metric name and definition
+- Target value
+- How we&#39;ll measure
+- Who cares most about this metric
+- Reporting frequency
+</code></pre>
+<h3>Plan Change Management</h3>
+<pre><code>AI Search is a major change for 700,000 users. Help me think through
+change management requirements.
+
+Questions to address:
+
+1. **Awareness**
+   - How will users know this exists?
+   - What channels reach different personas?
+
+2. **Desire**
+   - Users have tried AKX before and given up
+   - How do we rebuild trust?
+
+3. **Knowledge**
+   - What training is needed?
+   - How do we reach 700K users?
+
+4. **Ability**
+   - Is the product intuitive enough?
+   - What support will be needed?
+
+5. **Reinforcement**
+   - How do we keep users engaged?
+   - What ongoing communications are needed?
+
+Create a change management summary for the PRD.
+</code></pre>
+<hr>
+<h2>Phase 3: Enterprise PRD Structure</h2>
+<h3>Enterprise PRD Template Sections</h3>
+<pre><code>Help me structure an enterprise PRD with these sections:
+
+## 1. Executive Summary
+(1 page for steering committee review)
+
+## 2. Business Case
+- Problem statement (business impact)
+- ROI analysis
+- Strategic alignment
+
+## 3. Stakeholder Analysis
+- Key stakeholders
+- Engagement plan
+- RACI matrix
+
+## 4. Solution Overview
+- Approach description
+- Key features
+- What&#39;s NOT in scope
+
+## 5. Success Metrics
+- Business metrics
+- Product metrics
+- Adoption metrics
+
+## 6. Governance
+- Decision authority
+- Approval process
+- Escalation path
+
+## 7. Change Management
+- Communication plan
+- Training plan
+- Adoption targets by phase
+
+## 8. Risk Assessment
+- Technical risks
+- Adoption risks
+- Business risks
+- Mitigation strategies
+
+## 9. Implementation Plan
+- Timeline
+- Resource requirements
+- Dependencies
+
+## 10. Appendices
+- User research summary
+- Technical specifications
+- Detailed ROI model
+
+For each section, tell me what makes it &quot;enterprise-grade&quot; vs. a startup PRD.
+</code></pre>
+<h3>Creating the RACI Matrix</h3>
+<blockquote>
+<p><em>New to enterprise governance? Quick definitions:</em></p>
+<ul>
+<li><strong>RACI</strong>: Responsible (does the work), Accountable (owns the outcome), Consulted (provides input), Informed (needs to know)</li>
+<li><strong>Steering Committee</strong>: Senior stakeholder group with budget authority and strategic oversight</li>
+<li><strong>Governance</strong>: The process by which decisions are made, approved, and tracked in an organization</li>
+</ul>
+</blockquote>
+<pre><code>Create a RACI matrix for the AI Search initiative.
+
+Decisions/Activities:
+1. Feature prioritization
+2. Investment approval (&gt; $500K)
+3. Technical architecture
+4. UX design direction
+5. Go-live decision
+6. Change management execution
+7. Adoption targets
+8. Post-launch optimization
+
+Stakeholders:
+- Richard Thorne (CKO, Sponsor)
+- Jennifer Walsh (VP, Product Lead)
+- David Kim (MD, Business Champion)
+- Me (Product Owner)
+- Raj Patel (Tech Lead)
+- Lisa Chen (Change Management)
+- Practice Leads (user representatives)
+
+Create RACI matrix (Responsible, Accountable, Consulted, Informed)
+with notes on decision-making process.
+</code></pre>
+<hr>
+<h2>Phase 4: Multi-Perspective Review</h2>
+<h3>Enterprise Stakeholder Review</h3>
+<pre><code>Review this PRD draft from THREE enterprise perspectives:
+
+## As CKO (Richard - Executive Sponsor)
+- Is the business case compelling?
+- What would I need to present to the CEO?
+- Are risks adequately addressed?
+
+## As MD (David - Business Champion)
+- Will this help my practice win deals?
+- Is the ROI realistic?
+- Will my team actually adopt this?
+
+## As Senior Consultant (Marcus - User)
+- Will this save me time?
+- Is this better than my workarounds?
+- Will I actually use it?
+
+PRD DRAFT:
+[Paste your draft here]
+</code></pre>
+<h3>Steering Committee Readiness</h3>
+<pre><code>Assess this PRD for steering committee readiness:
+
+1. **Business Case Strength**
+   - Is ROI clearly articulated?
+   - Are assumptions documented?
+   - Is competitive context clear?
+
+2. **Governance Clarity**
+   - Are decision rights clear?
+   - Is RACI complete?
+   - Is escalation path defined?
+
+3. **Risk Management**
+   - Are major risks identified?
+   - Are mitigations realistic?
+   - Are we being honest about challenges?
+
+4. **Executive Summary**
+   - Can sponsor present this in 5 minutes?
+   - Are key asks clear?
+   - Is approval path obvious?
+
+Provide a readiness score (1-5) and improvement suggestions.
+</code></pre>
+<hr>
+<h2>Exercise: Complete Enterprise PRD Workflow</h2>
+<p><strong>Scenario:</strong> Create a PRD for AKX&#39;s AI Search feature.</p>
+<h3>Step 1: Business Context (10 min)</h3>
+<pre><code>I&#39;m writing an enterprise PRD for AI-powered search in AKX.
+
+Context:
+- Company: Accenture (700,000 employees)
+- Product: AKX (internal knowledge platform)
+- Current WAU: 43%, Target: 60%
+- Executive Sponsor: Richard Thorne (CKO)
+- Investment: ~$2M, Timeline: 6 months
+
+Help me build the business case foundation.
+What questions should I answer for the steering committee?
+</code></pre>
+<h3>Step 2: Stakeholder &amp; Governance (10 min)</h3>
+<p>Work through stakeholder analysis and RACI.</p>
+<h3>Step 3: Draft Key Sections (10 min)</h3>
+<p>Draft the Executive Summary and Business Case sections.</p>
+<h3>Step 4: Steering Committee Readiness (5 min)</h3>
+<p>Get feedback and identify gaps before presenting.</p>
+<hr>
+<h2>Enterprise PRD Quality Checklist</h2>
+<p>Before considering your PRD done:</p>
+<h3>Business Justification</h3>
+<ul>
+<li><input disabled="" type="checkbox"> ROI clearly calculated with scenarios</li>
+<li><input disabled="" type="checkbox"> Strategic alignment articulated</li>
+<li><input disabled="" type="checkbox"> Competitive context included</li>
+<li><input disabled="" type="checkbox"> Investment justified</li>
+</ul>
+<h3>Governance</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Stakeholders identified and engaged</li>
+<li><input disabled="" type="checkbox"> RACI complete</li>
+<li><input disabled="" type="checkbox"> Decision authority clear</li>
+<li><input disabled="" type="checkbox"> Escalation path defined</li>
+</ul>
+<h3>Change Management</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Adoption targets by phase</li>
+<li><input disabled="" type="checkbox"> Communication plan outlined</li>
+<li><input disabled="" type="checkbox"> Training approach defined</li>
+<li><input disabled="" type="checkbox"> Reinforcement strategy included</li>
+</ul>
+<h3>Steering Committee Ready</h3>
+<ul>
+<li><input disabled="" type="checkbox"> Executive summary stands alone</li>
+<li><input disabled="" type="checkbox"> Sponsor can present in 5 minutes</li>
+<li><input disabled="" type="checkbox"> Key asks are clear</li>
+<li><input disabled="" type="checkbox"> Risks honestly addressed</li>
+</ul>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ How enterprise PRDs differ from startup PRDs</li>
+<li>✅ How to build business cases with ROI</li>
+<li>✅ How to create stakeholder analysis and RACI</li>
+<li>✅ How to plan change management in PRDs</li>
+<li>✅ How to prepare for steering committee review</li>
+</ul>
+<p><strong>Quick Self-Check</strong>
+Before moving on, can you:</p>
+<ul>
+<li><input disabled="" type="checkbox"> Draft a business case section with ROI calculations using Copilot</li>
+<li><input disabled="" type="checkbox"> Create a RACI matrix for a product initiative and explain each role</li>
+<li><input disabled="" type="checkbox"> Describe 3 ways enterprise PRDs differ from standard startup PRDs</li>
+</ul>
+<p><em>If you&#39;re unsure about any of these, re-read that section before continuing.</em></p>
+<hr>
+<h2>Next Steps</h2>
+<p>Continue to <strong>Module 2.2: Analyzing Product Data with Copilot</strong></p>
+<p>In Module 2.2, you&#39;ll learn:</p>
+<ul>
+<li>Analyzing adoption funnels and utilization data</li>
+<li>Using Excel Copilot for enterprise metrics</li>
+<li>Interpreting A/B tests for internal tools</li>
+<li>ROI validation with data</li>
+</ul>
+<hr>
+<h2>Quick Reference: Enterprise PRD Prompts</h2>
+<table>
+<thead>
+<tr>
+<th>Phase</th>
+<th>Prompt Starter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Business Case</td>
+<td>&quot;Help me build an ROI case for...&quot;</td>
+</tr>
+<tr>
+<td>Stakeholder Analysis</td>
+<td>&quot;Identify stakeholders and create engagement strategy...&quot;</td>
+</tr>
+<tr>
+<td>Governance</td>
+<td>&quot;Create a RACI matrix for...&quot;</td>
+</tr>
+<tr>
+<td>Change Management</td>
+<td>&quot;Plan change management for 700K users...&quot;</td>
+</tr>
+<tr>
+<td>Steering Committee</td>
+<td>&quot;Assess this PRD for steering committee readiness...&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Ready for data analysis? Let&#39;s go to Module 2.2!</strong></p>
+
+    </div>
+    <div class="nav-footer"><a href="module-1.10.html" class="nav-btn prev">&larr; 1.10 Copilot in SharePoint &amp; Collaboration</a><a href="index.html" class="nav-btn home">Home</a><a href="module-2.2.html" class="nav-btn next">2.2 Analyzing Product Data &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

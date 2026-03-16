@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.9: Copilot in Outlook - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 1: Foundation &rsaquo; Module 1.9
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">20 min</span>
+        <span class="meta-tag level">Level 1: Foundation</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 1.9: Copilot in Outlook</h1>
+<p><strong>Duration:</strong> 20 minutes
+<strong>Prerequisites:</strong> Modules 1.1-1.8 completed, Outlook with Copilot enabled</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Draft emails quickly with Copilot assistance</li>
+<li>Adjust tone and length of email drafts</li>
+<li>Summarize long email threads instantly</li>
+<li>Use Copilot for meeting prep and calendar</li>
+<li>Manage inbox overload efficiently</li>
+</ol>
+<hr>
+<h2>Why Outlook + Copilot Matters for PMs</h2>
+<p>Email is still a primary communication channel for stakeholders, customers, and leadership:</p>
+<table>
+<thead>
+<tr>
+<th>Activity</th>
+<th>Typical Time/Week</th>
+<th>With Copilot</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Drafting emails</td>
+<td>2-3 hours</td>
+<td>30 min</td>
+</tr>
+<tr>
+<td>Reading long threads</td>
+<td>1-2 hours</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td>Meeting prep</td>
+<td>1 hour</td>
+<td>15 min</td>
+</tr>
+<tr>
+<td><strong>Total Savings</strong></td>
+<td></td>
+<td><strong>~4 hours/week</strong></td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Section 1: Email Drafting</h2>
+<p>Copilot helps you draft emails faster and with the right tone.</p>
+<h3>Accessing Copilot in Outlook</h3>
+<p><strong>New Email:</strong></p>
+<ol>
+<li>Click &quot;New Email&quot;</li>
+<li>Click the <strong>Copilot</strong> icon in the toolbar</li>
+<li>Or press <strong>Alt + I</strong> to open Copilot</li>
+</ol>
+<p><strong>Replying:</strong></p>
+<ol>
+<li>Open an email</li>
+<li>Click Reply</li>
+<li>Click Copilot icon → &quot;Draft with Copilot&quot;</li>
+</ol>
+<blockquote>
+<p><strong>Where to find Copilot in Outlook:</strong></p>
+<ul>
+<li><strong>New email:</strong> Copilot icon appears in the message toolbar (typically a purple sparkle icon)</li>
+<li><strong>Replying:</strong> After clicking Reply, look for Copilot icon in the compose window toolbar</li>
+<li><strong>Reading pane:</strong> Copilot icon may appear at the top of the email or in the toolbar</li>
+</ul>
+</blockquote>
+<h3>Drafting a New Email</h3>
+<p><strong>Basic prompt:</strong></p>
+<pre><code>Draft an email to the engineering team about the upcoming 
+onboarding wizard launch. Include the launch date (Feb 15),
+key features, and ask them to review the final checklist.
+</code></pre>
+<p><strong>With specific tone:</strong></p>
+<pre><code>Draft a professional email to the VP of Sales updating them 
+on Q1 product roadmap progress. Be concise and focus on 
+business impact. 3 paragraphs max.
+</code></pre>
+<hr>
+<h2>Exercise 1: Draft a Stakeholder Email</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open Outlook and start a new email</li>
+<li>Click the Copilot icon</li>
+<li>Enter this prompt:</li>
+</ol>
+<pre><code>Draft an email to my manager with a weekly product update.
+
+Include:
+- Onboarding wizard is 80% complete, on track for Feb 15
+- Blocked on API integration, need engineering support
+- User research completed, 3 key insights to share
+- Ask for 15 minutes to discuss roadmap priorities
+
+Tone: Professional but conversational
+Length: 4-5 sentences
+</code></pre>
+<ol start="4">
+<li>Review the draft</li>
+<li>Try adjusting it with follow-up prompts</li>
+</ol>
+<hr>
+<h2>Adjusting Drafts</h2>
+<p>After Copilot generates a draft, you can refine it:</p>
+<p><strong>Change tone:</strong></p>
+<pre><code>Make this more formal
+</code></pre>
+<pre><code>Make this friendlier and more casual
+</code></pre>
+<p><strong>Change length:</strong></p>
+<pre><code>Make this shorter - 3 sentences max
+</code></pre>
+<pre><code>Expand this with more detail
+</code></pre>
+<p><strong>Add elements:</strong></p>
+<pre><code>Add a bullet list of the action items
+</code></pre>
+<pre><code>Add a clear call-to-action at the end
+</code></pre>
+<blockquote>
+<p><em>If Copilot generates more paragraphs than requested, follow up with: &quot;Shorten this to exactly 3 paragraphs — combine the middle sections.&quot;</em></p>
+</blockquote>
+<blockquote>
+<p><em>You may see playful options like &quot;Make it a poem&quot; or &quot;Make it funnier&quot; in the Copilot suggestions panel. These are standard Copilot options available to all users — simply ignore them and use the tone/length adjustments that fit your enterprise communication needs.</em></p>
+</blockquote>
+<hr>
+<h2>Exercise 2: Tone Adjustment</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Use the email draft from Exercise 1</li>
+<li>Try these adjustment prompts:</li>
+</ol>
+<pre><code>Make this more concise - half the length
+</code></pre>
+<pre><code>Add a clear call-to-action asking for a meeting
+</code></pre>
+<pre><code>Make the tone more urgent
+</code></pre>
+<hr>
+<h2>Section 2: Email Summarization</h2>
+<p>Long email threads are a PM reality. Copilot summarizes them instantly.</p>
+<h3>Summarizing Threads</h3>
+<ol>
+<li>Open a long email thread</li>
+<li>Click the <strong>Copilot</strong> icon at the top of the email</li>
+<li>Or look for &quot;Summary by Copilot&quot; automatically displayed</li>
+</ol>
+<h3>Summarization Prompts</h3>
+<p><strong>Basic summary:</strong></p>
+<pre><code>Summarize this email thread
+</code></pre>
+<p><strong>Focused summary:</strong></p>
+<pre><code>Summarize this thread focusing on:
+1. What decisions were made
+2. What&#39;s still open
+3. What action items exist
+</code></pre>
+<p><strong>Find specific info:</strong></p>
+<pre><code>What did Sarah say about the timeline?
+</code></pre>
+<p><strong>Action-focused:</strong></p>
+<pre><code>What action items are mentioned in this thread?
+Who is responsible for each?
+</code></pre>
+<blockquote>
+<p><em>Copilot may not capture every action item in very long threads (100+ messages). For complete accuracy, ask Copilot to process sections: &quot;Summarize only the last 10 messages first.&quot;</em></p>
+</blockquote>
+<hr>
+<h2>Exercise 3: Thread Summarization</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Find a long email thread (5+ messages)</li>
+<li>Open it and click Copilot</li>
+<li>Try:</li>
+</ol>
+<pre><code>Summarize this thread in 3 bullet points
+</code></pre>
+<pre><code>What decisions have been made in this thread?
+</code></pre>
+<pre><code>Are there any open questions that need answers?
+</code></pre>
+<pre><code>What action items are mentioned and who owns them?
+</code></pre>
+<hr>
+<h2>Catching Up on Inbox</h2>
+<p>When you&#39;re behind on email, Copilot helps you triage:</p>
+<h3>Inbox Catch-Up Prompts</h3>
+<p><strong>In a specific thread:</strong></p>
+<pre><code>I haven&#39;t read the last 5 messages. What do I need to know?
+</code></pre>
+<p><strong>Finding urgent items:</strong></p>
+<pre><code>Is there anything in this thread that requires immediate action from me?
+</code></pre>
+<p><strong>Preparation:</strong></p>
+<pre><code>What context do I need to reply to this effectively?
+</code></pre>
+<hr>
+<h2>Section 3: Calendar &amp; Meeting Prep</h2>
+<p>Copilot helps you prepare for meetings from Outlook.</p>
+<h3>Meeting Prep</h3>
+<p>Before a meeting, Copilot can help you prepare:</p>
+<ol>
+<li>Open the calendar event</li>
+<li>Click Copilot</li>
+<li>Ask for preparation help</li>
+</ol>
+<h3>Meeting Prep Prompts</h3>
+<p><strong>General prep:</strong></p>
+<pre><code>Help me prepare for this meeting. What should I know?
+</code></pre>
+<p><strong>Based on emails:</strong></p>
+<pre><code>Summarize recent emails related to this meeting topic
+</code></pre>
+<p><strong>Agenda creation:</strong></p>
+<pre><code>Based on the meeting invite, suggest an agenda with 
+time allocations for a 30-minute meeting
+</code></pre>
+<p><strong>Questions to ask:</strong></p>
+<pre><code>What questions should I prepare for this meeting?
+</code></pre>
+<hr>
+<h2>Exercise 4: Meeting Preparation</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open an upcoming meeting in your calendar</li>
+<li>Click Copilot</li>
+<li>Try:</li>
+</ol>
+<pre><code>Help me prepare for this meeting:
+1. What&#39;s the context based on recent communications?
+2. What should I bring or prepare?
+3. Suggest 3 questions I should ask
+</code></pre>
+<hr>
+<h2>Email Templates for PMs</h2>
+<p>Save these for quick use:</p>
+<h3>Stakeholder Update</h3>
+<pre><code>Draft an email to [stakeholder] with a project update:
+- Project: [name]
+- Status: [on track/at risk/blocked]
+- Key updates: [2-3 points]
+- Next steps: [1-2 items]
+- Ask: [what you need from them]
+
+Tone: Professional, concise
+</code></pre>
+<h3>Meeting Request</h3>
+<pre><code>Draft an email requesting a meeting:
+- Purpose: [topic]
+- Duration: [time needed]
+- Urgency: [timeline]
+- Proposed times: [suggest flexibility]
+- Context: [brief background]
+</code></pre>
+<h3>Feedback Request</h3>
+<pre><code>Draft an email asking for feedback on [document/feature]:
+- What it is: [brief description]
+- What feedback you need: [specific asks]
+- Deadline: [when you need it by]
+- How to provide feedback: [instructions]
+</code></pre>
+<h3>Status Report</h3>
+<pre><code>Draft a weekly status report email:
+- Accomplishments: [this week&#39;s wins]
+- In progress: [current work]
+- Blockers: [issues needing help]
+- Next week: [upcoming priorities]
+- Asks: [what you need]
+</code></pre>
+<hr>
+<h2>Outlook + Teams Together</h2>
+<p>The real power comes from combining Outlook and Teams Copilot:</p>
+<p><strong>After a meeting:</strong></p>
+<ol>
+<li>Get meeting summary from Teams Copilot</li>
+<li>Draft follow-up email in Outlook Copilot</li>
+<li>Reference meeting decisions and action items</li>
+</ol>
+<p><strong>Before a meeting:</strong></p>
+<ol>
+<li>Summarize related email threads in Outlook</li>
+<li>Check Teams chat for recent context</li>
+<li>Prepare with full picture</li>
+</ol>
+<hr>
+<h2>Best Practices</h2>
+<h3>Do:</h3>
+<ul>
+<li>✅ Always review drafts before sending</li>
+<li>✅ Adjust tone for your audience</li>
+<li>✅ Use summarization for long threads</li>
+<li>✅ Prep for meetings using Copilot</li>
+<li>✅ Save effective prompts for reuse</li>
+</ul>
+<h3>Don&#39;t:</h3>
+<ul>
+<li>❌ Send Copilot drafts without review</li>
+<li>❌ Trust summaries for critical decisions without checking</li>
+<li>❌ Over-rely on Copilot for sensitive communications</li>
+<li>❌ Forget to personalize automated drafts</li>
+<li>❌ Skip context when asking for drafts</li>
+</ul>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ How to draft emails quickly with Copilot</li>
+<li>✅ How to adjust tone and length</li>
+<li>✅ How to summarize long email threads</li>
+<li>✅ How to prepare for meetings</li>
+<li>✅ How to manage inbox overload</li>
+</ul>
+<hr>
+<h2>Great Work on Module 1.9!</h2>
+<p>You now know how to use Copilot in Outlook for email drafting, thread summarization, and action item extraction.</p>
+<p><strong>One module remaining in Level 1:</strong>
+Module 1.10: SharePoint &amp; Collaboration</p>
+<p><strong>Continue to Module 1.10 →</strong></p>
+<hr>
+<h2>Quick Reference</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>How To</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Draft email</td>
+<td>Copilot icon in new email</td>
+</tr>
+<tr>
+<td>Reply assist</td>
+<td>Reply → Copilot → &quot;Draft with Copilot&quot;</td>
+</tr>
+<tr>
+<td>Summarize thread</td>
+<td>Copilot icon on email → &quot;Summarize&quot;</td>
+</tr>
+<tr>
+<td>Adjust tone</td>
+<td>&quot;Make this more formal/casual&quot;</td>
+</tr>
+<tr>
+<td>Meeting prep</td>
+<td>Calendar event → Copilot</td>
+</tr>
+</tbody></table>
+
+    </div>
+    <div class="nav-footer"><a href="module-1.8.html" class="nav-btn prev">&larr; 1.8 Copilot in Microsoft Teams</a><a href="index.html" class="nav-btn home">Home</a><a href="module-1.10.html" class="nav-btn next">1.10 Copilot in SharePoint &amp; Collaboration &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

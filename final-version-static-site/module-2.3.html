@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 2.3: Product Strategy - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 2: Advanced PM Workflows &rsaquo; Module 2.3
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">30 min</span>
+        <span class="meta-tag level">Level 2: Advanced PM Workflows</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 2.3: Enterprise Product Strategy with Copilot</h1>
+<p><strong>Duration:</strong> 35 minutes
+<strong>Prerequisites:</strong> Modules 2.1-2.2 completed</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Apply strategic frameworks to enterprise internal products</li>
+<li>Align product strategy with corporate priorities and governance</li>
+<li>Develop portfolio-level thinking for internal tools</li>
+<li>Navigate steering committee strategy discussions</li>
+<li>Communicate strategy to diverse enterprise stakeholders</li>
+</ol>
+<blockquote>
+<p><em>Quick navigation: Strategic Frameworks | Portfolio Strategy | Governance | Competitive Strategy | Communication | Exercise</em></p>
+</blockquote>
+<hr>
+<h2>Enterprise Strategy is Different</h2>
+<p>Enterprise internal product strategy differs fundamentally from external product strategy:</p>
+<table>
+<thead>
+<tr>
+<th>External Product Strategy</th>
+<th>Enterprise Internal Strategy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Product-market fit</td>
+<td>Organizational alignment</td>
+</tr>
+<tr>
+<td>Customer acquisition</td>
+<td>Adoption and change management</td>
+</tr>
+<tr>
+<td>Revenue growth</td>
+<td>Productivity and efficiency</td>
+</tr>
+<tr>
+<td>Competitive differentiation</td>
+<td>Internal tool portfolio fit</td>
+</tr>
+<tr>
+<td>Series A/B/C milestones</td>
+<td>Governance approval gates</td>
+</tr>
+<tr>
+<td>Board presentation</td>
+<td>Steering committee alignment</td>
+</tr>
+</tbody></table>
+<p>Your job isn&#39;t to find product-market fit - it&#39;s to align with organizational priorities, drive adoption, and demonstrate business value.</p>
+<hr>
+<h2>Strategic Frameworks for Enterprise</h2>
+<blockquote>
+<p><strong>Enterprise data guidance:</strong> The financial figures, metrics, and business data used throughout this module are realistic examples for learning purposes. In real use, replace with your organization&#39;s actual data. Always verify calculations independently before presenting to stakeholders.</p>
+</blockquote>
+<blockquote>
+<p><em>~5 min per framework section</em></p>
+</blockquote>
+<h3>Framework 1: Strategic Alignment Analysis</h3>
+<p>Before any initiative, ensure alignment with corporate priorities.</p>
+<blockquote>
+<p><em>(Note: The priorities and metrics below are illustrative for this exercise. In real use, replace with your organization&#39;s actual current strategic priorities.)</em></p>
+</blockquote>
+<pre><code>Analyze strategic alignment for AKX AI-Powered Search.
+
+Accenture Corporate Priorities (Current Year):
+1. GenAI Leadership - Be #1 in AI services
+2. Talent Retention - Reduce attrition from 16% to 12%
+3. Operational Efficiency - 5% productivity improvement
+4. Competitive Positioning - Win vs. McKinsey, BCG
+
+For AI-Powered Search, analyze:
+
+1. **Direct Alignment**
+   - Which corporate priorities does this directly support?
+   - How strong is the connection? (Direct/Indirect/Weak)
+   - What evidence would demonstrate alignment?
+
+2. **Executive Narrative**
+   - How would the CEO describe this investment?
+   - What story does this tell about Accenture?
+
+3. **Portfolio Fit**
+   - How does this complement other internal investments?
+   - Dependencies or conflicts with other initiatives?
+
+4. **Risk to Priorities**
+   - What happens if we DON&#39;T invest?
+   - Competitive risk? Talent risk?
+
+5. **Steering Committee Positioning**
+   - Key talking points for CKO sponsor
+   - Anticipated concerns from other executives
+   - How to frame for maximum support
+
+Format for a steering committee strategy discussion.
+</code></pre>
+<h3>Framework 2: Enterprise SWOT Analysis</h3>
+<blockquote>
+<p><em>A SWOT analysis is a 2×2 grid: Strengths and Weaknesses are internal; Opportunities and Threats are external.</em></p>
+</blockquote>
+<pre><code>Create a SWOT analysis for AKX&#39;s position as Accenture&#39;s
+knowledge management platform.
+
+Context:
+- 700,000+ employees globally
+- 43% weekly active users (target: 60%)
+- Competing with tools employees used at McKinsey, BCG
+- $10M annual investment in platform
+- CKO executive sponsor (Richard Thorne)
+
+For each quadrant (Strengths, Weaknesses, Opportunities, Threats):
+- List 4-5 specific items relevant to enterprise context
+- Note internal vs. external factors
+- Consider governance, change management, talent implications
+
+Then provide:
+1. Strategic implications for each quadrant
+2. Key strategic questions for steering committee
+3. Recommended strategic priorities (top 3)
+</code></pre>
+<h3>Framework 3: Internal Tool Value Chain</h3>
+<blockquote>
+<p><em>The AKX value chain flows: Content Creation → Curation → Search → Expert Connection → Knowledge Application.</em></p>
+</blockquote>
+<pre><code>Apply value chain analysis to AKX.
+
+Value Chain Stages:
+1. Content Creation → 2. Content Curation → 3. Search &amp; Discovery
+→ 4. Expert Connection → 5. Knowledge Application
+
+For each stage:
+- Current capability assessment (1-5)
+- User pain points
+- Competitive comparison (vs. what consultants used elsewhere)
+- Investment opportunity
+
+Identify:
+- Where in the value chain do we differentiate?
+- Where are we weakest?
+- Where should we invest next?
+- What&#39;s the strategic narrative for steering committee?
+</code></pre>
+<blockquote>
+<p><em>Once you&#39;ve worked through this module, use the prompts in Module 3.2 to create visual versions of these frameworks for your steering committee presentations.</em></p>
+</blockquote>
+<hr>
+<h2>Portfolio Strategy for Internal Tools</h2>
+<h3>Your Portfolio View</h3>
+<p>As Senior Product Owner for AKX and ADH, think portfolio-level:</p>
+<pre><code>Analyze the relationship between AKX and ADH as a portfolio.
+
+AKX (Accenture Knowledge Exchange):
+- Knowledge management platform
+- 43% WAU, 700K users
+- AI Search investment underway
+- CKO sponsor
+
+ADH (Accenture Delivery Hub):
+- Project delivery and resource management
+- 67% utilization visibility
+- Integration with AKX planned
+- CPO sponsor
+
+Questions:
+1. **Synergies**
+   - How do these products work together?
+   - What integrations would multiply value?
+   - Example: ADH knows project needs, AKX finds experts
+
+2. **Resource Allocation**
+   - How should investment be split?
+   - Which product has more ROI potential now?
+   - Sequencing: Which investments unlock others?
+
+3. **Stakeholder Management**
+   - Two sponsors - how to coordinate?
+   - Cross-functional dependencies
+   - Unified vs. separate steering committees?
+
+4. **Portfolio Story**
+   - Combined narrative for leadership
+   - &quot;Knowledge to Delivery&quot; value proposition
+   - How this differentiates Accenture
+
+Provide portfolio strategy recommendations for steering committee.
+</code></pre>
+<h3>Enterprise Roadmap Prioritization</h3>
+<p>Unlike startups optimizing for growth, enterprise prioritization considers:</p>
+<pre><code>Help me prioritize the AKX roadmap for next fiscal year.
+
+Potential Initiatives:
+1. AI-Powered Search (already approved, in progress)
+2. Automated Expert Matching
+3. Content Quality Scoring
+4. Mobile Experience Redesign
+5. Practice-Specific Dashboards
+6. Integration with ADH (resource data)
+7. GenAI Content Summarization
+8. Gamification for Content Contribution
+
+For each initiative, score:
+
+**Enterprise Criteria:**
+- Strategic Alignment (1-5): Corporate priority alignment
+- Adoption Impact (1-5): Will this drive WAU?
+- Sponsor Interest (1-5): Executive visibility/support
+- Change Management Complexity (1-5): How hard to roll out?
+- Integration Dependencies (1-5): Blocked by other work?
+- Resource Availability (S/M/L/XL): Team capacity
+
+**Business Value:**
+- Productivity Gain: Time savings potential
+- Competitive Response: Addresses McKinsey/BCG comparison
+- Talent Impact: Helps retention/satisfaction
+
+Create prioritized roadmap with:
+1. &quot;Now&quot; (already committed)
+2. &quot;Next&quot; (Q2 priorities)
+3. &quot;Later&quot; (backlog for future)
+4. &quot;Not Now&quot; (deprioritized with rationale)
+
+Include steering committee presentation summary.
+</code></pre>
+<hr>
+<h2>Governance and Steering Committee Strategy</h2>
+<h3>Navigating Enterprise Governance</h3>
+<pre><code>Help me prepare for the AKX steering committee strategy discussion.
+
+Steering Committee Members:
+- Richard Thorne (CKO) - Executive Sponsor
+- Jennifer Walsh (VP Internal Digital Products) - My manager
+- David Kim (MD Technology Practice) - Business Champion
+- Sarah Mitchell (MD Strategy Practice) - Business Champion
+- Maya Chen (CFO representative) - Budget authority
+- Tom Bradley (CISO representative) - Risk/security
+
+Each member cares about different things. Help me prepare:
+
+1. **For Richard (CKO Sponsor)**
+   - What CEO-level narrative does he need?
+   - How does this support knowledge strategy?
+   - What can he take to the executive committee?
+
+2. **For David &amp; Sarah (MDs)**
+   - How does this help their practices win?
+   - ROI specific to their teams
+   - Success stories they can share
+
+3. **For Maya (CFO rep)**
+   - Investment justification
+   - ROI and payback period
+   - Budget efficiency
+
+4. **For Tom (CISO rep)**
+   - AI safety considerations
+   - Data privacy controls
+   - Risk mitigation
+
+5. **Anticipated Conflicts**
+   - Where might members disagree?
+   - How to navigate competing priorities?
+   - What compromises might be needed?
+
+Create a &quot;read-ahead&quot; document and talking points for each stakeholder.
+</code></pre>
+<h3>Strategy Approval Process</h3>
+<pre><code>Map the approval process for a major AKX initiative ($2M+).
+
+I need to understand:
+
+1. **Approval Gates**
+   - What bodies need to approve?
+   - In what sequence?
+   - What documentation is required at each stage?
+
+2. **Timeline**
+   - Typical duration from proposal to approval?
+   - When are key decision meetings?
+   - What can we do in parallel vs. sequential?
+
+3. **Stakeholder Influence**
+   - Who has formal approval authority?
+   - Who has informal influence?
+   - Who could block this and why?
+
+4. **Risk Mitigation**
+   - What concerns typically arise?
+   - How to pre-address common objections?
+   - Who should we align with before formal meetings?
+
+5. **Success Factors**
+   - What makes proposals succeed?
+   - What common mistakes kill initiatives?
+   - Examples of well-positioned proposals?
+
+Create an approval strategy timeline with key milestones.
+</code></pre>
+<hr>
+<h2>Competitive Strategy for Internal Tools</h2>
+<p>Your competition isn&#39;t external products - it&#39;s the status quo, workarounds, and tools employees used elsewhere.</p>
+<h3>Using Researcher for Competitive Intel</h3>
+<pre><code>[Use Researcher Agent]
+
+Research knowledge management approaches at major consulting firms.
+
+I need competitive intelligence on:
+1. McKinsey Knowledge Center
+2. BCG internal knowledge platform
+3. Deloitte&#39;s knowledge management approach
+4. Bain&#39;s internal tools
+
+For each competitor:
+- Platform name and capabilities
+- AI/GenAI investments
+- Reported adoption rates (if available)
+- What employees who&#39;ve worked there say
+- Unique differentiators
+
+Also research:
+- Industry best practices for enterprise KM at scale
+- Common challenges at 100K+ employee organizations
+- What makes knowledge platforms succeed or fail
+
+Create a competitive intelligence brief for steering committee.
+Include recommendations for where Accenture should focus.
+</code></pre>
+<h3>Competitive Positioning for Internal Tools</h3>
+<pre><code>Help me develop competitive positioning for AKX.
+
+Our internal competition:
+- Status quo: &quot;I&#39;ll just ask my network&quot;
+- Workarounds: &quot;I use Google/ChatGPT instead&quot;
+- Legacy tools: &quot;I keep my own folder of templates&quot;
+- Memory of better tools: &quot;At McKinsey, we had...&quot;
+
+For each competitor:
+1. Why do people use it instead of AKX?
+2. What would make them switch?
+3. How do we address their objections?
+
+Also develop:
+- **Value Proposition**: Why AKX over alternatives?
+- **Key Messages**: For Partners vs. Consultants vs. New Hires
+- **Success Stories**: Proof points that overcome skepticism
+- **Champion Playbook**: How supporters can advocate for AKX
+
+Format for change management communications.
+</code></pre>
+<hr>
+<h2>Multi-Stakeholder Strategy Communication</h2>
+<h3>Executive Summary for Steering Committee</h3>
+<pre><code>Transform my AKX strategy into a steering committee executive summary.
+
+[Paste your strategy work]
+
+Create a 1-page executive summary with:
+
+1. **Strategic Context** (2-3 sentences)
+   - Why this matters now
+   - Alignment with corporate priorities
+
+2. **Strategy Statement** (1 sentence)
+   - Clear, memorable, 10 words or less
+
+3. **Key Strategic Bets** (3 bullets)
+   - Major investments/initiatives
+   - Expected outcomes
+
+4. **Success Metrics** (3-4 KPIs)
+   - What we&#39;ll measure
+   - Targets and timeline
+
+5. **Investment Required** (specific ask)
+   - Budget, headcount, timeline
+   - What we get for the investment
+
+6. **Risk &amp; Mitigation** (top 2)
+   - Biggest risks
+   - How we&#39;ll address them
+
+7. **Decision Needed**
+   - Specific approval being requested
+   - Timeline for decision
+
+Tone: Confident, data-driven, business-focused.
+Format for 5-minute steering committee review.
+</code></pre>
+<h3>Strategy for Different Audiences</h3>
+<pre><code>I need to communicate AKX strategy to four different audiences.
+Help me tailor the message for each.
+
+CORE STRATEGY:
+We&#39;re investing in AI-powered search to make AKX the fastest way to find
+knowledge and experts at Accenture, driving adoption from 43% to 60% WAU
+and generating $50M in annual productivity value.
+
+Create versions for:
+
+1. **Steering Committee** (executives)
+   - Focus: Strategic alignment, ROI, governance
+   - Length: 5-minute verbal summary
+   - Tone: Confident, business-focused
+
+2. **Managing Directors** (practice leaders)
+   - Focus: How this helps their practice win
+   - Length: 2-paragraph email
+   - Tone: Collaborative, results-oriented
+
+3. **Consultants** (daily users)
+   - Focus: How this helps their daily work
+   - Length: Slack message
+   - Tone: Practical, peer-to-peer
+
+4. **Change Management Team** (rollout partners)
+   - Focus: Adoption approach, training needs
+   - Length: Strategy brief
+   - Tone: Detailed, actionable
+
+For each version, include the key message and call to action.
+</code></pre>
+<hr>
+<h2>Devil&#39;s Advocate Analysis</h2>
+<p>Ask Copilot to stress-test your strategy:</p>
+<pre><code>Play devil&#39;s advocate on this AKX strategy:
+
+STRATEGY SUMMARY:
+Invest $2M in AI-powered search to improve AKX adoption from 43% to 60%
+WAU, generating $50M+ in annual productivity value through time savings.
+
+As a skeptical steering committee member, challenge:
+
+1. **Assumption Testing**
+   - What assumptions are we making about adoption?
+   - What if users still prefer their workarounds?
+   - Are our time savings estimates realistic?
+
+2. **Competitive Reality**
+   - Why haven&#39;t we solved this already?
+   - What makes us think AI search will work?
+   - What if McKinsey is investing 10x more?
+
+3. **Execution Risk**
+   - 700K users is massive scale - can we really change behavior?
+   - What if the technology doesn&#39;t work as promised?
+   - Change management capacity concerns?
+
+4. **Alternative Investments**
+   - Why this vs. other priorities?
+   - What&#39;s the opportunity cost?
+   - Could this money have more impact elsewhere?
+
+5. **Pre-Mortem**
+   - It&#39;s 18 months from now and this failed. Why?
+   - What went wrong?
+   - What should we have done differently?
+
+Be tough but constructive. I need to stress-test before steering committee.
+</code></pre>
+<hr>
+<h2>Exercise: Strategic Planning Session</h2>
+<p>Let&#39;s run through a complete strategic planning exercise.</p>
+<h3>Step 1: Situation Analysis</h3>
+<pre><code>Create a strategic situation analysis for AKX.
+
+Consider:
+1. Internal environment (adoption, satisfaction, capabilities)
+2. External environment (competitors, industry trends)
+3. Stakeholder landscape (sponsors, champions, users)
+4. Resource constraints (budget, team, capacity)
+5. Governance context (approval requirements, timeline pressures)
+
+Format as a &quot;Strategic Context&quot; brief for steering committee.
+</code></pre>
+<h3>Step 2: Strategic Options</h3>
+<pre><code>Generate 3 strategic options for AKX&#39;s next fiscal year:
+
+**Option A: AI-First Transformation**
+- Aggressive AI investment
+- High risk, high reward
+- Requires significant budget increase
+
+**Option B: Adoption Acceleration**
+- Focus on driving usage of existing capabilities
+- Lower investment, change management focus
+- Incremental improvement
+
+**Option C: Platform Integration**
+- Connect AKX with ADH and other tools
+- Medium investment
+- Network effects strategy
+
+For each option:
+- Key initiatives
+- Investment required
+- Expected outcomes (WAU, ROI, satisfaction)
+- Risks and dependencies
+- Steering committee reception (likely support/concern)
+
+Recommend an option with supporting rationale.
+</code></pre>
+<h3>Step 3: Stakeholder Alignment</h3>
+<pre><code>Create a stakeholder alignment plan for the recommended strategy.
+
+For each key stakeholder:
+- Their likely reaction
+- Their key concerns
+- How to address concerns
+- What they need to champion this
+- When/how to engage them
+
+Map the path to steering committee approval.
+</code></pre>
+<hr>
+<h2>Best Practices for Enterprise Strategy</h2>
+<h3>Do:</h3>
+<ul>
+<li>✅ Always connect to corporate priorities</li>
+<li>✅ Understand governance and approval processes</li>
+<li>✅ Build coalition before formal presentations</li>
+<li>✅ Prepare for skeptical questions</li>
+<li>✅ Show portfolio thinking (how products connect)</li>
+<li>✅ Include change management in strategy</li>
+</ul>
+<h3>Don&#39;t:</h3>
+<ul>
+<li>❌ Assume good ideas get approved automatically</li>
+<li>❌ Ignore political dynamics</li>
+<li>❌ Present strategy without stakeholder pre-alignment</li>
+<li>❌ Focus only on product without adoption</li>
+<li>❌ Underestimate change management complexity</li>
+<li>❌ Forget the &quot;why not&quot; analysis</li>
+</ul>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ How to apply strategic frameworks to enterprise products</li>
+<li>✅ How to align strategy with governance and corporate priorities</li>
+<li>✅ How to think portfolio-level across internal tools</li>
+<li>✅ How to prepare for steering committee strategy discussions</li>
+<li>✅ How to communicate strategy to diverse stakeholders</li>
+</ul>
+<hr>
+<h2>Next Steps</h2>
+<p>Continue to <strong>Level 3: Product Visuals</strong></p>
+<p>In Level 3, you&#39;ll learn:</p>
+<ul>
+<li>Image generation basics with DALL-E 3</li>
+<li>Creating PM visuals (personas, diagrams, roadmaps)</li>
+<li>Enterprise presentation graphics</li>
+<li>Microsoft Designer integration</li>
+</ul>
+<hr>
+<h2>Quick Reference: Enterprise Strategy Prompts</h2>
+<table>
+<thead>
+<tr>
+<th>Framework</th>
+<th>Prompt Starter</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Strategic Alignment</td>
+<td>&quot;Analyze alignment with corporate priorities...&quot;</td>
+</tr>
+<tr>
+<td>Enterprise SWOT</td>
+<td>&quot;Create SWOT for internal platform position...&quot;</td>
+</tr>
+<tr>
+<td>Portfolio Analysis</td>
+<td>&quot;Analyze portfolio relationship between...&quot;</td>
+</tr>
+<tr>
+<td>Governance Navigation</td>
+<td>&quot;Map the approval process for...&quot;</td>
+</tr>
+<tr>
+<td>Competitive Intel</td>
+<td>&quot;[Researcher] Research competitor approaches...&quot;</td>
+</tr>
+<tr>
+<td>Stakeholder Communication</td>
+<td>&quot;Create strategy versions for different audiences...&quot;</td>
+</tr>
+<tr>
+<td>Devil&#39;s Advocate</td>
+<td>&quot;Play devil&#39;s advocate on this strategy...&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Ready for visual creation? Let&#39;s go to Level 3!</strong></p>
+
+    </div>
+    <div class="nav-footer"><a href="module-2.2.html" class="nav-btn prev">&larr; 2.2 Analyzing Product Data</a><a href="index.html" class="nav-btn home">Home</a><a href="module-3.1.html" class="nav-btn next">3.1 Image Generation Basics &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

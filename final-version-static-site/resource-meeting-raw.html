@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meeting Notes (Raw) - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Sample Files &rsaquo; Meeting Notes (Raw)
+      </div>
+    </div>
+    <div class="content">
+      <p>THURSDAY 2/13 - HEAVY MEETING DAY</p>
+<p>=== Meeting 1: AKX Steering Committee (9am) ===</p>
+<p>attendees: richard thorne (CKO, sponsor), jennifer walsh (VP internal digital), david kim (MD tech practice), sarah mitchell (MD strategy practice), me</p>
+<p>context: monthly steering committee for AKX</p>
+<p>richard kicked off - &quot;where are we on WAU?&quot;</p>
+<ul>
+<li>current: 43% (same as last month basically)</li>
+<li>target: 60% by fiscal year end</li>
+<li>he&#39;s concerned we&#39;re not moving fast enough</li>
+</ul>
+<p>jennifer showed the roadmap slide</p>
+<ul>
+<li>AI search: in development (on track for Q2)</li>
+<li>expert matching: requirements gathering</li>
+<li>mobile improvements: design phase</li>
+</ul>
+<p>david kim (tech practice): &quot;my team complains search is terrible&quot;</p>
+<ul>
+<li>&quot;they search for SAP S/4HANA migration experience, get 500 results&quot;</li>
+<li>&quot;most results are from 2019 - completely outdated&quot;</li>
+<li>&quot;people give up after 2-3 searches and just email their network&quot;</li>
+</ul>
+<p>sarah mitchell (strategy practice): &quot;same issue&quot;</p>
+<ul>
+<li>&quot;McKinsey people who joined us say their knowledge center is so much better&quot;</li>
+<li>&quot;we&#39;re losing competitive positioning - partners can&#39;t find expertise fast enough&quot;</li>
+<li>&quot;lost a deal last month - client asked for blockchain expertise, took us 4 days to find someone&quot;<ul>
+<li>competitor (BCG) had their team identified in 48 hours</li>
+</ul>
+</li>
+</ul>
+<p>DISCUSSION: AI Search priority
+richard: &quot;this is the #1 priority. nothing else matters until search works&quot;
+me: &quot;AI search is in development, we&#39;re targeting Q2 launch&quot;
+david: &quot;Q2 is too late. can we accelerate?&quot;</p>
+<p>jennifer: &quot;team is constrained. mobile app work is ongoing&quot;
+richard: &quot;mobile can slip. search is more important.&quot;
+jennifer: &quot;I&#39;ll discuss with the team&quot;</p>
+<p>sarah mentioned expert profiles are outdated</p>
+<ul>
+<li>&quot;people don&#39;t update their skills&quot;</li>
+<li>&quot;project history isn&#39;t complete&quot;</li>
+<li>&quot;can&#39;t trust the data&quot;</li>
+</ul>
+<p>me: we&#39;re exploring automatic profile updates from ADH</p>
+<ul>
+<li>pull skills from project assignments</li>
+<li>validate with managers</li>
+<li>david liked this idea</li>
+</ul>
+<p>ACTION ITEMS:</p>
+<ul>
+<li>jennifer: assess if we can accelerate AI search (Q2 → Q1 end)</li>
+<li>me: draft proposal for automatic skill profile updates</li>
+<li>david: identify 3 practice leads to pilot improved search</li>
+<li>sarah: share the competitive loss analysis (BCG deal)</li>
+</ul>
+<p>richard closing: &quot;I&#39;m presenting to the CEO next month. Need to show progress.&quot;</p>
+<ul>
+<li>pressure is HIGH</li>
+<li>adoption numbers need to move</li>
+</ul>
+<p>side conversation with david after:</p>
+<ul>
+<li>&quot;technology practice is your biggest advocate, but also your harshest critic&quot;</li>
+<li>&quot;we have 80,000 consultants who need this to work&quot;</li>
+<li>suggested I shadow some of his team to understand search pain points</li>
+</ul>
+<hr>
+<p>=== Meeting 2: Change Management Planning (11am) ===</p>
+<p>attendees: me, lisa chen (change management lead), tom rodriguez (communications), priya&#39;s EA (scheduling)</p>
+<p>context: planning adoption campaign for AI search launch</p>
+<p>lisa: &quot;feature launches fail when change management is an afterthought&quot;</p>
+<ul>
+<li>&quot;we need to start comms planning NOW, not when the feature ships&quot;</li>
+<li>&quot;people won&#39;t discover AI search on their own - need active promotion&quot;</li>
+</ul>
+<p>ADOPTION STRATEGY discussion:</p>
+<p>lisa&#39;s framework:</p>
+<ol>
+<li>awareness (know it exists)</li>
+<li>desire (want to use it)</li>
+<li>knowledge (know how to use it)</li>
+<li>ability (can actually use it)</li>
+<li>reinforcement (keep using it)</li>
+</ol>
+<p>current state:</p>
+<ul>
+<li>awareness is OK (people know AKX exists)</li>
+<li>desire is LOW (don&#39;t trust search results, gave up)</li>
+<li>knowledge is LOW (don&#39;t know tips/tricks)</li>
+<li>ability is OK (UI is relatively intuitive)</li>
+<li>reinforcement is LOW (no ongoing engagement)</li>
+</ul>
+<p>PROPOSED CAMPAIGN:</p>
+<p>tom: &quot;we should target by role - partners need different messaging than consultants&quot;</p>
+<p>partner messaging (priya&#39;s persona):</p>
+<ul>
+<li>&quot;find experts in 5 minutes, not 5 days&quot;</li>
+<li>&quot;win more deals with faster team identification&quot;</li>
+<li>business impact focused</li>
+</ul>
+<p>consultant messaging (marcus&#39;s persona):</p>
+<ul>
+<li>&quot;stop recreating work that already exists&quot;</li>
+<li>&quot;find templates and examples instantly&quot;</li>
+<li>efficiency focused</li>
+</ul>
+<p>delivery manager messaging (elena&#39;s persona):</p>
+<ul>
+<li>&quot;find project plans and lessons learned&quot;</li>
+<li>&quot;staff projects with the right skills&quot;</li>
+<li>project success focused</li>
+</ul>
+<p>CHANNELS:</p>
+<ul>
+<li>global town hall announcement (richard)</li>
+<li>practice-specific webinars (MDs)</li>
+<li>email campaign (3-part series)</li>
+<li>Teams channel notifications</li>
+<li>in-app banners and tutorials</li>
+<li>&quot;AKX Champions&quot; program in each practice</li>
+</ul>
+<p>lisa: &quot;we need executive sponsorship visible&quot;</p>
+<ul>
+<li>richard should do a video</li>
+<li>MDs should endorse in practice meetings</li>
+<li>&quot;if leadership doesn&#39;t use it, why should I?&quot;</li>
+</ul>
+<p>TIMELINE:</p>
+<ul>
+<li>week 1: pre-launch comms (&quot;something big is coming&quot;)</li>
+<li>week 2: launch announcement</li>
+<li>weeks 3-4: training webinars</li>
+<li>weeks 5-8: reinforcement campaign</li>
+<li>week 8+: measure and adjust</li>
+</ul>
+<p>CONCERNS:
+tom: &quot;competing priorities - there&#39;s always something&quot;</p>
+<ul>
+<li>company town hall next month</li>
+<li>fiscal year end communications</li>
+<li>need to find the right window</li>
+</ul>
+<p>lisa: &quot;training capacity is limited&quot;</p>
+<ul>
+<li>can only run 10-15 webinars</li>
+<li>suggest self-paced learning modules instead</li>
+<li>partner with L&amp;D team</li>
+</ul>
+<p>METRICS to track:</p>
+<ul>
+<li>campaign reach (how many saw comms)</li>
+<li>webinar attendance</li>
+<li>search usage before/after</li>
+<li>satisfaction surveys</li>
+</ul>
+<p>ACTION ITEMS:</p>
+<ul>
+<li>me: confirm launch date with jennifer</li>
+<li>lisa: draft change management plan (by next friday)</li>
+<li>tom: create comms calendar and messaging</li>
+<li>me: coordinate with priya&#39;s team for practice pilot</li>
+<li>lisa: schedule stakeholder alignment meetings</li>
+</ul>
+<p>tom: &quot;oh, also - richard wants a steering committee update deck by EOD friday&quot;</p>
+<ul>
+<li>need to summarize all this</li>
+<li>ugh, more powerpoint</li>
+</ul>
+<hr>
+<p>=== Meeting 3: Technical Integration Review (2pm) ===</p>
+<p>attendees: me, raj patel (tech lead), amit singh (ADH team), maya chen (security)</p>
+<p>context: reviewing integration between AKX and ADH for real-time expert availability</p>
+<p>raj explaining current state:</p>
+<ul>
+<li>AKX shows expert profiles</li>
+<li>ADH has real-time staffing data</li>
+<li>NO integration currently</li>
+<li>&quot;we pull a monthly data dump - always stale&quot;</li>
+</ul>
+<p>PROBLEM:</p>
+<ul>
+<li>priya searches for expert in AKX</li>
+<li>profile says &quot;available&quot;</li>
+<li>actually, that person got staffed 2 weeks ago</li>
+<li>frustrating experience, erodes trust</li>
+</ul>
+<p>PROPOSED SOLUTION:
+raj: &quot;real-time API integration&quot;</p>
+<ul>
+<li>ADH exposes availability endpoint</li>
+<li>AKX queries on profile load</li>
+<li>&quot;available&quot;, &quot;on project (ends MM/DD)&quot;, &quot;on bench&quot;</li>
+</ul>
+<p>amit (ADH): &quot;we can build the API&quot;</p>
+<ul>
+<li>concern: performance at scale</li>
+<li>700K+ employees</li>
+<li>can&#39;t query for every profile view</li>
+<li>need caching strategy</li>
+</ul>
+<p>raj&#39;s suggestion:</p>
+<ul>
+<li>cache availability data (refresh hourly)</li>
+<li>real-time query only for &quot;detailed view&quot;</li>
+<li>background sync overnight for full data</li>
+</ul>
+<p>maya (security): &quot;data classification concerns&quot;</p>
+<ul>
+<li>availability data is HR-sensitive</li>
+<li>who can see who&#39;s on bench?</li>
+<li>&quot;partners can see their practice, not all practices&quot;</li>
+<li>need role-based access</li>
+</ul>
+<p>OPEN QUESTIONS:</p>
+<ol>
+<li><p>what exactly do we show?</p>
+<ul>
+<li>just available/not available?</li>
+<li>or project name and end date?</li>
+<li>amit: &quot;project name might be confidential&quot;</li>
+</ul>
+</li>
+<li><p>skill matching accuracy</p>
+<ul>
+<li>ADH skill data vs AKX skill data</li>
+<li>they don&#39;t always match</li>
+<li>need single source of truth</li>
+<li>raj: &quot;this is a bigger project&quot;</li>
+</ul>
+</li>
+<li><p>what about contractors?</p>
+<ul>
+<li>raj: &quot;contractors aren&#39;t in ADH consistently&quot;</li>
+<li>amit: &quot;separate system for contingent workforce&quot;</li>
+<li>me: out of scope for now, but note it</li>
+</ul>
+</li>
+</ol>
+<p>TECHNICAL ESTIMATE (raj):</p>
+<ul>
+<li>API development (ADH side): 2 sprints</li>
+<li>integration code (AKX side): 2 sprints</li>
+<li>testing and rollout: 1 sprint</li>
+<li>total: 5 sprints (~10 weeks)</li>
+</ul>
+<p>SECURITY REQUIREMENTS (maya):</p>
+<ul>
+<li>all data in transit encrypted</li>
+<li>audit logging on access</li>
+<li>consent framework (GDPR concerns for EU employees)</li>
+<li>data retention policy</li>
+</ul>
+<p>amit raised data sync issues</p>
+<ul>
+<li>employee terminations</li>
+<li>transfers between practices</li>
+<li>leave of absence status</li>
+<li>&quot;edge cases are endless&quot;</li>
+</ul>
+<p>DECISION: proceed with MVP</p>
+<ul>
+<li>show &quot;available now&quot; or &quot;on project&quot;</li>
+<li>no project details in v1</li>
+<li>partner-level visibility only</li>
+<li>revisit expanded features later</li>
+</ul>
+<p>ACTION ITEMS:</p>
+<ul>
+<li>raj: detailed technical spec (2 weeks)</li>
+<li>amit: ADH API design and estimate</li>
+<li>maya: security review document</li>
+<li>me: update PRD with technical constraints</li>
+<li>me: get sponsor sign-off on MVP scope</li>
+</ul>
+<p>raj after meeting: &quot;this is going to be harder than it looks&quot;</p>
+<ul>
+<li>data quality issues in both systems</li>
+<li>&quot;garbage in, garbage out&quot;</li>
+<li>suggests data cleanup initiative in parallel</li>
+</ul>
+<hr>
+<p>RANDOM NOTES / PARKING LOT:</p>
+<ul>
+<li><p>jennifer mentioned budget review coming up (march)</p>
+<ul>
+<li>need to prepare justification for additional headcount</li>
+<li>ROI analysis needed</li>
+</ul>
+</li>
+<li><p>david kim wants a &quot;practice dashboard&quot; in AKX</p>
+<ul>
+<li>see all expertise in his practice</li>
+<li>track knowledge contributions</li>
+<li>&quot;my practice creates content, other practices consume it - I want credit&quot;</li>
+</ul>
+</li>
+<li><p>complaints about AKX performance on mobile</p>
+<ul>
+<li>multiple people mentioned this</li>
+<li>&quot;takes 10+ seconds to load&quot;</li>
+<li>need to prioritize mobile performance</li>
+</ul>
+</li>
+<li><p>heard from lisa: some partners don&#39;t even know AKX exists!</p>
+<ul>
+<li>&quot;I&#39;ve been here 15 years, never heard of it&quot;</li>
+<li>brand awareness campaign needed</li>
+</ul>
+</li>
+<li><p>sarah&#39;s assistant mentioned executive dashboard request</p>
+<ul>
+<li>CKO wants weekly metrics automatically</li>
+<li>currently manual slide deck every week</li>
+<li>could save hours</li>
+</ul>
+</li>
+<li><p>overheard in hallway: deloitte is investing heavily in their knowledge platform</p>
+<ul>
+<li>competitive pressure increasing</li>
+<li>BCG&#39;s AI tools are apparently impressive</li>
+<li>need to move faster</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>PRIORITIES EMERGING:</p>
+<ol>
+<li>AI search (CRITICAL - richard&#39;s #1 priority)</li>
+<li>expert availability integration (enables expert matching)</li>
+<li>adoption campaign (no point building if no one uses it)</li>
+<li>mobile performance (partners are mobile)</li>
+<li>data quality (underlying issue for everything)</li>
+</ol>
+<p>need to balance feature development with adoption work
+can&#39;t do everything at once - capacity constrained</p>
+<hr>
+<p>FOLLOW-UPS NEEDED:
+✓ reviewed steering committee notes</p>
+<ul>
+<li>draft proposal for automatic skill profiles (me)</li>
+<li>change management plan draft (lisa)</li>
+<li>comms calendar (tom)</li>
+<li>technical spec for integration (raj)</li>
+<li>ADH API design (amit)</li>
+<li>security review (maya)</li>
+<li>practice pilot coordination with david&#39;s team (me)</li>
+<li>ROI analysis for budget review (me)</li>
+<li>steering committee deck by friday (me)</li>
+</ul>
+<p>way too much on my plate...</p>
+<hr>
+<p>UPCOMING THIS WEEK:</p>
+<ul>
+<li>friday: steering committee deck due</li>
+<li>monday: change management review</li>
+<li>tuesday: technical deep dive with raj</li>
+<li>wednesday: 1:1 with jennifer</li>
+<li>thursday: practice shadowing with david&#39;s team</li>
+</ul>
+<p>data to pull:</p>
+<ul>
+<li>AKX usage by practice (who&#39;s using, who&#39;s not?)</li>
+<li>search success rate trends (is it getting worse?)</li>
+<li>expert connection rates (are people finding experts?)</li>
+<li>ADH data quality metrics (how stale is the data?)</li>
+<li>competitive analysis (what&#39;s BCG doing?)</li>
+</ul>
+<hr>
+<p>═══════════════════════════════════════════════════════════════════════════════
+PROCESSED BY COPILOT
+Generated: February 13, 2025 at 5:30 PM
+═══════════════════════════════════════════════════════════════════════════════</p>
+<h1>ACTION ITEMS SUMMARY</h1>
+<p><em>The messy notes above were processed into this clean summary below</em></p>
+<h2>By Owner</h2>
+<h3>You (Senior Product Owner)</h3>
+<table>
+<thead>
+<tr>
+<th>Action Item</th>
+<th>Meeting</th>
+<th>Priority</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Draft proposal for automatic skill profile updates</td>
+<td>Steering Committee</td>
+<td>High</td>
+<td>Mon 2/17</td>
+</tr>
+<tr>
+<td>Confirm AI search launch date with Jennifer</td>
+<td>Change Management</td>
+<td>High</td>
+<td>Fri 2/14</td>
+</tr>
+<tr>
+<td>Coordinate with Priya&#39;s team for practice pilot</td>
+<td>Change Management</td>
+<td>Medium</td>
+<td>Mon 2/17</td>
+</tr>
+<tr>
+<td>Update PRD with technical constraints</td>
+<td>Technical Review</td>
+<td>High</td>
+<td>Tue 2/18</td>
+</tr>
+<tr>
+<td>Get sponsor sign-off on MVP scope</td>
+<td>Technical Review</td>
+<td>High</td>
+<td>Wed 2/19</td>
+</tr>
+<tr>
+<td>Steering committee update deck</td>
+<td>Parking Lot</td>
+<td>High</td>
+<td>Fri 2/14</td>
+</tr>
+<tr>
+<td>ROI analysis for budget review</td>
+<td>Parking Lot</td>
+<td>Medium</td>
+<td>Fri 2/28</td>
+</tr>
+</tbody></table>
+<h3>Jennifer Walsh (VP Internal Digital Products)</h3>
+<table>
+<thead>
+<tr>
+<th>Action Item</th>
+<th>Meeting</th>
+<th>Priority</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Assess if AI search can be accelerated (Q2 → Q1)</td>
+<td>Steering Committee</td>
+<td>Critical</td>
+<td>Mon 2/17</td>
+</tr>
+</tbody></table>
+<h3>David Kim (MD Technology Practice)</h3>
+<table>
+<thead>
+<tr>
+<th>Action Item</th>
+<th>Meeting</th>
+<th>Priority</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Identify 3 practice leads to pilot improved search</td>
+<td>Steering Committee</td>
+<td>Medium</td>
+<td>Fri 2/21</td>
+</tr>
+</tbody></table>
+<h3>Sarah Mitchell (MD Strategy Practice)</h3>
+<table>
+<thead>
+<tr>
+<th>Action Item</th>
+<th>Meeting</th>
+<th>Priority</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Share competitive loss analysis (BCG deal)</td>
+<td>Steering Committee</td>
+<td>Medium</td>
+<td>Fri 2/14</td>
+</tr>
+</tbody></table>
+<h3>Lisa Chen (Change Management Lead)</h3>
+<table>
+<thead>
+<tr>
+<th>Action Item</th>
+<th>Meeting</th>
+<th>Priority</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Draft change management plan</td>
+<td>Change Management</td>
+<td>High</td>
+<td>Fri 2/21</td>
+</tr>
+<tr>
+<td>Schedule stakeholder alignment meetings</td>
+<td>Change Management</td>
+<td>Medium</td>
+<td>Mon 2/17</td>
+</tr>
+</tbody></table>
+<h3>Tom Rodriguez (Communications)</h3>
+<table>
+<thead>
+<tr>
+<th>Action Item</th>
+<th>Meeting</th>
+<th>Priority</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Create comms calendar and messaging</td>
+<td>Change Management</td>
+<td>High</td>
+<td>Fri 2/21</td>
+</tr>
+</tbody></table>
+<h3>Raj Patel (Tech Lead)</h3>
+<table>
+<thead>
+<tr>
+<th>Action Item</th>
+<th>Meeting</th>
+<th>Priority</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Detailed technical spec for integration</td>
+<td>Technical Review</td>
+<td>High</td>
+<td>Thu 2/27</td>
+</tr>
+</tbody></table>
+<h3>Amit Singh (ADH Team)</h3>
+<table>
+<thead>
+<tr>
+<th>Action Item</th>
+<th>Meeting</th>
+<th>Priority</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>ADH API design and estimate</td>
+<td>Technical Review</td>
+<td>High</td>
+<td>Thu 2/27</td>
+</tr>
+</tbody></table>
+<h3>Maya Chen (Security)</h3>
+<table>
+<thead>
+<tr>
+<th>Action Item</th>
+<th>Meeting</th>
+<th>Priority</th>
+<th>Due Date</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Security review document</td>
+<td>Technical Review</td>
+<td>High</td>
+<td>Thu 2/27</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Key Decisions Needed</h2>
+<ol>
+<li><strong>AI Search Acceleration</strong> - Can we move from Q2 to Q1 end? Jennifer assessing capacity</li>
+<li><strong>Expert Availability MVP Scope</strong> - Approved: show available/on project only, no details</li>
+<li><strong>Adoption Campaign Timing</strong> - Need to find window that doesn&#39;t conflict with fiscal year end comms</li>
+</ol>
+<h2>Critical Risks Identified</h2>
+<ul>
+<li><strong>Competitive Pressure</strong>: BCG beat us on a deal due to faster expert identification (4 days vs 48 hours)</li>
+<li><strong>Executive Visibility</strong>: CKO presenting to CEO next month, needs to show progress</li>
+<li><strong>Data Quality</strong>: Both AKX and ADH have stale/incomplete data affecting feature reliability</li>
+</ul>
+<h2>This Week&#39;s Calendar</h2>
+<ul>
+<li><strong>Friday 2/14</strong>: Steering committee deck due</li>
+<li><strong>Monday 2/17</strong>: Change management review</li>
+<li><strong>Tuesday 2/18</strong>: Technical deep dive with Raj</li>
+<li><strong>Wednesday 2/19</strong>: 1:1 with Jennifer</li>
+<li><strong>Thursday 2/20</strong>: Practice shadowing with David&#39;s team</li>
+</ul>
+<hr>
+<p><em>Generated from 3 meetings on Thursday 2/13</em></p>
+
+    </div>
+    <div class="nav-footer">
+      <a href="index.html" class="nav-btn home">&larr; Back to Course Home</a>
+    </div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

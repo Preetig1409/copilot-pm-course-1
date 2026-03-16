@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.6: Building Context with Memory - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 1: Foundation &rsaquo; Module 1.6
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">15 min</span>
+        <span class="meta-tag level">Level 1: Foundation</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 1.6: Building Context with Copilot Memory</h1>
+<p><strong>Duration:</strong> 15 minutes
+<strong>Prerequisites:</strong> Modules 1.1-1.5 completed</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Understand how Copilot Memory works</li>
+<li>Teach Copilot about your role, projects, and preferences</li>
+<li>Create context documents for project-specific information</li>
+<li>Manage what Copilot remembers</li>
+<li>Get more relevant, personalized responses over time</li>
+</ol>
+<hr>
+<h2>What is Copilot Memory?</h2>
+<p>Copilot Memory is a feature that allows Copilot to <strong>remember key information about you</strong> across conversations. This makes future interactions more relevant and personalized.</p>
+<h3>What Memory Does</h3>
+<ul>
+<li>Stores preferences you share with Copilot</li>
+<li>Remembers context about your work</li>
+<li>Adapts responses based on what it knows</li>
+<li>Persists across sessions (unlike chat history)</li>
+</ul>
+<h3>How It&#39;s Different from Chat History</h3>
+<table>
+<thead>
+<tr>
+<th>Chat History</th>
+<th>Copilot Memory</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Disappears after session</td>
+<td>Persists forever (until deleted)</td>
+</tr>
+<tr>
+<td>Linear conversation</td>
+<td>Extracted key facts</td>
+</tr>
+<tr>
+<td>Everything is saved</td>
+<td>Only important info remembered</td>
+</tr>
+<tr>
+<td>Context within conversation</td>
+<td>Context across all conversations</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>How Memory Works</h2>
+<p>When you share information with Copilot, it may choose to remember key facts.</p>
+<h3>Memory Gets Updated When You:</h3>
+<ol>
+<li>Share preferences: &quot;I prefer bullet points over paragraphs&quot;</li>
+<li>Describe your role: &quot;I&#39;m a PM focused on activation&quot;</li>
+<li>Mention recurring projects: &quot;I work on AKX adoption and onboarding&quot;</li>
+<li>Express working style: &quot;I like data-driven decisions&quot;</li>
+</ol>
+<h3>What You&#39;ll See</h3>
+<p>When Copilot remembers something, you may see a subtle &quot;Memory updated&quot; notification. This means a fact has been stored for future reference.</p>
+<hr>
+<h2>Exercise 1: Teach Copilot About You</h2>
+<p>Let&#39;s intentionally teach Copilot about your role at Accenture.</p>
+<p><strong>Do this now:</strong></p>
+<p>In Copilot Chat, enter this prompt:</p>
+<pre><code>I&#39;d like to share some context about my work so you can help me better:
+
+**My Role:**
+- I&#39;m a Senior Product Owner at Accenture
+- I lead two internal tools: AKX (Accenture Knowledge Exchange) and ADH (Accenture Delivery Hub)
+- AKX is at 43% weekly active users (WAU), with a target of 60%
+- ADH is a newer delivery management platform in early adoption
+- I report to the VP of Product
+
+**My Users:**
+- Sarah Chen (Enterprise Admin) - needs security &amp; compliance
+- Mike Rodriguez (IC Engineer) - needs speed &amp; integrations
+- Alex Thompson (Team Lead) - needs visibility &amp; reporting
+
+**My Preferences:**
+- I prefer concise, bullet-pointed responses
+- I value data-driven recommendations
+- I like to see &quot;why&quot; behind suggestions
+- I appreciate when you flag risks proactively
+
+Please confirm you&#39;ve noted this context. In future conversations,
+use this information to make your responses more relevant to my work.
+</code></pre>
+<p><strong>What should happen:</strong></p>
+<ul>
+<li>Copilot acknowledges the context</li>
+<li>Some or all may be stored in Memory</li>
+<li>Future responses will be more tailored</li>
+</ul>
+<hr>
+<h2>Checking Your Memory</h2>
+<p>You can see and manage what Copilot remembers.</p>
+<p><strong>To view and manage your Memory settings:</strong></p>
+<ol>
+<li>Go to <strong>copilot.microsoft.com</strong></li>
+<li>Look for your profile icon — it may appear in the <strong>top right</strong> or <strong>bottom left</strong> depending on your interface version</li>
+<li>Click it and look for <strong>Settings</strong>, <strong>Memory</strong>, or <strong>Manage memory</strong></li>
+<li>If you don&#39;t see &quot;Memory&quot; in settings, it may not yet be enabled for your account</li>
+</ol>
+<blockquote>
+<p><em>Note: The Copilot interface is updated frequently. If these steps have changed, look for a settings gear icon or contact your IT helpdesk.</em></p>
+</blockquote>
+<h3>To Delete Memories:</h3>
+<ol>
+<li>Navigate to memory settings</li>
+<li>Find the memory you want to remove</li>
+<li>Click the delete/remove option</li>
+<li>That fact will no longer influence responses</li>
+</ol>
+<hr>
+<h2>Creating Context Documents</h2>
+<p>For detailed project context that&#39;s too complex for Memory, use <strong>Context Documents</strong>.</p>
+<h3>What is a Context Document?</h3>
+<p>A document (usually Word or Markdown) that contains:</p>
+<ul>
+<li>Project background</li>
+<li>Key stakeholders</li>
+<li>User personas</li>
+<li>Current goals</li>
+<li>Terminology/definitions</li>
+</ul>
+<p>You upload this at the start of a session to give Copilot full context.</p>
+<h3>Example Context Document</h3>
+<pre><code class="language-markdown"># AKX Product Context
+
+## Project Overview
+Improving adoption and engagement for AKX (Accenture Knowledge Exchange).
+Goal: Increase weekly active users (WAU) from 43% to 60%.
+
+## My Role
+Senior Product Owner at Accenture, leading AKX and ADH
+
+## Key Stakeholders
+- VP Product (Sarah) - Executive sponsor
+- Engineering Lead (Marcus) - 3 engineers allocated
+- Design Lead (Jessica) - Design support
+
+## User Personas
+1. Sarah Chen - Enterprise Admin (security-focused)
+2. Mike Rodriguez - IC Engineer (efficiency-focused)
+3. Alex Thompson - Team Lead (visibility-focused)
+
+## Current Metrics
+- Weekly Active Users (WAU): 43% (target: 60%)
+- Time to first value: 15 min (target: 5 min)
+- 7-day retention: 20% (target: 35%)
+
+## Key Terms
+- &quot;WAU&quot; = Weekly Active Users
+- &quot;TTV&quot; = Time to Value
+- &quot;AKX&quot; = Accenture Knowledge Exchange
+- &quot;ADH&quot; = Accenture Delivery Hub
+
+## Current Sprint Focus
+Improving the AKX onboarding experience with guided tooltips
+</code></pre>
+<hr>
+<h2>Exercise 2: Create and Use a Context Document</h2>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open Microsoft Word</li>
+<li>Create a new document called &quot;AKX-Context.docx&quot;</li>
+<li>Paste the context template above (or create your own)</li>
+<li>Save to OneDrive</li>
+<li>In Copilot Chat, upload the document</li>
+<li>Then ask:</li>
+</ol>
+<pre><code>Based on the context document I just uploaded, suggest 3 experiments
+we could run to improve AKX weekly active users from 43% to 60%.
+</code></pre>
+<p><strong>What to notice:</strong></p>
+<ul>
+<li>Copilot uses the specific context you provided</li>
+<li>Suggestions are tailored to AKX</li>
+<li>Metrics and personas are referenced</li>
+</ul>
+<hr>
+<h2>Memory vs Context Documents</h2>
+<p>Use both strategically:</p>
+<table>
+<thead>
+<tr>
+<th>Use Memory For</th>
+<th>Use Context Documents For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Your role and preferences</td>
+<td>Specific project details</td>
+</tr>
+<tr>
+<td>Working style</td>
+<td>Current metrics and goals</td>
+</tr>
+<tr>
+<td>Recurring information</td>
+<td>Stakeholder information</td>
+</tr>
+<tr>
+<td>General context</td>
+<td>Complex background</td>
+</tr>
+<tr>
+<td>Persistent across all chats</td>
+<td>Per-project/per-session</td>
+</tr>
+</tbody></table>
+<h3>Best Practice: Layered Context</h3>
+<ol>
+<li><strong>Memory</strong> holds your permanent context (role, style, preferences)</li>
+<li><strong>Context Documents</strong> hold project-specific details (upload as needed)</li>
+<li><strong>Prompt Instructions</strong> hold task-specific needs (in each prompt)</li>
+</ol>
+<hr>
+<h2>Limitations of Memory</h2>
+<p>Be aware of these limitations:</p>
+<h3>What Memory Doesn&#39;t Do Well:</h3>
+<ul>
+<li>❌ Store complex data structures</li>
+<li>❌ Remember exact documents or files</li>
+<li>❌ Maintain hierarchical organization</li>
+<li>❌ Guarantee what&#39;s remembered</li>
+<li>❌ Replace actual documentation</li>
+</ul>
+<h3>What This Means for You:</h3>
+<ul>
+<li>Don&#39;t rely solely on Memory for critical info</li>
+<li>Use context documents for important project details</li>
+<li>Verify Memory hasn&#39;t &quot;forgotten&quot; key facts</li>
+<li>Maintain your own documentation as source of truth</li>
+</ul>
+<blockquote>
+<p><strong>What Not to Store in Memory:</strong></p>
+<ul>
+<li>Client names or confidential project codes</li>
+<li>Personal data about colleagues or stakeholders</li>
+<li>Proprietary financial figures (specific deal values, budgets)</li>
+<li>Anything marked Confidential or Highly Confidential per your organization&#39;s data policy</li>
+</ul>
+<p>Memory is appropriate for: your role, your preferences, working style, and general product context.</p>
+</blockquote>
+<hr>
+<h2>Managing Memory Over Time</h2>
+<p>As you work with Copilot, your Memory will grow. Maintain it:</p>
+<h3>Monthly Memory Review</h3>
+<ol>
+<li>Check what&#39;s stored in Memory</li>
+<li>Remove outdated information</li>
+<li>Add any missing key context</li>
+<li>Verify preferences are correct</li>
+</ol>
+<h3>When Projects Change</h3>
+<ol>
+<li>Update your context documents</li>
+<li>Tell Copilot about the change:<pre><code>Update: I&#39;m now focused on the Reporting feature instead of Onboarding.
+My new goal is to improve dashboard performance by 50%.
+</code></pre>
+</li>
+</ol>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ How Copilot Memory works (persistent key facts)</li>
+<li>✅ How to teach Copilot about your role and preferences</li>
+<li>✅ How to create context documents for detailed info</li>
+<li>✅ The difference between Memory and context documents</li>
+<li>✅ How to manage Memory over time</li>
+</ul>
+<hr>
+<h2>Next Steps</h2>
+<p>Continue to <strong>Module 1.7: Copilot Across M365 Apps</strong></p>
+<p>In Module 1.7, you&#39;ll learn how to:</p>
+<ul>
+<li>Use Copilot inside Word, Excel, PowerPoint</li>
+<li>Leverage app-specific Copilot features</li>
+<li>Create documents, analyze data, build presentations</li>
+<li>Navigate the M365 Copilot ecosystem</li>
+</ul>
+<hr>
+<h2>Quick Reference: Memory Commands</h2>
+<table>
+<thead>
+<tr>
+<th>What You Want</th>
+<th>Example Prompt</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Teach about your role</td>
+<td>&quot;I&#39;m a Product Owner focused on AKX adoption at Accenture...&quot;</td>
+</tr>
+<tr>
+<td>Set preferences</td>
+<td>&quot;I prefer concise responses with bullet points...&quot;</td>
+</tr>
+<tr>
+<td>Update context</td>
+<td>&quot;Update: My focus has shifted to the Reports feature...&quot;</td>
+</tr>
+<tr>
+<td>Check understanding</td>
+<td>&quot;What do you remember about my role and projects?&quot;</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Ready to explore Copilot everywhere? Let&#39;s go to Module 1.7!</strong></p>
+
+    </div>
+    <div class="nav-footer"><a href="module-1.5.html" class="nav-btn prev">&larr; 1.5 Persona Prompting for Different Perspectives</a><a href="index.html" class="nav-btn home">Home</a><a href="module-1.7.html" class="nav-btn next">1.7 Copilot Across M365 Apps &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>

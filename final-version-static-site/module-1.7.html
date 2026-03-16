@@ -1,0 +1,934 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Module 1.7: Copilot Across M365 Apps - Copilot PM Course</title>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+:root {
+  --white: #ffffff;
+  --cream: #F7F6F5;
+  --cream-dark: #F3F1EF;
+  --cream-darker: #EEEDEA;
+  --warm-gray: #D9D9D9;
+  --warm-gray-dark: #898584;
+  --border: #D9D9D9;
+  --text-primary: #292C33;
+  --text-secondary: #6B7280;
+  --text-muted: #6A6A6A;
+  --teal: #487265;
+  --teal-light: #DDEFEF;
+  --teal-border: #568788;
+  --teal-dark: #407967;
+  --sage: #A0C3C4;
+  --olive: #AAB788;
+  --gold: #D4C68B;
+  --copper: #BC976A;
+  --bronze: #CAAB84;
+  --header-h: 55px;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-primary);
+  background: var(--white);
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; font-weight: 500; letter-spacing: -0.02em; }
+
+/* ─── Header ─── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  height: var(--header-h); background: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  width: 100%; max-width: 860px; padding: 0 24px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.header-brand {
+  font-family: 'Playfair Display', serif; font-size: 1.1rem;
+  font-weight: 600; color: var(--text-primary); text-decoration: none;
+  letter-spacing: -0.02em;
+}
+.header-home {
+  font-size: 0.85rem; color: var(--teal-dark); text-decoration: none;
+  padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+  transition: background 0.2s;
+}
+.header-home:hover { background: var(--cream); }
+
+/* ─── Layout ─── */
+.page-container {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: calc(var(--header-h) + 32px) 24px 80px;
+}
+
+/* ─── Index Page ─── */
+.hero {
+  text-align: center;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 40px;
+}
+.hero h1 {
+  font-size: 2.6rem;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  margin-bottom: 14px;
+}
+.hero .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  max-width: 520px;
+  margin: 0 auto 20px;
+}
+.hero .meta {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.hero .meta span { margin: 0 6px; }
+
+.stats-row {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 12px; margin-bottom: 40px;
+}
+.stat-card {
+  background: var(--cream); border-radius: 8px;
+  padding: 18px 14px; text-align: center;
+}
+.stat-card .number {
+  font-size: 1.8rem; font-weight: 700;
+  color: var(--teal-dark); line-height: 1.2;
+}
+.stat-card .label {
+  font-size: 0.72rem; color: var(--text-muted);
+  text-transform: uppercase; letter-spacing: 0.05em; margin-top: 4px;
+}
+
+.level-section { margin-bottom: 32px; }
+.level-header {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 12px; padding-bottom: 8px;
+  border-bottom: 1px solid var(--cream-darker);
+}
+.level-badge {
+  background: var(--teal); color: var(--white);
+  font-size: 0.65rem; font-weight: 700;
+  padding: 3px 8px; border-radius: 4px;
+  text-transform: uppercase; letter-spacing: 0.06em;
+}
+.level-header h3 {
+  font-size: 1.2rem; color: var(--text-primary); margin-bottom: 0;
+}
+.level-header .level-desc {
+  color: var(--text-muted); font-size: 0.88rem;
+}
+
+.module-list { list-style: none; display: grid; gap: 6px; }
+.module-card {
+  display: flex; align-items: center;
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px 18px;
+  text-decoration: none; color: inherit;
+  transition: border-color 0.2s, box-shadow 0.15s, transform 0.1s;
+}
+.module-card:hover {
+  border-color: var(--teal-border);
+  box-shadow: 0 2px 8px rgba(72,114,101,0.08);
+  transform: translateY(-1px);
+}
+.module-id {
+  font-weight: 700; color: var(--teal-dark);
+  min-width: 2.5rem; font-size: 0.95rem;
+}
+.module-info { flex: 1; }
+.module-info .title { font-weight: 500; font-size: 0.95rem; }
+.module-info .duration { font-size: 0.78rem; color: var(--text-muted); }
+.module-arrow { color: var(--warm-gray); font-size: 1.2rem; margin-left: 8px; }
+
+/* ─── Resource Section on Index ─── */
+.resources-section {
+  margin-top: 40px; padding-top: 32px;
+  border-top: 1px solid var(--border);
+}
+.resources-section h3 {
+  font-size: 1.3rem; color: var(--text-primary); margin-bottom: 16px;
+}
+.resource-group { margin-bottom: 20px; }
+.resource-group h4 {
+  font-family: 'Inter', sans-serif; font-size: 0.9rem;
+  font-weight: 600; color: var(--text-muted);
+  margin-bottom: 8px; padding-left: 2px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 6px;
+}
+.resource-link {
+  display: block; background: var(--white);
+  border: 1px solid var(--border); border-radius: 6px;
+  padding: 8px 14px; text-decoration: none;
+  color: var(--text-primary); font-size: 0.88rem;
+  transition: border-color 0.2s, box-shadow 0.15s;
+}
+.resource-link:hover {
+  border-color: var(--teal-border); color: var(--teal-dark);
+  box-shadow: 0 1px 4px rgba(72,114,101,0.08);
+}
+
+/* ─── Module Pages ─── */
+.module-header {
+  margin-bottom: 28px; padding-bottom: 20px;
+  border-bottom: 1px solid var(--border);
+}
+.module-header .breadcrumb {
+  font-size: 0.82rem; color: var(--text-muted); margin-bottom: 6px;
+}
+.module-header .breadcrumb a {
+  color: var(--teal-dark); text-decoration: none;
+}
+.module-header .breadcrumb a:hover { text-decoration: underline; }
+
+.module-meta {
+  display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap;
+}
+.meta-tag {
+  font-size: 0.75rem; padding: 3px 10px;
+  border-radius: 20px; font-weight: 500;
+}
+.meta-tag.duration { background: var(--teal-light); color: var(--teal-dark); }
+.meta-tag.level { background: var(--cream); color: var(--text-muted); }
+
+/* ─── Markdown Content ─── */
+.content {
+  background: var(--white); padding: 0;
+}
+
+.content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.9rem; font-weight: 500;
+  color: var(--text-primary); margin: 2rem 0 1rem;
+  letter-spacing: -0.03em;
+}
+.content h1:first-child { margin-top: 0; }
+
+.content h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem; font-weight: 500;
+  color: var(--teal-dark); margin: 2.5rem 0 0.75rem;
+  padding-bottom: 6px; border-bottom: 1px solid var(--cream-darker);
+}
+
+.content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.12rem; font-weight: 500;
+  color: var(--text-primary); margin: 1.5rem 0 0.5rem;
+}
+
+.content h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem; font-weight: 600;
+  color: var(--text-primary); margin: 1.2rem 0 0.4rem;
+}
+
+.content p {
+  margin: 0.75rem 0; color: var(--text-secondary);
+}
+
+.content ul, .content ol {
+  margin: 0.75rem 0; padding-left: 1.5rem;
+}
+.content li { margin: 0.3rem 0; color: var(--text-secondary); }
+.content li p { margin: 0.25rem 0; }
+
+.content strong { color: var(--text-primary); }
+
+.content a {
+  color: var(--teal-dark); text-decoration: none;
+  border-bottom: 1px solid var(--sage);
+}
+.content a:hover { color: var(--teal); border-bottom-color: var(--teal); }
+
+.content blockquote {
+  border-left: 3px solid var(--teal);
+  background: var(--cream); padding: 12px 18px;
+  margin: 1rem 0; border-radius: 0 6px 6px 0;
+}
+.content blockquote p { color: var(--text-secondary); margin: 0.25rem 0; }
+
+.content code {
+  background: var(--cream-dark); color: var(--teal-dark);
+  padding: 2px 6px; border-radius: 3px;
+  font-size: 0.87em; font-family: 'SF Mono', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.content pre {
+  background: #1a1a2e; color: #4ade80;
+  padding: 18px 20px; border-radius: 8px;
+  overflow-x: auto; margin: 1rem 0;
+  font-size: 0.87rem; line-height: 1.55;
+}
+.content pre code {
+  background: none; color: inherit; padding: 0; font-size: inherit;
+}
+
+.content table {
+  width: 100%; border-collapse: collapse;
+  margin: 1rem 0; font-size: 0.9rem;
+}
+.content th {
+  background: var(--cream); color: var(--text-primary);
+  font-weight: 600; text-align: left;
+  padding: 8px 12px; border-bottom: 2px solid var(--border);
+  font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;
+}
+.content td {
+  padding: 8px 12px; border-bottom: 1px solid var(--cream-darker);
+  color: var(--text-secondary);
+}
+.content tr:hover td { background: var(--cream); }
+
+.content hr {
+  border: none; border-top: 1px solid var(--cream-darker);
+  margin: 2rem 0;
+}
+
+.content img {
+  max-width: 100%; border-radius: 8px; margin: 1rem 0;
+}
+
+/* ─── Navigation Footer ─── */
+.nav-footer {
+  display: flex; justify-content: space-between;
+  align-items: center; margin-top: 32px;
+  padding-top: 20px; border-top: 1px solid var(--border);
+  gap: 12px;
+}
+.nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 18px; border-radius: 20px;
+  text-decoration: none; font-size: 0.85rem; font-weight: 500;
+  transition: background 0.2s, box-shadow 0.15s;
+}
+.nav-btn.prev {
+  color: var(--text-secondary); background: var(--cream);
+  border: 1px solid var(--border);
+}
+.nav-btn.prev:hover { background: var(--cream-dark); }
+.nav-btn.next {
+  color: var(--white); background: var(--teal);
+  border: 1px solid var(--teal); margin-left: auto;
+}
+.nav-btn.next:hover { background: var(--teal-dark); }
+.nav-btn.home {
+  color: var(--teal-dark); background: var(--white);
+  border: 1px solid var(--border);
+}
+.nav-btn.home:hover { background: var(--cream); }
+
+/* ─── Footer ─── */
+.site-footer {
+  text-align: center; padding: 28px 24px;
+  color: var(--text-muted); font-size: 0.78rem;
+  border-top: 1px solid var(--border); margin-top: 48px;
+}
+
+/* ─── Print ─── */
+@media print {
+  .site-header, .nav-footer, .site-footer { display: none; }
+  .content { padding: 0; }
+  .page-container { max-width: 100%; padding: 0; }
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .page-container { padding: calc(var(--header-h) + 16px) 16px 60px; }
+  .hero h1 { font-size: 1.8rem; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .resource-grid { grid-template-columns: 1fr; }
+  .header-inner { padding: 0 16px; }
+  .nav-footer { flex-wrap: wrap; }
+}
+</style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner">
+      <a href="index.html" class="header-brand">Copilot for PMs</a>
+      <a href="index.html" class="header-home">&larr; Course Home</a>
+    </div>
+  </header>
+  <div class="page-container">
+    
+    <div class="module-header">
+      <div class="breadcrumb">
+        <a href="index.html">Course Home</a> &rsaquo; Level 1: Foundation &rsaquo; Module 1.7
+      </div>
+      <div class="module-meta">
+        <span class="meta-tag duration">15 min</span>
+        <span class="meta-tag level">Level 1: Foundation</span>
+      </div>
+    </div>
+    <div class="content">
+      <h1>Module 1.7: Copilot Across M365 Apps</h1>
+<p><strong>Duration:</strong> 20 minutes
+<strong>Prerequisites:</strong> Modules 1.1-1.6 completed</p>
+<hr>
+<h2>What You&#39;ll Learn</h2>
+<p>By the end of this module, you will:</p>
+<ol>
+<li>Use Copilot inside Word, Excel, PowerPoint, and Outlook</li>
+<li>Understand app-specific Copilot capabilities</li>
+<li>Create documents, analyze data, and build presentations with Copilot</li>
+<li>Navigate between browser chat and in-app Copilot</li>
+<li>Know which Copilot to use for which task</li>
+</ol>
+<hr>
+<h2>The M365 Copilot Ecosystem</h2>
+<p>Copilot isn&#39;t just a chat interface—it&#39;s integrated throughout Microsoft 365:</p>
+<table>
+<thead>
+<tr>
+<th>App</th>
+<th>Copilot Capabilities</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Browser Chat</strong></td>
+<td>Research, analysis, general questions, file analysis</td>
+</tr>
+<tr>
+<td><strong>Word</strong></td>
+<td>Draft, rewrite, summarize, generate content</td>
+</tr>
+<tr>
+<td><strong>Excel</strong></td>
+<td>Analyze data, create formulas, generate charts</td>
+</tr>
+<tr>
+<td><strong>PowerPoint</strong></td>
+<td>Create presentations, add slides, design suggestions</td>
+</tr>
+<tr>
+<td><strong>Outlook</strong></td>
+<td>Draft emails, summarize threads, suggest replies</td>
+</tr>
+<tr>
+<td><strong>Teams</strong></td>
+<td>Meeting summaries, chat insights, action items</td>
+</tr>
+<tr>
+<td><strong>OneNote</strong></td>
+<td>Summarize notes, generate content, organize</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Opening Copilot in M365 Apps</h2>
+<h3>Universal Shortcut</h3>
+<p><strong>Windows:</strong> Alt + I
+<strong>Mac:</strong> Option + I
+This opens the Copilot panel in Word, Excel, and PowerPoint.</p>
+<blockquote>
+<p><strong>If the shortcut does not work:</strong></p>
+<ul>
+<li>Look for the purple <strong>Copilot icon</strong> in the Home tab of the ribbon</li>
+<li>In Excel, also check the <strong>Review</strong> tab for Copilot</li>
+<li>Shortcut availability depends on your Microsoft 365 version and admin settings</li>
+</ul>
+</blockquote>
+<hr>
+<blockquote>
+<p><strong>Before these exercises:</strong></p>
+<ul>
+<li>Ensure your files are saved and not in &quot;Protected View&quot;</li>
+<li>Files with sensitivity labels &quot;Highly Confidential - Encrypted&quot; may block Copilot access</li>
+<li>If Copilot appears greyed out or unavailable, check with your IT team</li>
+<li>If Alt+I does not work in any app, use the Copilot button in the ribbon Home tab instead</li>
+</ul>
+</blockquote>
+<blockquote>
+<hr>
+<p><strong>Enterprise Data Guidance</strong>
+Before uploading files or sharing data with Copilot:</p>
+<ul>
+<li>Copilot operates within your Microsoft 365 tenant — data is not shared externally</li>
+<li>Files labeled &quot;Highly Confidential — Encrypted&quot; may be blocked by Copilot due to sensitivity policies</li>
+<li>Do not share client names, deal values, or engagement codes in Copilot prompts</li>
+</ul>
+<hr>
+</blockquote>
+<h2>Copilot in Word</h2>
+<p>Word Copilot helps you <strong>create and refine documents</strong>.</p>
+<h3>What Word Copilot Can Do</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>How to Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Draft new content</td>
+<td>&quot;Write a project proposal for...&quot;</td>
+</tr>
+<tr>
+<td>Rewrite text</td>
+<td>Select text → &quot;Rewrite this to be more concise&quot;</td>
+</tr>
+<tr>
+<td>Summarize</td>
+<td>&quot;Summarize this document in 3 bullet points&quot;</td>
+</tr>
+<tr>
+<td>Change tone</td>
+<td>&quot;Rewrite this for an executive audience&quot;</td>
+</tr>
+<tr>
+<td>Expand</td>
+<td>&quot;Add more detail about the implementation&quot;</td>
+</tr>
+<tr>
+<td>Generate ideas</td>
+<td>&quot;Suggest 5 alternative approaches to...&quot;</td>
+</tr>
+</tbody></table>
+<h3>Exercise: Create a Document with Word Copilot</h3>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open Microsoft Word</li>
+<li>Create a new blank document</li>
+<li>Press <strong>Alt+I</strong> to open Copilot</li>
+<li>Type this prompt:</li>
+</ol>
+<pre><code>Create a one-page project brief for AKX&#39;s new onboarding wizard.
+
+Include:
+- Executive Summary (2-3 sentences)
+- Problem Statement
+- Proposed Solution
+- Success Metrics
+- Timeline (high level)
+- Risks
+
+Target audience: VP of Product and Engineering Lead
+</code></pre>
+<ol start="5">
+<li>Copilot generates the document</li>
+<li>Review and edit as needed</li>
+</ol>
+<p><strong>What to notice:</strong></p>
+<ul>
+<li>Content appears directly in your document</li>
+<li>You can iterate with follow-up prompts</li>
+<li>Each section can be refined individually</li>
+</ul>
+<hr>
+<h2>Copilot in Excel</h2>
+<p>Excel Copilot helps you <strong>analyze data and create insights</strong>.</p>
+<h3>What Excel Copilot Can Do</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>How to Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Analyze data</td>
+<td>&quot;What are the trends in this data?&quot;</td>
+</tr>
+<tr>
+<td>Create formulas</td>
+<td>&quot;Add a column that calculates growth rate&quot;</td>
+</tr>
+<tr>
+<td>Generate charts</td>
+<td>&quot;Create a bar chart of sales by region&quot;</td>
+</tr>
+<tr>
+<td>Find insights</td>
+<td>&quot;What&#39;s surprising about this data?&quot;</td>
+</tr>
+<tr>
+<td>Format tables</td>
+<td>&quot;Format this as a professional report table&quot;</td>
+</tr>
+<tr>
+<td>Python analysis</td>
+<td>&quot;Use Python to do regression analysis&quot;</td>
+</tr>
+</tbody></table>
+<h3>Exercise: Analyze Data with Excel Copilot</h3>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open Microsoft Excel</li>
+<li>Create a new spreadsheet with this data:</li>
+</ol>
+<blockquote>
+<p><em>Note: The data below is illustrative for this exercise. When applying these techniques to your own work, use your actual product metrics.</em></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Month</th>
+<th>Signups</th>
+<th>Activated</th>
+<th>Activation Rate</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Jan</td>
+<td>500</td>
+<td>175</td>
+<td>35%</td>
+</tr>
+<tr>
+<td>Feb</td>
+<td>550</td>
+<td>220</td>
+<td>40%</td>
+</tr>
+<tr>
+<td>Mar</td>
+<td>600</td>
+<td>270</td>
+<td>45%</td>
+</tr>
+<tr>
+<td>Apr</td>
+<td>580</td>
+<td>290</td>
+<td>50%</td>
+</tr>
+<tr>
+<td>May</td>
+<td>620</td>
+<td>341</td>
+<td>55%</td>
+</tr>
+</tbody></table>
+<ol start="3">
+<li>Press <strong>Alt+I</strong> to open Copilot</li>
+<li>Type:</li>
+</ol>
+<pre><code>Analyze this activation data and:
+1. What&#39;s the trend?
+2. Create a line chart showing the improvement
+3. If this trend continues, what will June look like?
+4. Add a column calculating month-over-month growth
+</code></pre>
+<ol start="5">
+<li>Review Copilot&#39;s analysis and chart</li>
+</ol>
+<p><strong>What to notice:</strong></p>
+<ul>
+<li>Copilot understands your data structure</li>
+<li>Creates formulas automatically</li>
+<li>Generates visualizations</li>
+<li>Provides analytical insights</li>
+</ul>
+<hr>
+<h2>Copilot in PowerPoint</h2>
+<p>PowerPoint Copilot helps you <strong>create and enhance presentations</strong>.</p>
+<h3>What PowerPoint Copilot Can Do</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>How to Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Create from scratch</td>
+<td>&quot;Create a presentation about...&quot;</td>
+</tr>
+<tr>
+<td>Create from document</td>
+<td>&quot;Create slides from this Word doc&quot;</td>
+</tr>
+<tr>
+<td>Add slides</td>
+<td>&quot;Add a slide about market opportunity&quot;</td>
+</tr>
+<tr>
+<td>Improve design</td>
+<td>&quot;Suggest a better layout for this slide&quot;</td>
+</tr>
+<tr>
+<td>Summarize</td>
+<td>&quot;Create a summary slide&quot;</td>
+</tr>
+<tr>
+<td>Speaker notes</td>
+<td>&quot;Add speaker notes to all slides&quot;</td>
+</tr>
+</tbody></table>
+<h3>Exercise: Create a Presentation</h3>
+<p><strong>Do this now:</strong></p>
+<ol>
+<li>Open Microsoft PowerPoint</li>
+<li>Create a new blank presentation</li>
+<li>Press <strong>Alt+I</strong> to open Copilot</li>
+<li>Type:</li>
+</ol>
+<pre><code>Create a 6-slide presentation about AKX&#39;s new onboarding wizard:
+
+Slide 1: Title slide
+Slide 2: The Problem (current WAU is 43%, target is 60%)
+Slide 3: Our Solution (new onboarding wizard features)
+Slide 4: Expected Impact (metrics improvement)
+Slide 5: Timeline and Milestones
+Slide 6: Ask (what we need from leadership)
+
+Use a professional, modern design style.
+</code></pre>
+<ol start="5">
+<li>Review the generated presentation</li>
+<li>Ask Copilot to refine specific slides:</li>
+</ol>
+<pre><code>Make slide 3 more visual with icons representing each feature
+</code></pre>
+<hr>
+<h2>Copilot in Outlook</h2>
+<p>Outlook Copilot helps you <strong>manage email more efficiently</strong>.</p>
+<h3>What Outlook Copilot Can Do</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>How to Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Draft emails</td>
+<td>&quot;Draft a follow-up email to the design team&quot;</td>
+</tr>
+<tr>
+<td>Summarize threads</td>
+<td>&quot;Summarize this email thread&quot;</td>
+</tr>
+<tr>
+<td>Suggest replies</td>
+<td>&quot;Suggest a polite decline to this request&quot;</td>
+</tr>
+<tr>
+<td>Improve writing</td>
+<td>&quot;Make this more professional&quot;</td>
+</tr>
+<tr>
+<td>Find information</td>
+<td>&quot;What was the deadline mentioned in this thread?&quot;</td>
+</tr>
+</tbody></table>
+<h3>Email Best Practices with Copilot</h3>
+<p><strong>Drafting:</strong></p>
+<pre><code>Draft an email to my engineering lead about the onboarding project:
+- Thank them for the timeline estimate
+- Ask about API dependencies
+- Propose a sync meeting this week
+- Keep it brief and friendly
+</code></pre>
+<p><strong>Replying:</strong></p>
+<pre><code>Write a polite response that:
+- Acknowledges their concern
+- Explains our reasoning
+- Offers a compromise
+- Maintains a collaborative tone
+</code></pre>
+<hr>
+<h2>Copilot in Teams</h2>
+<p>Teams Copilot helps you <strong>stay on top of meetings and conversations</strong>.</p>
+<h3>What Teams Copilot Can Do</h3>
+<table>
+<thead>
+<tr>
+<th>Task</th>
+<th>How to Use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Meeting summaries</td>
+<td>&quot;Summarize what was discussed&quot;</td>
+</tr>
+<tr>
+<td>Action items</td>
+<td>&quot;What action items came from this meeting?&quot;</td>
+</tr>
+<tr>
+<td>Catch up</td>
+<td>&quot;What did I miss in the last hour?&quot;</td>
+</tr>
+<tr>
+<td>Find decisions</td>
+<td>&quot;What decisions were made about the timeline?&quot;</td>
+</tr>
+<tr>
+<td>Chat insights</td>
+<td>&quot;Summarize the key points from this chat&quot;</td>
+</tr>
+</tbody></table>
+<h3>Meeting Recap Example</h3>
+<p>After a meeting, click Copilot in Teams and ask:</p>
+<pre><code>Give me a meeting recap including:
+- Key decisions made
+- Action items (with owners if mentioned)
+- Topics that need follow-up
+- My personal action items
+</code></pre>
+<hr>
+<h2>When to Use Each Copilot</h2>
+<h3>Decision Framework</h3>
+<pre><code>What do you need to do?
+
+CREATE content
+├── Document → Word Copilot
+├── Presentation → PowerPoint Copilot
+├── Email → Outlook Copilot
+└── General content → Browser Chat
+
+ANALYZE data
+├── Spreadsheet → Excel Copilot
+├── Multiple files → Browser Chat
+└── Complex analysis → Analyst Agent
+
+RESEARCH
+├── Quick question → Browser Chat
+├── Deep research → Researcher Agent
+└── Project-specific → Upload context + Chat
+
+COMMUNICATE
+├── Draft email → Outlook Copilot
+├── Refine doc → Word Copilot
+└── Summarize meeting → Teams Copilot
+</code></pre>
+<h3>Quick Reference Table</h3>
+<table>
+<thead>
+<tr>
+<th>I Want To...</th>
+<th>Use This</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Write a PRD</td>
+<td>Word Copilot</td>
+</tr>
+<tr>
+<td>Analyze metrics</td>
+<td>Excel Copilot</td>
+</tr>
+<tr>
+<td>Create a deck</td>
+<td>PowerPoint Copilot</td>
+</tr>
+<tr>
+<td>Draft an update email</td>
+<td>Outlook Copilot</td>
+</tr>
+<tr>
+<td>Research competitors</td>
+<td>Browser Chat + Researcher</td>
+</tr>
+<tr>
+<td>Get meeting notes</td>
+<td>Teams Copilot</td>
+</tr>
+<tr>
+<td>General questions</td>
+<td>Browser Chat</td>
+</tr>
+</tbody></table>
+<hr>
+<h2>Tips for Navigating the Ecosystem</h2>
+<h3>Tip 1: Start in Browser, Finish in Apps</h3>
+<ul>
+<li>Do research and planning in Browser Chat</li>
+<li>Create drafts in the appropriate app</li>
+<li>Use in-app Copilot for refinement</li>
+</ul>
+<h3>Tip 2: Copy Between Copilots</h3>
+<ul>
+<li>Generate content in Browser Chat</li>
+<li>Copy to Word/PowerPoint</li>
+<li>Refine with in-app Copilot</li>
+</ul>
+<h3>Tip 3: Upload Outputs as Context</h3>
+<ul>
+<li>Create something in Word</li>
+<li>Upload to Browser Chat</li>
+<li>Ask for feedback or iterations</li>
+</ul>
+<h3>Tip 4: Use Consistent Shortcuts</h3>
+<ul>
+<li><strong>Alt+I</strong> works in Word, Excel, PowerPoint</li>
+<li>Muscle memory speeds you up</li>
+</ul>
+<hr>
+<h2>Module Complete!</h2>
+<p>You now know:</p>
+<ul>
+<li>✅ How to open Copilot in Word, Excel, PowerPoint, Outlook</li>
+<li>✅ What each app&#39;s Copilot can do</li>
+<li>✅ When to use browser chat vs in-app Copilot</li>
+<li>✅ How to create documents, analyze data, build presentations</li>
+<li>✅ How to navigate the M365 Copilot ecosystem</li>
+</ul>
+<hr>
+<h2>Great Work on Module 1.7!</h2>
+<p>You now know how to use Copilot across Word, Excel, and PowerPoint.</p>
+<p>Three more modules remain in Level 1:</p>
+<ul>
+<li>1.8: Teams Integration</li>
+<li>1.9: Outlook Integration</li>
+<li>1.10: SharePoint &amp; Collaboration</li>
+</ul>
+<p><strong>Continue to Module 1.8: Copilot in Microsoft Teams →</strong></p>
+<hr>
+<h2>Quick Reference: Keyboard Shortcuts</h2>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Windows</th>
+<th>Mac</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Open Copilot (anywhere)</td>
+<td>Alt + Spacebar</td>
+<td>Option + Spacebar</td>
+</tr>
+<tr>
+<td>Open Copilot in apps</td>
+<td>Alt + I</td>
+<td>Option + I</td>
+</tr>
+<tr>
+<td>Voice input</td>
+<td>Hold Alt + Space 2s</td>
+<td>Hold Option + Space 2s</td>
+</tr>
+</tbody></table>
+<hr>
+<p><strong>Ready for advanced PM workflows? Let&#39;s start Level 2!</strong></p>
+
+    </div>
+    <div class="nav-footer"><a href="module-1.6.html" class="nav-btn prev">&larr; 1.6 Building Context with Memory</a><a href="index.html" class="nav-btn home">Home</a><a href="module-1.8.html" class="nav-btn next">1.8 Copilot in Microsoft Teams &rarr;</a></div>
+  
+  </div>
+  <footer class="site-footer">
+    Copilot for Product Managers &middot; v2.0 &middot; Internal Training Material
+  </footer>
+</body>
+</html>
